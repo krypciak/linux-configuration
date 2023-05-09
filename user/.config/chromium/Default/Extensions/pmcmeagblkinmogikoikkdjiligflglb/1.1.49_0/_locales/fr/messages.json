@@ -1,0 +1,110 @@
+{
+   "addException": {
+      "description": "boutton 'Ajoutez une exception' dans les options.",
+      "message": "Ajoutez une exception"
+   },
+   "advancedTab": {
+      "description": "Onglet avancé (options).",
+      "message": "Avancé"
+   },
+   "alwaysProxy": {
+      "description": "Libellé pour l'option 'Toujours transiter par proxy les vidéos via Invidious' (options).",
+      "message": "Toujours transiter par proxy les vidéos via Invidious"
+   },
+   "bibliogramInstance": {
+      "description": "Étiquette pour l'option de champ d'instance Bibliogram (options).",
+      "message": "Instance de Bibliogram"
+   },
+   "disableBibliogram": {
+      "description": "Étiquette pour activer / désactiver l'option de redirection vers Bibliogram (options et pop-up).",
+      "message": "Redirection vers Bibliogram"
+   },
+   "disableInvidious": {
+      "description": "Étiquette pour activer / désactiver l'option de redirection vers Invidious (options et pop-up).",
+      "message": "Redirection vers Invidious"
+   },
+   "disableNitter": {
+      "description": "Étiquette pour activer / désactiver l'option de redirection vers Nitter (options et pop-up).",
+      "message": "Redirection vers Nitter"
+   },
+   "disableOsm": {
+      "description": "Étiquette pour activer / désactiver l'option de redirection vers OpenStreetMap (options et pop-up).",
+      "message": "Redirection vers OpenStreetMap"
+   },
+   "exceptionsDescriptionP1": {
+      "description": "Description pour la rubrique 'Exceptions' dans les options.",
+      "message": "Entrez une adresse URL ou une expression régulière qui sera exclue des redirections."
+   },
+   "exceptionsDescriptionP2": {
+      "description": "Description pour la rubrique 'Exceptions' dans les options.",
+      "message": "Toutes les demandes émanant d'une adresse URL et correspondant à l'exception seront exclues des redirections."
+   },
+   "exceptionsDescriptionP3": {
+      "description": "Description pour la rubrique 'Exceptions' dans les options.",
+      "message": "Remarque - Prend en charge les expressions régulières JavaScript, à l'exclusion des barres slash."
+   },
+   "exceptionsTab": {
+      "description": "Onglet des Exceptions dans les options.",
+      "message": "Exceptions"
+   },
+   "extensionDescription": {
+      "description": "Description du module complémentaire.",
+      "message": "Redirige les requêtes les demandes Twitter, YouTube, Instagram et Google Maps vers des alternatives respectueuses de la vie privée. pour Twitter, YouTube, Instagram et Google Maps vers des alternatives respectueuses de la vie privée."
+   },
+   "extensionName": {
+      "description": "Nom du module complémentaire.",
+      "message": "Privacy Redirect"
+   },
+   "generalTab": {
+      "description": "Onglet général (options).",
+      "message": "Général"
+   },
+   "invidiousDarkMode": {
+      "description": "Libellé pour l'option 'Mode sombre toujours activé pour Invidious' (options).",
+      "message": "Mode sombre toujours activé pour Invidious"
+   },
+   "invidiousInstance": {
+      "description": "Étiquette pour l'option de champ d'instance Invidious (options).",
+      "message": "Instance de Invidious"
+   },
+   "moreOptions": {
+      "description": "Boutton des options supplémentaires (pop-up).",
+      "message": "Options supplémentaires"
+   },
+   "nitterInstance": {
+      "description": "Étiquette pour l'option de champ d'instance Nitter (options).",
+      "message": "Instance de Nitter"
+   },
+   "onlyEmbeddedVideo": {
+      "description": "Libellé pour l'option 'Rediriger uniquement les vidéos intégrées vers Invidious' (options).",
+      "message": "Rediriger uniquement les vidéos intégrées vers Invidious"
+   },
+   "osmInstance": {
+      "description": "Étiquette pour l'option de champ d'instance OpenStreetMap (options).",
+      "message": "Instance de OpenStreetMap"
+   },
+   "persistInvidiousPrefs": {
+      "description": "Libellé pour 'Conserver les préférences d’Invidious (sous forme de cookie)' option (options).",
+      "message": "Conserver les préférences d’Invidious (sous forme de cookie)"
+   },
+   "privacy": {
+      "description": "Titre du module complémentaire - Vie privée (pop-up).",
+      "message": "Vie privée"
+   },
+   "redirect": {
+      "description": "Titre du module complémentaire - Redirection (pop-up).",
+      "message": "Redirection"
+   },
+   "removeTwitterSW": {
+      "description": "Libellé pour l'option 'Supprimer proactivement le service worker de Twitter' (options).",
+      "message": "Supprimer proactivement le service worker de Twitter"
+   },
+   "version": {
+      "description": "Version",
+      "message": "Version"
+   },
+   "videoQuality": {
+      "description": "Libellé pour l'option 'Qualité des vidéos Invidious' (options).",
+      "message": "Qualité des vidéos Invidious"
+   }
+}

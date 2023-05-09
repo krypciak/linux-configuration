@@ -1,0 +1,50 @@
+{
+   "background": {
+      "page": "pages/background/background.html",
+      "persistent": true
+   },
+   "browser_action": {
+      "default_icon": {
+         "128": "assets/images/icon128.png",
+         "16": "assets/images/icon16.png",
+         "32": "assets/images/icon32.png",
+         "48": "assets/images/icon48.png"
+      },
+      "default_popup": "pages/popup/popup.html",
+      "default_title": "Privacy Redirect"
+   },
+   "browser_specific_settings": {
+      "gecko": {
+         "id": "{b7f9d2cd-d772-4302-8c3f-eb941af36f76}",
+         "strict_min_version": "67.0"
+      }
+   },
+   "content_scripts": [ {
+      "js": [ "assets/javascripts/remove-twitter-sw.js" ],
+      "matches": [ "*://twitter.com/*", "*://www.twitter.com/*", "*://mobile.twitter.com/*", "*://pbs.twimg.com/*", "*://video.twimg.com/*" ],
+      "run_at": "document_start"
+   }, {
+      "js": [ "assets/javascripts/persist-invidious-prefs.js" ],
+      "matches": [ "*://invidious.snopyta.org/*", "*://invidious.xyz/*", "*://invidious.kavin.rocks/*", "*://tube.connect.cafe/*", "*://invidious.zapashcanon.fr/*", "*://invidiou.site/*", "*://vid.mint.lgbt/*", "*://invidious.site/*", "*://yewtu.be/*", "*://invidious.tube/*", "*://invidious.silkky.cloud/*", "*://invidious.himiko.cloud/*", "*://inv.skyn3t.in/*", "*://tube.incognet.io/*", "*://invidious.tinfoil-hat.net/*", "*://invidious.namazso.eu/*", "*://vid.puffyan.us/*", "*://dev.viewtube.io/*", "*://invidious.048596.xyz/*", "*://fz253lmuao3strwbfbmx46yu7acac2jz27iwtorgmbqlkurlclmancad.onion/*", "*://qklhadlycap4cnod.onion/*", "*://c7hqkpkpemu6e7emz5b4vyz7idjgdvgaaa3dyimmeojqbgpea3xqjoid.onion/*", "*://w6ijuptxiku4xpnnaetxvnkc5vqcdu7mgns2u77qefoixi63vbvnpnqd.onion/*" ],
+      "run_at": "document_start"
+   } ],
+   "default_locale": "en",
+   "description": "__MSG_extensionDescription__",
+   "icons": {
+      "128": "assets/images/icon128.png",
+      "16": "assets/images/icon16.png",
+      "32": "assets/images/icon32.png",
+      "48": "assets/images/icon48.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqUc9TDz9fOPnYpLydGw1cHdiKDlqEOpB9f5fCUuv7yXUXDCAXoCfhdKuHqihbMwVdCC4Tl85DKEqefHy7jUU+IttHdq6Y8BbJHPj7coEYO8y0i8TD5AgDffFSJ3x/mwgXaWqsM2GVY80fcIacwvafe3as/effwNRRUqWey+qaM+aOoyOlA1O1Gy+EdwA8gBcI4JHZLBhVBwv/gAk2tifWDRjGrar5lram5Ywqc5wjH2uMFj1amb2ET6ixvmG0Xq8k6Ex59kJjzL6pa0snntCX4HWjN00qfulWLTY9Akjndwth7iUdVuFRiuhpHjG/KtUpQLsRGOZVciyRaDxavDIEQIDAQAB",
+   "manifest_version": 2,
+   "name": "__MSG_extensionName__",
+   "options_ui": {
+      "open_in_tab": false,
+      "page": "pages/options/options.html"
+   },
+   "permissions": [ "storage", "webRequest", "webRequestBlocking", "\u003Call_urls>" ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "1.1.49",
+   "web_accessible_resources": [ "assets/javascripts/helpers/*" ]
+}

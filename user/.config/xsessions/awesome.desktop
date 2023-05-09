@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=awesome
+Comment=Highly configurable framework window manager
+Exec=~/.config/awesome/run/run.sh
+Type=Application

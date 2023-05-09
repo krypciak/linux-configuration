@@ -1,0 +1,17 @@
+user/.config/dwl/run/debug.txt
+user/.config/dwl/run/log.txt
+user/private
+user/private.old
+user/.local/share/nvim/telescope_history
+user/.config/awesome/lain1
+user/.config/chromium/Default/Extensions/njdfdhgcmkocbgbhcioffdbicglldapd/2.6.34_0/resources/
+
+*.log
+*/**/LOG
+*/**/LOG.old
+
+*.ldb
+
+*.o
+*-protocol.c
+*-protocol.h

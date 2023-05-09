@@ -1,0 +1,110 @@
+{
+   "addException": {
+      "description": "'Add Exceptions' button (options).",
+      "message": "添加例外"
+   },
+   "advancedTab": {
+      "description": "Advanced tab (options).",
+      "message": "高级"
+   },
+   "alwaysProxy": {
+      "description": "Label for 'Always proxy videos through Invidious' option (options).",
+      "message": "使用 Invidious 时始终使用视频代理"
+   },
+   "bibliogramInstance": {
+      "description": "Label for Bibliogram instance field option (options).",
+      "message": "Bibliogram 实例"
+   },
+   "disableBibliogram": {
+      "description": "Label for enable/disable Bibliogram redirects option (options & pop-up).",
+      "message": "Bibliogram 重定向"
+   },
+   "disableInvidious": {
+      "description": "Label for enable/disable Invidious redirects option (options & pop-up).",
+      "message": "Invidious 重定向"
+   },
+   "disableNitter": {
+      "description": "Label for enable/disable Nitter redirects option (options & pop-up).",
+      "message": "Nitter 重定向"
+   },
+   "disableOsm": {
+      "description": "Label for enable/disable OSM redirects option (options & pop-up).",
+      "message": "OpenStreetMap 重定向"
+   },
+   "exceptionsDescriptionP1": {
+      "description": "A description of the 'Exceptions' feature paragraph 1 (options).",
+      "message": "请输入一个不要重定向 URL 链接或正则表达式。"
+   },
+   "exceptionsDescriptionP2": {
+      "description": "A description of the 'Exceptions' feature paragraph 2 (options).",
+      "message": "若发起请求或访问的页面 URL 符合任一表达式，则插件将不会将其重定向。"
+   },
+   "exceptionsDescriptionP3": {
+      "description": "A description of the 'Exceptions' feature paragraph 3 (options).",
+      "message": "注：支持 JavaScript 正则表达式，且无须用正斜杠始末。"
+   },
+   "exceptionsTab": {
+      "description": "Exceptions tab (options).",
+      "message": "例外"
+   },
+   "extensionDescription": {
+      "description": "Description of the extension.",
+      "message": "将 Twitter、YouTube、Instagram 和 Google Maps 重定向至尊重隐私的替代品"
+   },
+   "extensionName": {
+      "description": "Name of the extension.",
+      "message": "Privacy Redirect"
+   },
+   "generalTab": {
+      "description": "General tab (options).",
+      "message": "常规"
+   },
+   "invidiousDarkMode": {
+      "description": "Label for 'Invidious dark mode always on' option (options).",
+      "message": "Invidious 始终使用夜间模式"
+   },
+   "invidiousInstance": {
+      "description": "Label for Invidious instance field option (options).",
+      "message": "Invidious 实例"
+   },
+   "moreOptions": {
+      "description": "More Options button (pop-up).",
+      "message": "更多设置"
+   },
+   "nitterInstance": {
+      "description": "Label for Nitter instance field option (options).",
+      "message": "Nitter 实例"
+   },
+   "onlyEmbeddedVideo": {
+      "description": "Label for 'Only redirect embedded video to Invidious' option (options).",
+      "message": "只重定向嵌入视频至 Invidious"
+   },
+   "osmInstance": {
+      "description": "Label for OSM instance field option (options).",
+      "message": "OpenStreetMap 实例"
+   },
+   "persistInvidiousPrefs": {
+      "description": "Label for 'Persist Invidious preferences (as cookie)' option (options).",
+      "message": "以 cookie 形式记住 Invidious 设置"
+   },
+   "privacy": {
+      "description": "Extension title - Privacy (pop-up).",
+      "message": "Privacy"
+   },
+   "redirect": {
+      "description": "Extension title - Redirect (pop-up).",
+      "message": "Redirect"
+   },
+   "removeTwitterSW": {
+      "description": "Label for 'Proactively remove Twitter service worker' option (options).",
+      "message": "主动移除 Twitter 后台脚本"
+   },
+   "version": {
+      "description": "Version",
+      "message": "版本"
+   },
+   "videoQuality": {
+      "description": "Label for 'Invidious Video Quality' option (options).",
+      "message": "Invidious 视频画质"
+   }
+}

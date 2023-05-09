@@ -1,0 +1,7 @@
+{
+  "browser": {
+    "enabled_labs_experiments": [
+      "extension-mime-request-handling@2"
+    ]
+  }
+}

@@ -1,0 +1,162 @@
+{
+   "addException": {
+      "description": "'Add Exceptions' button (options).",
+      "message": "Add Exception"
+   },
+   "advancedTab": {
+      "description": "Advanced tab (options).",
+      "message": "Advanced"
+   },
+   "alwaysProxy": {
+      "description": "Label for 'Always proxy videos through Invidious' option (options).",
+      "message": "Always proxy videos through Invidious"
+   },
+   "bibliogramInstance": {
+      "description": "Label for Bibliogram instance field option (options).",
+      "message": "Bibliogram Instance"
+   },
+   "bibliogramRandomPool": {
+      "description": "Label for 'Bibliogram random instance pool (comma-separated)' option (options).",
+      "message": "Bibliogram random instance pool (comma-separated)"
+   },
+   "disableBibliogram": {
+      "description": "Label for enable/disable Bibliogram redirects option (options & pop-up).",
+      "message": "Bibliogram Redirects"
+   },
+   "disableInvidious": {
+      "description": "Label for enable/disable Invidious redirects option (options & pop-up).",
+      "message": "Invidious Redirects"
+   },
+   "disableNitter": {
+      "description": "Label for enable/disable Nitter redirects option (options & pop-up).",
+      "message": "Nitter Redirects"
+   },
+   "disableOsm": {
+      "description": "Label for enable/disable OSM redirects option (options & pop-up).",
+      "message": "OpenStreetMap Redirects"
+   },
+   "disableReddit": {
+      "description": "Label for enable/disable Reddit redirects option (options & pop-up).",
+      "message": "Reddit Redirects"
+   },
+   "disableSearchEngine": {
+      "description": "Label for enable/disable Search Engine redirects option (options & pop-up).",
+      "message": "Search Engine Redirects"
+   },
+   "disableSimplyTranslate": {
+      "description": "Label for enable/disable SimplyTranslate redirects option (options & pop-up).",
+      "message": "SimplyTranslate Redirects"
+   },
+   "disableWikipedia": {
+      "description": "Label for enable/disable Wikipedia redirects option (options & pop-up).",
+      "message": "Wikipedia Redirects"
+   },
+   "exceptionsDescriptionP1": {
+      "description": "A description of the 'Exceptions' feature paragraph 1 (options).",
+      "message": "Enter a URL or Regular Expression to be excluded from redirects."
+   },
+   "exceptionsDescriptionP2": {
+      "description": "A description of the 'Exceptions' feature paragraph 2 (options).",
+      "message": "All requests for or initiating from a URL that matches the exception will be excluded from redirects."
+   },
+   "exceptionsDescriptionP3": {
+      "description": "A description of the 'Exceptions' feature paragraph 3 (options).",
+      "message": "Note - Supports JavaScript regular expressions, excluding the enclosing forward slashes."
+   },
+   "exceptionsTab": {
+      "description": "Exceptions tab (options).",
+      "message": "Exceptions"
+   },
+   "extensionDescription": {
+      "description": "Description of the extension.",
+      "message": "Redirects Twitter, YouTube, Instagram and more to privacy friendly alternatives."
+   },
+   "extensionName": {
+      "description": "Name of the extension.",
+      "message": "Privacy Redirect"
+   },
+   "generalTab": {
+      "description": "General tab (options).",
+      "message": "General"
+   },
+   "invidiousDarkMode": {
+      "description": "Label for 'Invidious dark mode always on' option (options).",
+      "message": "Invidious dark mode always on"
+   },
+   "invidiousInstance": {
+      "description": "Label for Invidious instance field option (options).",
+      "message": "Invidious Instance"
+   },
+   "invidiousRandomPool": {
+      "description": "Label for 'Invidious random instance pool (comma-separated)' option (options).",
+      "message": "Invidious random instance pool (comma-separated)"
+   },
+   "moreOptions": {
+      "description": "More Options button (pop-up).",
+      "message": "More Options"
+   },
+   "nitterInstance": {
+      "description": "Label for Nitter instance field option (options).",
+      "message": "Nitter Instance"
+   },
+   "nitterRandomPool": {
+      "description": "Label for 'Nitter random instance pool (comma-separated)' option (options).",
+      "message": "Nitter random instance pool (comma-separated)"
+   },
+   "onlyEmbeddedVideo": {
+      "description": "Label for 'Only redirect embedded video to Invidious' option (options).",
+      "message": "Only redirect embedded video to Invidious"
+   },
+   "osmInstance": {
+      "description": "Label for OSM instance field option (options).",
+      "message": "OpenStreetMap Instance"
+   },
+   "persistInvidiousPrefs": {
+      "description": "Label for 'Persist Invidious preferences (as cookie)' option (options).",
+      "message": "Persist Invidious preferences (as cookie)"
+   },
+   "privacy": {
+      "description": "Extension title - Privacy (pop-up).",
+      "message": "Privacy"
+   },
+   "randomInstancePlaceholder": {
+      "description": "Input placeholder for provider instance settings that select a random instance from a pool when none is selected",
+      "message": "Random instance (none selected)"
+   },
+   "redditInstance": {
+      "description": "Label for Reddit instance field option (options).",
+      "message": "Reddit Instance"
+   },
+   "redirect": {
+      "description": "Extension title - Redirect (pop-up).",
+      "message": "Redirect"
+   },
+   "removeTwitterSW": {
+      "description": "Label for 'Proactively remove Twitter service worker' option (options).",
+      "message": "Proactively remove Twitter service worker"
+   },
+   "searchEngineInstance": {
+      "description": "Label for Search Engine instance field option (options).",
+      "message": "Search Engine Instance"
+   },
+   "simplyTranslateInstance": {
+      "description": "Label for SimplyTranslate instance field option (options).",
+      "message": "SimplyTranslate Instance"
+   },
+   "useFreeTube": {
+      "description": "Label for 'Use FreeTube over Invidious when possible' option (options).",
+      "message": "Use FreeTube over Invidious when possible"
+   },
+   "version": {
+      "description": "Version",
+      "message": "Version"
+   },
+   "videoQuality": {
+      "description": "Label for 'Invidious Video Quality' option (options).",
+      "message": "Invidious Video Quality"
+   },
+   "wikipediaInstance": {
+      "description": "Label for Wikipedia instance field option (options).",
+      "message": "Wikipedia Instance"
+   }
+}

@@ -1,0 +1,174 @@
+{
+   "addException": {
+      "description": "Кнопка 'Добавить исключения' (в настройках).",
+      "message": "Добавить исключение"
+   },
+   "advancedTab": {
+      "description": "Вкладка 'Дополнительно' (в настройках).",
+      "message": "Дополнительно"
+   },
+   "alwaysProxy": {
+      "description": "Название настройки для 'Всегда проксировать видео через Invidious' (в настройках).",
+      "message": "Всегда проксировать видео через Invidious"
+   },
+   "bibliogramInstance": {
+      "description": "Название настройки (в настройках) поля сервиса Bibliogram.",
+      "message": "Сервис Bibliogram"
+   },
+   "bibliogramRandomPool": {
+      "description": "Название настройки для 'Список случайных сервисов Bibliogram (разделяется запятой)' (в настройках).",
+      "message": "Список случайных сервисов Bibliogram (разделяется запятой)"
+   },
+   "disableBibliogram": {
+      "description": "Название настройки для включения/выключения перенаправления на Bibliogram (в настройках и всплывающем окне).",
+      "message": "Перенаправление на Bibliogram"
+   },
+   "disableInvidious": {
+      "description": "Название настройки для включения/выключения перенаправления на Invidious redirects option (в настройках и всплывающем окне).",
+      "message": "Перенаправление на Invidious"
+   },
+   "disableNitter": {
+      "description": "Название настройки для включения/выключения перенаправления на Nitter (в настройках и всплывающем окне).",
+      "message": "Перенаправление на Nitter"
+   },
+   "disableOsm": {
+      "description": "Название настройки для включения/выключения перенаправления на OSM (в настройках и всплывающем окне).",
+      "message": "Перенаправление на OpenStreetMap"
+   },
+   "disableReddit": {
+      "description": "Название настройки для включения/выключения перенаправления Reddit (в настройках и всплывающем окне).",
+      "message": "Перенаправление Reddit"
+   },
+   "disableSearchEngine": {
+      "description": "Название настройки для включения/выключения перенаправления поисковой системы (в настройках и всплывающем окне).",
+      "message": "Перенаправление поисковой системы"
+   },
+   "disableSimplyTranslate": {
+      "description": "Название настройки для включения/выключения перенаправления на SimplyTranslate (в настройках и всплывающем окне).",
+      "message": "Перенаправление на SimplyTranslate"
+   },
+   "exceptionsDescriptionP1": {
+      "description": "Описание функции 'Исключения' (в настройках).",
+      "message": "Введите URL или регулярное выражение для исключения из перенаправлений."
+   },
+   "exceptionsDescriptionP2": {
+      "description": "Описание функции 'Исключения' (в настройках).",
+      "message": "Все запросы на URL, совпадающие с исключениями, или инициированные с них будут исключены из перенаправлений."
+   },
+   "exceptionsDescriptionP3": {
+      "description": "Описание функции 'Исключения' (в настройках).",
+      "message": "Примечание: Поддерживает регулярные выражения JavaScript, кроме закрывающих обратных слэшей."
+   },
+   "exceptionsTab": {
+      "description": "Вкладка 'Исключения' (в настройках).",
+      "message": "Исключения"
+   },
+   "extensionDescription": {
+      "description": "Описание расширения.",
+      "message": "Перенаправляет запросы к Twitter, YouTube, Instagram и Google Maps на альтернативные сервисы, дружелюбные к приватности."
+   },
+   "extensionName": {
+      "description": "Название расширения.",
+      "message": "Privacy Redirect"
+   },
+   "generalTab": {
+      "description": "Вкладка 'Общие' (в настройках).",
+      "message": "Общие"
+   },
+   "invidiousAutoplay": {
+      "description": "Название настройки для 'Автоматически воспроизводить видео Invidious при загрузке' (в настройках).",
+      "message": "Автоматически воспроизводить видео Invidious при загрузке"
+   },
+   "invidiousDarkMode": {
+      "description": "Название настройки для 'Всегда включать темный режим Invidious' (в настройках).",
+      "message": "Всегда включать темный режим Invidious"
+   },
+   "invidiousInstance": {
+      "description": "Название настройки (в настройках) поля сервиса Invidious.",
+      "message": "Сервис Invidious"
+   },
+   "invidiousPlayerStyle": {
+      "description": "Название настройки для 'Стиль плеера Invidious' (в настройках).",
+      "message": "Стиль плеера Invidious"
+   },
+   "invidiousRandomPool": {
+      "description": "Название настройки для 'Список случайных сервисов Invidious (разделяется запятой)' (в настройках).",
+      "message": "Список случайных сервисов Invidious (разделяется запятой)"
+   },
+   "invidiousSubtitles": {
+      "description": "Название настройки для 'Субтитры Invidious - коды языков (разделяются запятой)' (в настройках).",
+      "message": "Субтитры Invidious - коды языков (разделяются запятой)"
+   },
+   "invidiousVolume": {
+      "description": "Название настройки для 'Громкость Invidious' (в настройках).",
+      "message": "Громкость Invidious"
+   },
+   "moreOptions": {
+      "description": "Кнопка 'Другие настройки' (во всплывающем окне).",
+      "message": "Другие настройки"
+   },
+   "nitterInstance": {
+      "description": "Название настройки (в настройках) поля сервиса Nitter.",
+      "message": "Сервис Nitter"
+   },
+   "nitterRandomPool": {
+      "description": "Название настройки для 'Список случайных сервисов Nitter (разделяется запятой)' (в настройках).",
+      "message": "Список случайных сервисов Nitter (разделяется запятой)"
+   },
+   "onlyEmbeddedVideo": {
+      "description": "Название настройки для 'Перенаправлять только встроенные видео на Invidious' (в настройках).",
+      "message": "Перенаправлять только встроенные видео на Invidious"
+   },
+   "osmInstance": {
+      "description": "Название настройки (в настройках) поля сервиса OSM.",
+      "message": "Сервис OpenStreetMap"
+   },
+   "persistInvidiousPrefs": {
+      "description": "Название настройки для 'Сохранять настройки Invidious (в файле cookie)' (в настройках).",
+      "message": "Сохранять настройки Invidious (в файле cookie)"
+   },
+   "privacy": {
+      "description": "Название расширения - Privacy (во всплывающем окне).",
+      "message": "Privacy"
+   },
+   "randomInstancePlaceholder": {
+      "description": "Заглушка в настройках сервиса провайдера с выбором случайного сервиса из списка, если ничего не выбрано",
+      "message": "Случайный сервис (ничего не выбрано)"
+   },
+   "redditInstance": {
+      "description": "Название настройки (в настройках) поля сервиса Reddit.",
+      "message": "Сервис Reddit"
+   },
+   "redirect": {
+      "description": "Название расширения - Redirect (во всплывающем окне).",
+      "message": "Redirect"
+   },
+   "removeTwitterSW": {
+      "description": "Название настройки для 'Проактивно удалять service worker для Twitter' (в настройках).",
+      "message": "Проактивно удалять service worker для Twitter"
+   },
+   "searchEngineInstance": {
+      "description": "Название настройки (в настройках) поля сервиса поисковой системы.",
+      "message": "Сервис поисковой системы"
+   },
+   "simplyTranslateInstance": {
+      "description": "Название настройки (в настройках) поля сервиса SimplyTranslate.",
+      "message": "Сервис SimplyTranslate"
+   },
+   "theme": {
+      "description": "Название настройки для 'Тема' (в настройках).",
+      "message": "Тема"
+   },
+   "useFreeTube": {
+      "description": "Название настройки для 'Использовать FreeTube поверх Invidious при возможности' (в настройках).",
+      "message": "Использовать FreeTube поверх Invidious при возможности"
+   },
+   "version": {
+      "description": "Версия.",
+      "message": "Версия"
+   },
+   "videoQuality": {
+      "description": "Название настройки для 'Качество видео Invidious' (в настройках).",
+      "message": "Качество видео Invidious"
+   }
+}

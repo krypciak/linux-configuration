@@ -1,0 +1,27 @@
+{
+	"all": {
+		"changeLogs": {
+			"BDFDB": "3.0.7",
+			"BetterFriendList": "1.5.2",
+			"CreationDate": "9.9.9",
+			"GameActivityToggle": "1.1.8",
+			"ImageUtilities": "5.1.5",
+			"ReadAllNotificationsButton": "1.7.4",
+			"ServerDetails": "1.1.4",
+			"ShowConnections": "1.1.6"
+		},
+		"choices": {
+			"toastPosition": "right"
+		},
+		"general": {
+			"shareData": true,
+			"showToasts": true,
+			"showSupportBadges": false,
+			"useChromium": false
+		},
+		"hashes": {
+			"0BDFDB.data.json": "e3ed86b6142b7a7836873a3705f16c3d3bdbf71a",
+			"0BDFDB.raw.css": "a1c4a8b6f28c4765c6af2853ddf13a35922a2b9e"
+		}
+	}
+}

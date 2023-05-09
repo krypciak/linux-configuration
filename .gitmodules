@@ -1,0 +1,12 @@
+[submodule "user/.config/dwl/dwl-dotfiles"]
+	path = user/.config/dwl/dwl-dotfiles
+	url = https://github.com/krypciak/dwl-dotfiles
+[submodule "user/.config/dwl/somebar"]
+	path = user/.config/dwl/somebar
+	url = https://github.com/krypciak/somebar
+[submodule "user/.config/dwl/someblocks"]
+	path = user/.config/dwl/someblocks
+	url = https://github.com/krypciak/someblocks
+[submodule "user/.config/awesome/lain"]
+	path = user/.config/awesome/lain
+	url = https://github.com/lcpz/lain

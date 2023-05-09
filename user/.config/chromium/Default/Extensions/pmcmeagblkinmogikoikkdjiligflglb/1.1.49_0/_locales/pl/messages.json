@@ -1,0 +1,110 @@
+{
+   "addException": {
+      "description": "Przycisk 'Dodaj wyjątek' (opcje).",
+      "message": "Dodaj wyjątek"
+   },
+   "advancedTab": {
+      "description": "Zakładka zaawansowane (opcje).",
+      "message": "Advanced"
+   },
+   "alwaysProxy": {
+      "description": "Etykieta dla opcji 'Zawsze buforuj i wyświetlaj odnośniki wideo poprzez Invidious'.",
+      "message": "Zawsze buforuj i wyświetlaj odnośniki wideo z YouTube poprzez Invidious"
+   },
+   "bibliogramInstance": {
+      "description": "Etykieta dla pola wyboru instancji Bibliogram (opcje).",
+      "message": "Instancja Bibliogram"
+   },
+   "disableBibliogram": {
+      "description": "Etykieta dla włączenia/wyłączenia opcji przekierowania Bibliogram (opcje i okno pop-up).",
+      "message": "Przekierowanie Bibliogram"
+   },
+   "disableInvidious": {
+      "description": "Etykieta dla włączenia/wyłączenia opcji przekierowania Invidious (opcje i okno pop-up).",
+      "message": "Przekierowanie Invidious "
+   },
+   "disableNitter": {
+      "description": "Etykieta dla włączenia/wyłączenia opcji przekierowania Nitter (opcje i okno pop-up).",
+      "message": "Przekierowanie Nitter"
+   },
+   "disableOsm": {
+      "description": "Etykieta dla włączenia/wyłączenia opcji przekierowania OpenStreetMap (opcje i okno pop-up).",
+      "message": "Przekierowanie OpenStreetMap"
+   },
+   "exceptionsDescriptionP1": {
+      "description": "Opis funkcji 'Wyjątki' paragraf 1 (opcje).",
+      "message": "Wprowadź adres URL lub wyrażenie regularne, które zostanie wyłączone z przekierowania. "
+   },
+   "exceptionsDescriptionP2": {
+      "description": "Opis funkcji 'Wyjątki' paragraf 2 (opcje).",
+      "message": "Wszystkie żądania dla lub inicjalizujące z adresu URL które spełniają wyjątek zostaną wyłączone z przekierowania."
+   },
+   "exceptionsDescriptionP3": {
+      "description": "Opis funkcji 'Wyjątki' paragraf 3 (opcje).",
+      "message": "Informacja - Wspierane są  wyrażenia regularne JavaScript, wyłączając ukośniki lewe zamykające."
+   },
+   "exceptionsTab": {
+      "description": "Zakładka wyjątki (opcje).",
+      "message": "Wyjątki"
+   },
+   "extensionDescription": {
+      "description": "Opis rozszerzenia.",
+      "message": "Przekierowuje serwisy takie jak: Twitter, YouTube, Instagram i Google Maps do alternatyw sprzyjających prywatności."
+   },
+   "extensionName": {
+      "description": "Nazwa rozszerzenia.",
+      "message": "Privacy Redirect"
+   },
+   "generalTab": {
+      "description": "Zakładka Główne (opcje).",
+      "message": "Główne"
+   },
+   "invidiousDarkMode": {
+      "description": "Etykieta dla opcji 'Tryb ciemny dla Invidious zawsze włączony'.",
+      "message": "Tryb ciemny dla Invidious zawsze włączony"
+   },
+   "invidiousInstance": {
+      "description": "Etykieta dla pola wyboru instancji Invidious (opcje).",
+      "message": "Instancja Invidious"
+   },
+   "moreOptions": {
+      "description": "Przycisk 'Więcej opcji' (okno pop-up).",
+      "message": "Więcej opcji"
+   },
+   "nitterInstance": {
+      "description": "Etykieta dla pola wyboru instancji Nitter (opcje).",
+      "message": "Instancja Nitter"
+   },
+   "onlyEmbeddedVideo": {
+      "description": "Etykieta dla opcji 'Jedynie przekieruj odnośniki wideo do instancji Invidious'.",
+      "message": "Jedynie przekieruj odnośniki wideo do instancji Invidious"
+   },
+   "osmInstance": {
+      "description": "Etykieta dla pola wyboru instancji OpenStreetMap (opcje).",
+      "message": "Instancja OpenStreetMap"
+   },
+   "persistInvidiousPrefs": {
+      "description": "Etykieta dla 'Zapisz ustawienia Invidious (jako plik cookie)'.",
+      "message": "Zapisz ustawienia Invidious (jako plik cookie)"
+   },
+   "privacy": {
+      "description": "Tytuł rozszerzenia - Privacy (okno pop-up).",
+      "message": "Prywatność"
+   },
+   "redirect": {
+      "description": "Tytuł rozszerzenia - Redirect (pop-up).",
+      "message": "Redirect"
+   },
+   "removeTwitterSW": {
+      "description": "Etykieta dla opcji 'Proaktywnie usuwaj skrypty serwisowe (service worker) Twittera'.",
+      "message": "Proaktywnie usuwaj skrypty serwisowe (service worker) Twittera"
+   },
+   "version": {
+      "description": "Wersja",
+      "message": "Version"
+   },
+   "videoQuality": {
+      "description": "Etykieta dla opcji 'Jakość wideo Invidious'.",
+      "message": "Jakość wideo Invidious"
+   }
+}

@@ -1,0 +1,110 @@
+{
+   "addException": {
+      "description": "'Add Exceptions' button (options).",
+      "message": "Ausnahme hinzufügen"
+   },
+   "advancedTab": {
+      "description": "Advanced tab (options).",
+      "message": "Erweitert"
+   },
+   "alwaysProxy": {
+      "description": "Label for 'Always proxy videos through Invidious' option (options).",
+      "message": "Videos immer durch Invidious-Proxy leiten"
+   },
+   "bibliogramInstance": {
+      "description": "Label for Bibliogram instance field option (options).",
+      "message": "Bibliogram-Instanz"
+   },
+   "disableBibliogram": {
+      "description": "Label for enable/disable Bibliogram redirects option (options & pop-up).",
+      "message": "Bibliogram-Weiterleitungen"
+   },
+   "disableInvidious": {
+      "description": "Label for enable/disable Invidious redirects option (options & pop-up).",
+      "message": "Invidious-Weiterleitungen"
+   },
+   "disableNitter": {
+      "description": "Label for enable/disable Nitter redirects option (options & pop-up).",
+      "message": "Nitter-Weiterleitungen"
+   },
+   "disableOsm": {
+      "description": "Label for enable/disable OSM redirects option (options & pop-up).",
+      "message": "OpenStreetMap-Weiterleitungen"
+   },
+   "exceptionsDescriptionP1": {
+      "description": "A description of the 'Exceptions' feature paragraph 1 (options).",
+      "message": "Gib eine URL oder einen regulären Ausdruck (Regex) ein, die/der von Weiterleitungen ausgeschlossen werden soll."
+   },
+   "exceptionsDescriptionP2": {
+      "description": "A description of the 'Exceptions' feature paragraph 2 (options).",
+      "message": "Alle Anfragen für oder ausgehend von einer URL, die auf die Ausnahme zutrifft, werden von Weiterleitungen ausgeschlossen."
+   },
+   "exceptionsDescriptionP3": {
+      "description": "A description of the 'Exceptions' feature paragraph 3 (options).",
+      "message": "Hinweis – Unterstützt reguläre JavaScript-Ausdrücke (Regex), mit Ausnahme der einschließenden Schrägstriche."
+   },
+   "exceptionsTab": {
+      "description": "Exceptions tab (options).",
+      "message": "Ausnahmen"
+   },
+   "extensionDescription": {
+      "description": "Description of the extension.",
+      "message": "Leitet Anfragen von Twitter, YouTube, Instagram & Google Maps auf datenschutzfreundliche Alternativen weiter."
+   },
+   "extensionName": {
+      "description": "Name of the extension.",
+      "message": "Privacy Redirect"
+   },
+   "generalTab": {
+      "description": "General tab (options).",
+      "message": "Allgmein"
+   },
+   "invidiousDarkMode": {
+      "description": "Label for 'Invidious dark mode always on' option (options).",
+      "message": "Dunklen Modus auf Invidious immer anschalten"
+   },
+   "invidiousInstance": {
+      "description": "Label for Invidious instance field option (options).",
+      "message": "Invidious-Instanz"
+   },
+   "moreOptions": {
+      "description": "More Options button (pop-up).",
+      "message": "Weitere Optionen"
+   },
+   "nitterInstance": {
+      "description": "Label for Nitter instance field option (options).",
+      "message": "Nitter-Instanz"
+   },
+   "onlyEmbeddedVideo": {
+      "description": "Label for 'Only redirect embedded video to Invidious' option (options).",
+      "message": "Nur eingebettete Videos zu Invidious weiterleiten"
+   },
+   "osmInstance": {
+      "description": "Label for OSM instance field option (options).",
+      "message": "OpenStreetMap-Instanz"
+   },
+   "persistInvidiousPrefs": {
+      "description": "Label for 'Persist Invidious preferences (as cookie)' option (options).",
+      "message": "Invidious-Einstellungen dauerhaft beibehalten (als Cookie)"
+   },
+   "privacy": {
+      "description": "Extension title - Privacy (pop-up).",
+      "message": "Privacy"
+   },
+   "redirect": {
+      "description": "Extension title - Redirect (pop-up).",
+      "message": "Redirect"
+   },
+   "removeTwitterSW": {
+      "description": "Label for 'Proactively remove Twitter service worker' option (options).",
+      "message": "Twitter-Serviceworker proaktiv entfernen"
+   },
+   "version": {
+      "description": "Version",
+      "message": "Version"
+   },
+   "videoQuality": {
+      "description": "Label for 'Invidious Video Quality' option (options).",
+      "message": "Videoqualität bei Invidious"
+   }
+}

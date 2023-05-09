@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=dwl
+Comment=Wayland dwm
+Exec=~/.config/dwl/run/run.sh
+Type=Application

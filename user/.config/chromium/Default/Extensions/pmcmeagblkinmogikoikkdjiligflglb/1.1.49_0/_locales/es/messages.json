@@ -1,0 +1,146 @@
+{
+   "addException": {
+      "description": "Botón de 'Agregar Excepción' (opciones).",
+      "message": "Agregar Excepción"
+   },
+   "advancedTab": {
+      "description": "Pestaña avanzado (opciones).",
+      "message": "Avanzado"
+   },
+   "alwaysProxy": {
+      "description": "Etiqueta para la opción de 'Siempre usar el proxy de Invidious para videos' (opciones).",
+      "message": "Siempre usar el proxy de Invidious para videos"
+   },
+   "bibliogramInstance": {
+      "description": "Etiqueta del campo para la instancia de Bibliogram (opciones).",
+      "message": "Instancia de Bibliogram"
+   },
+   "bibliogramRandomPool": {
+      "description": "Etiqueta para la opción de 'Grupo de instancias aleatorias de Bibliogram (separadas por coma)' (opciones).",
+      "message": "Grupo de instancias aleatorias de Bibliogram (separadas por coma)"
+   },
+   "disableBibliogram": {
+      "description": "Etiqueta para activar/desactivar la opción de redirecciones de Bibliogram (opciones y pop-up).",
+      "message": "Redirecciones de Bibliogram"
+   },
+   "disableInvidious": {
+      "description": "Etiqueta para activar/desactivar la opción de redirecciones de Invidious (opciones y pop-up).",
+      "message": "Redirecciones de Invidious"
+   },
+   "disableNitter": {
+      "description": "Etiqueta para activar/desactivar la opción de redirecciones de Nitter (opciones y pop-up).",
+      "message": "Redirecciones de Nitter"
+   },
+   "disableOsm": {
+      "description": "Etiqueta para activar/desactivar la opción de redirecciones de OSM (opciones y pop-up).",
+      "message": "Redirecciones de OpenStreetMap"
+   },
+   "disableReddit": {
+      "description": "Etiqueta para activar/desactivar la opción de redirecciones de Reddit (opciones y pop-up).",
+      "message": "Redirecciones de Reddit"
+   },
+   "disableSearchEngine": {
+      "description": "Etiqueta para activar/desactivar la opción de redirecciones de Buscador (opciones y pop-up).",
+      "message": "Redirecciones de Buscador"
+   },
+   "exceptionsDescriptionP1": {
+      "description": "Una descripción de la función 'Excepciones' párrafo 1 (opciones).",
+      "message": "Ingrese la URL o la Expresión Regular a excluir de las redirecciones."
+   },
+   "exceptionsDescriptionP2": {
+      "description": "Una descripción de la función 'Excepciones' párrafo 2 (opciones).",
+      "message": "Todas las solicitudes para o provenientes de una URL que coincida con la excepción serán excluidas de las redirecciones."
+   },
+   "exceptionsDescriptionP3": {
+      "description": "Una descripción de la función 'Excepciones' párrafo 3 (opciones).",
+      "message": "Nota – Soporta expresiones regulares de JavaScript, excluyendo las barras oblicuas de cierre."
+   },
+   "exceptionsTab": {
+      "description": "Pestaña de excepciones (opciones).",
+      "message": "Excepciones"
+   },
+   "extensionDescription": {
+      "description": "Descripción de la extensión.",
+      "message": "Redirige las solicitudes de Twitter, Youtube, Instagram, Google Maps, Reddit y la Búsqueda de Google a alternativas que respetan su privacidad."
+   },
+   "extensionName": {
+      "description": "Nombre de la extensión.",
+      "message": "Privacy Redirect"
+   },
+   "generalTab": {
+      "description": "Pestaña general (opciones).",
+      "message": "General"
+   },
+   "invidiousDarkMode": {
+      "description": "Etiqueta para la opción de 'Modo oscuro de Invidious siempre activo' (opciones).",
+      "message": "Modo oscuro de Invidious siempre activo"
+   },
+   "invidiousInstance": {
+      "description": "Etiqueta del campo para la instancia de Invidious (opciones).",
+      "message": "Instancia de Invidious"
+   },
+   "invidiousRandomPool": {
+      "description": "Etiqueta para la opción de 'Grupo de instancias aleatorias de Invidious (separadas por coma)' (opciones).",
+      "message": "Grupo de instancias aleatorias de Invidious (separadas por coma)"
+   },
+   "moreOptions": {
+      "description": "Botón de 'Más Opciones' (pop-up).",
+      "message": "Más Opciones"
+   },
+   "nitterInstance": {
+      "description": "Etiqueta del campo para la instancia de Nitter (opciones).",
+      "message": "Instancia de Nitter"
+   },
+   "nitterRandomPool": {
+      "description": "Etiqueta para la opción de 'Grupo de instancias aleatorias de Nitter (separadas por coma)' (opciones).",
+      "message": "Grupo de instancias aleatorias de Nitter (separadas por coma)"
+   },
+   "onlyEmbeddedVideo": {
+      "description": "Etiqueta para la opción de 'Solo redirigir los videos incrustados a Invidious' (opciones).",
+      "message": "Solo redirigir los videos incrustados a Invidious"
+   },
+   "osmInstance": {
+      "description": "Etiqueta del campo para la instancia de OSM (opciones).",
+      "message": "Instancia de OpenStreetMap"
+   },
+   "persistInvidiousPrefs": {
+      "description": "Etiqueta para la opción de 'Preservar preferencias de Invidious (como cookie)' (opciones).",
+      "message": "Preservar preferencias de Invidious (como cookie)"
+   },
+   "privacy": {
+      "description": "Título de la extensión - Privacy (pop-up).",
+      "message": "Privacy"
+   },
+   "randomInstancePlaceholder": {
+      "description": "Entrada provisional en la configuración del proveedor de instancia que selecciona una instancia aleatoria del grupo cuando ninguna está seleccionada",
+      "message": "Instancia aleatoria (ninguna seleccionada)"
+   },
+   "redditInstance": {
+      "description": "Etiqueta del campo para la instancia de Reddit (opciones).",
+      "message": "Instancia de Reddit"
+   },
+   "redirect": {
+      "description": "Título de la extensión - Redirect (pop-up).",
+      "message": "Redirect"
+   },
+   "removeTwitterSW": {
+      "description": "Etiqueta para la opción de 'Eliminar proactivamente el service worker de Twitter' (opciones).",
+      "message": "Eliminar proactivamente el service worker de Twitter"
+   },
+   "searchEngineInstance": {
+      "description": "Etiqueta del campo para la instancia de Buscador (opciones).",
+      "message": "Instancia de Buscador"
+   },
+   "useFreeTube": {
+      "description": "Etiqueta para la opción de 'Usar FreeTube en vez de Invidious cuando sea posible' (opciones).",
+      "message": "Usar FreeTube en vez de Invidious cuando sea posible"
+   },
+   "version": {
+      "description": "Versión",
+      "message": "Versión"
+   },
+   "videoQuality": {
+      "description": "Etiqueta para la opción de 'Calidad de Video de Invidious' (opciones).",
+      "message": "Calidad de Video de Invidious"
+   }
+}

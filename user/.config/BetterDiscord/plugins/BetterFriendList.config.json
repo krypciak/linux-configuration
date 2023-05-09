@@ -1,0 +1,19 @@
+{
+	"all": {
+		"favorizedFriends": [
+			"650097192014708746",
+			"726382709911453727",
+			"471302652274147349",
+			"658249088394985475",
+			"605769626781089809"
+		],
+		"general": {
+			"addFavorizedCategory": true,
+			"addHiddenCategory": false,
+			"addMutualGuild": true,
+			"addSortOptions": true,
+			"addTotalAmount": true
+		},
+		"hiddenFriends": []
+	}
+}

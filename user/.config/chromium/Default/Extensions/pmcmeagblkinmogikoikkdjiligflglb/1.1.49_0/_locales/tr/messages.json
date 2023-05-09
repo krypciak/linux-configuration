@@ -1,0 +1,146 @@
+{
+   "addException": {
+      "description": "'İstisna ekle' butonu (seçenekler)",
+      "message": "İstisna ekle"
+   },
+   "advancedTab": {
+      "description": "Gelişmiş sekme (seçenekler).",
+      "message": "Gelişmiş"
+   },
+   "alwaysProxy": {
+      "description": "'Videoları her zaman Invidious üzerinden geçir' seçeneği için etiket (seçenekler).",
+      "message": "Videoları her zaman Invidious üzerinden geçir"
+   },
+   "bibliogramInstance": {
+      "description": "Bibliogram Servisi seçeneği için etiket (seçenekler).",
+      "message": "Bibliogram Servisi"
+   },
+   "bibliogramRandomPool": {
+      "description": "'Bibliogram rastgele servis havuzu (virgülle ayrılmış)' seçeneği etiketi (seçenekler).",
+      "message": "Bibliogram rastgele servis havuzu (virgülle ayrılmış)"
+   },
+   "disableBibliogram": {
+      "description": "Bibliogram Yönlendirmesi'ni etkinleştirme/devre dışı bırakma seçeneği için etiket (seçenekler & açılır pencere).",
+      "message": "Bibliogram Yönlendirmesi"
+   },
+   "disableInvidious": {
+      "description": "Invidious Yönlendirmesi'ni etkinleştirme/devre dışı bırakma seçeneği için etiket (seçenekler & açılır pencere).",
+      "message": "Invidious Yönlendirmesi"
+   },
+   "disableNitter": {
+      "description": "Nitter Yönlendirmesi'ni etkinleştirme/devre dışı bırakma seçeneği için etiket (seçenekler & açılır pencere).",
+      "message": "Nitter Yönlendirmesi"
+   },
+   "disableOsm": {
+      "description": "OSM Yönlendirmesi'ni etkinleştirme/devre dışı bırakma seçeneği için etiket (seçenekler & açılır pencere).",
+      "message": "OpenStreetMap Yönlendirmesi"
+   },
+   "disableReddit": {
+      "description": "Reddit Yönlendirmesi'ni etkinleştirme/devre dışı bırakma seçeneği için etiket (seçenekler & açılır pencere).",
+      "message": "Reddit Yönlendirmesi"
+   },
+   "disableSearchEngine": {
+      "description": "Arama Motoru Yönlendirmesi'ni etkinleştirme/devre dışı bırakma seçeneği için etiket (seçenekler & açılır pencere).",
+      "message": "Arama Motoru Yönlendirmesi"
+   },
+   "exceptionsDescriptionP1": {
+      "description": "'İstisnalar' özelliği paragraf 1'in açıklaması (seçenekler).",
+      "message": "Yönlendirmelerden hariç tutulacak bir URL veya düzenli ifade gir"
+   },
+   "exceptionsDescriptionP2": {
+      "description": "'İstisnalar' özelliği paragraf 2'nin açıklaması (seçenekler).",
+      "message": "İstisnayla eşleşen bir URL'ye yönelik veya URL'den çıkan bütün bağlantılar yönlendirmelerden hariç tutulacak"
+   },
+   "exceptionsDescriptionP3": {
+      "description": "'İstisnalar' özelliği paragraf 3'ün açıklaması (seçenekler).",
+      "message": "Not - JavaScript düzenli ifadelerini destekler, kapalı eğik çizgiler kullanılmadan."
+   },
+   "exceptionsTab": {
+      "description": "İstisnalar sekmesi (seçenekler).",
+      "message": "İstisnalar"
+   },
+   "extensionDescription": {
+      "description": "Uzantı açıklaması.",
+      "message": "Twitter, YouTube, Instagram, Google Haritalar, Reddit & Google Arama bağlantılarını gizlilik dostu alternatiflerine yönlendirir."
+   },
+   "extensionName": {
+      "description": "Uzantı ismi.",
+      "message": "Privacy Redirect"
+   },
+   "generalTab": {
+      "description": "Genel sekme (seçenekler).",
+      "message": "Genel"
+   },
+   "invidiousDarkMode": {
+      "description": "'Invidious her zaman açık karanlık mod' seçeneği için etiket (seçenekler).",
+      "message": "Invidious her zaman açık karanlık mod"
+   },
+   "invidiousInstance": {
+      "description": "Invidious Servisi seçeneği için etiket (seçenekler).",
+      "message": "Invidious Servisi"
+   },
+   "invidiousRandomPool": {
+      "description": "'Invidious rastgele servis havuzu (virgülle ayrılmış)' seçeneği etiketi (seçenekler).",
+      "message": "Invidious rastgele servis havuzu (virgülle ayrılmış)"
+   },
+   "moreOptions": {
+      "description": "Daha Fazla Seçenek butonu (açılır pencere).",
+      "message": "Daha Fazla Seçenek"
+   },
+   "nitterInstance": {
+      "description": "Nitter Servisi seçeneği için etiket (seçenekler).",
+      "message": "Nitter Servisi"
+   },
+   "nitterRandomPool": {
+      "description": "'Nitter rastgele servis havuzu (virgülle ayrılmış)' seçeneği etiketi (seçenekler).",
+      "message": "Nitter rastgele servis havuzu (virgülle ayrılmış)"
+   },
+   "onlyEmbeddedVideo": {
+      "description": "'Sadece siteye gömülü videoları Invidious'a yönlendir' seçeneği için etiket (seçenekler).",
+      "message": "Sadece siteye gömülü videoları Invidious'a yönlendir"
+   },
+   "osmInstance": {
+      "description": "OSM Servisi seçeneği için etiket (seçenekler).",
+      "message": "OpenStreetMap Servisi"
+   },
+   "persistInvidiousPrefs": {
+      "description": "'Persist Invidious preferences (as cookie)' option (seçenekler).",
+      "message": "Invidious tercihlerini kaydet (çerez olarak)"
+   },
+   "privacy": {
+      "description": "Uzantı ismi - Gizlilik (açılır pencere).",
+      "message": "Gizlilik"
+   },
+   "randomInstancePlaceholder": {
+      "description": "Hiçbir servis seçilmediğinde bir havuzdan rastgele servis seçen sağlayıcı servis ayarları için yer tutucu",
+      "message": "Rastgele servis (hiçbir servis seçilmedi)"
+   },
+   "redditInstance": {
+      "description": "Reddit Servisi seçeneği için etiket (seçenekler).",
+      "message": "Reddit Servisi"
+   },
+   "redirect": {
+      "description": "Uzantı ismi - Yönlendir (açılır pencere).",
+      "message": "Yönlendir"
+   },
+   "removeTwitterSW": {
+      "description": "'Twitter servis çalışanını proaktif olarak kaldır' seçeneği için etiket (seçenekler).",
+      "message": "Twitter servis çalışanını proaktif olarak kaldır"
+   },
+   "searchEngineInstance": {
+      "description": "Arama Motoru Servisi seçeneği için etiket (seçenekler).",
+      "message": "Arama Motoru Servisi"
+   },
+   "useFreeTube": {
+      "description": "'Mümkün olduğunda Invidious yerine FreeTube kullan' seçeneği etiketi (seçenekler).",
+      "message": "Mümkün olduğunda Invidious yerine FreeTube kullan"
+   },
+   "version": {
+      "description": "Sürüm",
+      "message": "Sürüm"
+   },
+   "videoQuality": {
+      "description": "'Invidious Video Kalitesi' seçeneği için etiket (seçenekler).",
+      "message": "Invidious Video Kalitesi"
+   }
+}
