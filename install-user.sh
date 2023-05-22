@@ -41,6 +41,7 @@ SYMLINK_FROM_TO="\
     .config/rofi \
     \
     .config/dwl \
+    .config/river \
     .config/gammastep \
     .config/fuzzel \
     .config/swaylock \
