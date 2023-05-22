@@ -9,7 +9,7 @@ _help() {
     printf "    -y --noconfim   Skips confirmations\n"
     exit 1
 }
-handle_args 'y=export YOLO=1' 'noconfirm=export YOLO=1' "$@"
+handle_args '-y|--noconfirm=export YOLO=1' "$@"
 
 
 SYMLINK_FROM_TO="\
@@ -27,6 +27,7 @@ SYMLINK_FROM_TO="\
     .config/topgrade.toml \
     .config/ttyper \
     .config/animdl \
+    .config/mimeapps.list \
     .shellcheckrc \
     \
     .config/alacritty \
