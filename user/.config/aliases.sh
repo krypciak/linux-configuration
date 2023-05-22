@@ -40,5 +40,7 @@ alias awesomesuperbroken='xmodmap -e "clear mod4"; xmodmap -e "add mod4 = Super_
 alias watch='watch -c'
 
 alias publicip='curl ifconfig.me'
+
 alias timer='termdown'
 alias cagea='cage -d -s -- alacritty'
+alias slazygit='lazygit --git-dir=$(git rev-parse --git-dir)'
