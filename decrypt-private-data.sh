@@ -12,8 +12,7 @@ _help() {
     printf "       --gui                 Preffer gui decryption method\n"
     exit 1
 }
-handle_args 'y=export YOLO=1,p:=export _passwd=$2; shift,q=export QUIET=1' \
-    'noconfirm=export YOLO=1,password:=export _passwd=$2; shift,gui=export _gui=1,quiet=export QUIET=1' "$@"
+handle_args '-y|--noconfirm=export YOLO=1,-p|--password:=export _passwd=$2,-q|--quiet=export QUIET=1' "$@"
 
 OUTPUT='/dev/stdout'
 [ "$QUIET" = '1' ] && OUTPUT='/dev/null'

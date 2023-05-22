@@ -11,7 +11,7 @@ _help() {
     printf "    -y --noconfim   Skips confirmations\n"
     exit 1
 }
-handle_args 'y=export YOLO=1' 'noconfirm=export YOLO=1' "$@"
+handle_args '-y|--noconfirm=export YOLO=1' "$@"
 
 
 # If path starts with %, will not override
