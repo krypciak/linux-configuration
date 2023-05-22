@@ -53,3 +53,5 @@ lock_command = 'alock -b image:file=' .. lock_wallpaper .. ' -i none'
 awful.util.terminal = terminal
 
 ext_noti = false
+
+awful.spawn('xset r rate 400 100')
