@@ -41,3 +41,4 @@ alias watch='watch -c'
 
 alias publicip='curl ifconfig.me'
 alias timer='termdown'
+alias cagea='cage -d -s -- alacritty'
