@@ -38,7 +38,6 @@ SYMLINK_FROM_TO="\
     \
     .config/awesome \
     .config/redshift \
-    .config/copyq \
     .config/rofi \
     \
     .config/dwl \
@@ -134,6 +133,7 @@ for dir in $LINK_HOME_DIRS; do
         confirm 'Y barr ignore' "Do you want to override <path>${dest}</path> ? ${RED}${BOLD}(ALL DATA WILL BE WIPED)${NC}" \
             "rm -rf '$dest'" 'err "Cannot continue."; exit 1'
     fi
+    mkdir -p "$USER_HOME/$dir"
     info_barr "Linking <path>$dir</path>"
 	ln -sfT "$USER_HOME/$dir" "$dest"
 done
@@ -218,10 +218,9 @@ chmod +x "$USER_HOME"/.config/dotfiles/scripts/*.sh
 chmod +x "$USER_HOME"/.config/dotfiles/scripts/copy
 chmod +x "$USER_HOME"/.config/dotfiles/scripts/pst
 
-
 # Update nvim plugins if there is internet
 if nc -z 8.8.8.8 53 -w 1; then
     info_barr 'Updating neovim plugins...'
-    nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerUpdate' > /dev/null 2>&1
+    timeout 20s nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerUpdate' > /dev/null 2>&1
     info 'Done'
 fi

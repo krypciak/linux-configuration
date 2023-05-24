@@ -1,7 +1,11 @@
 #!/bin/sh
-set -e
 
-REPOHUB="$(printf "$(dirname $0)/../" | xargs realpath)"; . "$REPOHUB"/util.sh
+if [ "$REPOHUB" = '' ]; then 
+    REPOHUB="$(printf "$(dirname $0)/../" | xargs realpath)";
+else
+    _util_source_force=1
+fi
+. "$REPOHUB"/util.sh
 
 check_is_root
 
@@ -38,12 +42,12 @@ for path in $COPY_FROM_TO; do
 	from="$REPOHUB/dotfiles/user/$path"
 	dest="/root/$path"
 
-	if [ $override -eq 1 ] || [ ! -e "$dest" ]; then
+	if [ "$override" = '1' ] || [ ! -e "$dest" ]; then
         if [ -h "$dest" ]; then unlink "$dest"; fi
         if [ -e "$dest" ]; then
-            [ "$YOLO" -eq 0 ] && confirm 'Y barr' "Do you want to override <path>${dest}</path> ?" "rm -rf $dest" 'export _continue=1'; 
+            [ "$YOLO" = '0' ] && confirm 'Y barr' "Do you want to override <path>${dest}</path> ?" "rm -rf $dest" 'export _continue=1'; 
             # shellcheck disable=SC2154
-            [ "$_continue" -eq 1 ] && continue
+            [ "$_continue" = '1' ] && continue
         fi
 
 	    mkdir -p "$(dirname "$dest" | head --lines 1)"
