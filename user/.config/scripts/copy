@@ -1,0 +1,2 @@
+#!/bin/sh
+universal-clipboard.sh copy "$@"

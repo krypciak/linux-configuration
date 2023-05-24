@@ -1,0 +1,2 @@
+paru -Syu && echo "$(pacman -Qu | wc -l)" > USER_HOME/.cache/update
+
