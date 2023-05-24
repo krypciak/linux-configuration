@@ -54,6 +54,7 @@ require('packer').startup(function(use)
   use 'preservim/vim-markdown'
   use 'dag/vim-fish'
 
+  use 'tpope/vim-surround'
   -- Automatically set up your configuration after cloning packer.nvim
   if packer_bootstrap then
     require('packer').sync()
