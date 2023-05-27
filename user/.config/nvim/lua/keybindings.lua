@@ -26,6 +26,7 @@ if layout_file ~= nil then
     layout = layout_file:read()
     io.close(layout_file)
 end
+if not layout then layout = 'qwerty' end
 
 if string.find(layout, "dvorak") then
     cmd(to_dvorak)
