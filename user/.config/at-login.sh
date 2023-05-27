@@ -44,6 +44,6 @@ unset XDG_RUNTIME_DIR
 # shellcheck disable=SC2155
 export XDG_RUNTIME_DIR=$(mktemp -d /tmp/$(id -u)-runtime-dir.XXX)
 
-[ -f "/tmp/keyboard_layout" ] || echo 'qwerty' > /tmp/keyboard_layout > /dev/null 2>&1
+[ -f "/tmp/keyboard_layout" ] || echo 'qwerty' > /tmp/keyboard_layout
 
 
