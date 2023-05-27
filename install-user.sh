@@ -201,15 +201,6 @@ if [ -f "$path" ]; then
     sed -i "s|HOSTNAME|$(hostname)|g" "$path"
 fi
 
-path="$USER_HOME"/.local/share/applications/arch-update.desktop
-if [ -f "$path" ]; then
-    sed -i "s|USER_HOME|$USER_HOME|g" "$path"
-fi
-
-path="$USER_HOME"/.config/scripts/update-arch.sh
-cp "$USER_HOME"/.config/dotfiles/scripts/update-arch.sh-tofill "$path"
-sed -i "s|USER_HOME|$USER_HOME|g" "$path"
-
 
 chmod +x "$USER_HOME"/.config/awesome/run/run.sh
 chmod +x "$USER_HOME"/.config/at-login.sh
