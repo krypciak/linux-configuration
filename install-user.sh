@@ -55,10 +55,6 @@ SYMLINK_FROM_TO="\
     \
     .config/BetterDiscord/plugins \
     \
-    .librewolf/native-messaging-hosts \
-    .librewolf/profiles.ini \
-    .librewolf/profile0/extension-preferences.json \
-    .librewolf/profile0/extensions \
     .config/tridactyl \
     \
     .config/gtkrc \
@@ -88,14 +84,6 @@ COPY_FROM_TO="\
     \
     .local/share/applications/tutanota-desktop.desktop \
     .local/share/applications/arch-update.desktop \
-    \
-    %.librewolf/profile0/prefs.js \
-    %.librewolf/profile0/search.json.mozlz4 \
-    %.librewolf/profile0/storage.sqlite \
-    %.librewolf/profile0/cookies.sqlite \
-    %.librewolf/profile0/extension-settings.json \
-    %.librewolf/profile0/extensions.json \
-    %.librewolf/profile0/sessionCheckpoints.json \
     \
     .config/chromium/Default/Preferences  \
     %.config/chromium/Default/Cookies \
