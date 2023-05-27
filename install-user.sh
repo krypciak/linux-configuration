@@ -106,6 +106,7 @@ COPY_FROM_TO="\
 LINK_HOME_DIRS="\
     .config \
     .local \
+    .cache\
     Documents \
     Downloads \
     Pictures \
@@ -116,6 +117,7 @@ LINK_HOME_DIRS="\
     Temp \
     Music \
     .mozilla \
+    .librewolf \
 "
 
 cd "$REPOHUB" || exit 1
