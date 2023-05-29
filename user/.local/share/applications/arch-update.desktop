@@ -1,7 +1,0 @@
-[Desktop Entry]
-Name=Update arch
-Comment=paru -Syu
-Exec=alacritty --class 'System update' --title 'System update' -e USER_HOME/.config/dotfiles/scripts/update-arch.sh
-Terminal=false
-Icon=USER_HOME/.config/dotfiles/resources/Archlinux-icon-crystal-64.svg
-Type=Application
