@@ -51,14 +51,14 @@ local function gen_playerctl_key(key, action)
         awful.key({caps}, key, function()
             ext_action = action
             ext_playernumber = 1
-            assert(loadfile(userdir .. '/.config/dotfiles/scripts/playerctl.lua', 't', _ENV))()
+            assert(loadfile(userdir .. '/.config/scripts/playerctl.lua', 't', _ENV))()
             end, { description = action .. " playerctl media", group = "multimedia" }),
 
         -- Secondary control
         awful.key({caps, shift}, key, function()
             ext_action = action
             ext_playernumber = 2
-            assert(loadfile(userdir .. '/.config/dotfiles/scripts/playerctl.lua', 't', _ENV))()
+            assert(loadfile(userdir .. '/.config/scripts/playerctl.lua', 't', _ENV))()
             end, { description = action .. " playerctl media (Secondary)", group = "multimedia" })
     )
 end
@@ -67,7 +67,7 @@ local globalkeys_media = awful.util.table.join (
     awful.key({caps, ctrl}, "Tab", function()
          ext_action = "swap"
          ext_playernumber = -1
-         assert(loadfile(userdir .. '/.config/dotfiles/scripts/playerctl.lua', 't', _ENV))()
+         assert(loadfile(userdir .. '/.config/scripts/playerctl.lua', 't', _ENV))()
         end, { description = "Swap playerctl players", group = "multimedia" }),
 
     gen_playerctl_key("Tab", "play-pause"),
@@ -177,7 +177,7 @@ local globalkeys_launcher = awful.util.table.join(
 			elseif key == "g" then run_if_not_running_pgrep("github-desktop") 
 			elseif key == "k" then awful.spawn("keepassxc") 
 			elseif key == "r" then awful.spawn("alacritty --class ranger --title ranger -e ranger") 
-			elseif key == "'" then awful.spawn("sh " .. userdir .. "/.config/dotfiles/scripts/ttyper.sh ignore") 
+			elseif key == "'" then awful.spawn("sh " .. userdir .. "/.config/scripts/ttyper.sh ignore") 
 			elseif key == "v" then awful.spawn("virt-manager") 
 			elseif key == "a" then awful.spawn("alacritty --class 'aerc','aerc' --title 'aerc' -e aerc") 
 	    end
