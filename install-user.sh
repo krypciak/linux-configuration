@@ -188,7 +188,7 @@ done
 path="$USER_HOME"/.local/share/PrismLauncher/multimc.cfg
 if [ -f "$path" ]; then
     sed -i "s|USER_HOME|$USER_HOME|g" "$path"
-    sed -i "s|HOSTNAME|$(hostname)|g" "$path"
+    sed -i "s|HOSTNAME|$(uname -n)|g" "$path"
 fi
 
 
