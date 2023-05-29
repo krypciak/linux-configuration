@@ -54,4 +54,4 @@ awful.util.terminal = terminal
 
 ext_noti = false
 
-awful.spawn('xset r rate 400 100')
+awful.spawn('xset r rate 200 50')
