@@ -1,4 +1,4 @@
-source ~/.config/at-login.sh
+. ~/.config/at-login.sh
 
 
 export MOZ_ENABLE_WAYLAND=1
@@ -15,7 +15,7 @@ if [ -n "$dbuslaunch" ] && [ -x "$dbuslaunch" ] && [ -z "$DBUS_SESSION_BUS_ADDRE
 fi
 
 dbus-update-activation-environment --all > /dev/null 2>&1
-/usr/bin/gnome-keyring-daemon --start --components=secrets & > /dev/null 2>&1
+# /usr/bin/gnome-keyring-daemon --start --components=secrets & > /dev/null 2>&1
 
 # simulate a do-while
 do=true
