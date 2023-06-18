@@ -44,9 +44,9 @@ add_tag({
     c_key = "d",
     c_defactivated = false,
     c_apps = { class = { "discord" }},
-    c_switchaction = function(tag)
-        -- run_if_not_running_pgrep("discord")
-    end,
+    -- c_switchaction = function(tag)
+    --      run_if_not_running_pgrep("discord")
+    -- end,
     c_autogenrules = true,
 })
 
@@ -116,9 +116,9 @@ add_tag({
     c_key = "f",
     c_defactivated = false,
     c_apps = { class = media_classes },
-    c_switchaction = function(tag)
-        run_if_not_running_pgrep(media_grep, function() awful.spawn("freetube", { tag = tag.name }) end)
-    end,
+    -- c_switchaction = function(tag)
+    --     run_if_not_running_pgrep(media_grep, function() awful.spawn("freetube", { tag = tag.name }) end)
+    -- end,
     c_autogenrules = true,
 })
 
@@ -131,9 +131,9 @@ add_tag({
     c_key = "c",
     c_defactivated = false,
     c_apps = { class = mc_classes },
-    c_switchaction = function(tag)
-	    run_if_not_running_clients({{"multimc", { tag = tag.name }}}, get_all_clients(), mc_classes, {})
-    end,
+    -- c_switchaction = function(tag)
+	--     run_if_not_running_clients({{"prismlauncher", { tag = tag.name }}}, get_all_clients(), mc_classes, {})
+    -- end,
     c_autogenrules = true,
 })
 
@@ -146,9 +146,9 @@ add_tag({
     c_key = "g",
     c_defactivated = false,
     c_apps = { class = { "virt-manager", "Virt-manager" }},
-    c_switchaction = function(tag)
-	    run_if_not_running_pgrep("virt-manager")
-    end,
+    -- c_switchaction = function(tag)
+	--     run_if_not_running_pgrep("virt-manager")
+    -- end,
     c_autogenrules = true,
 })
 
@@ -166,9 +166,9 @@ add_tag({
     c_key = "v",
     c_defactivated = false,
     c_apps = { class = lol_classes },
-    c_switchaction = function(tag)
-        run_if_not_running_pgrep({"Riot", "League"}, function() awful.spawn("env LUTRIS_SKIP_INIT=1 lutris lutris:rungameid/1", { tag = tag.name }) end)
-    end,
+    -- c_switchaction = function(tag)
+    --     run_if_not_running_pgrep({"Riot", "League"}, function() awful.spawn("env LUTRIS_SKIP_INIT=1 lutris lutris:rungameid/1", { tag = tag.name }) end)
+    -- end,
     c_autogenrules = true,
 })
 
