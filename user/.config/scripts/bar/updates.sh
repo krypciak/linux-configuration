@@ -1,3 +1,3 @@
 #!/bin/sh
-UPDATES="$(cat ~/.config/update)" 2> /dev/null
-i[ "$UPDATES" != '' ] && printf "󰘍$UPDATES"
+UPDATES="$(cat ~/.cache/update)" 2> /dev/null
+[ "$UPDATES" != '' ] && printf "󰘍$UPDATES"
