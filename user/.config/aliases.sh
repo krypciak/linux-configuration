@@ -44,3 +44,7 @@ alias publicip='curl ifconfig.me'
 alias timer='termdown'
 alias cagea='cage -d -s -- alacritty'
 alias slazygit='lazygit --git-dir=$(git rev-parse --git-dir)'
+
+alias awesome='sh $HOME/.config/awesome/run/run.sh'
+alias dwl='sh $HOME/.config/dwl/run/run.sh'
+alias river='sh $HOME/.config/river/run.sh'
