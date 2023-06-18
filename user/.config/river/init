@@ -7,7 +7,7 @@ sft='Mod4'
 caps='Mod4'
 
 run_menu='fuzzel --width 30 --log-level=none'
-playerctl_script="luajit $HOME/.config/dotfiles/scripts/playerctl.lua"
+playerctl_script="luajit $HOME/.config/scripts/playerctl.lua"
 wallpaper_script="luajit $HOME/.config/wallpapers/wallpaper.lua "
 
 
