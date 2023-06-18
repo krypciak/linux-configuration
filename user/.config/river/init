@@ -16,7 +16,7 @@ riverctl spawn 'wlr-randr --output HDMI-A-1 --mode 2560x1440@143.912003Hz'
 riverctl spawn 'swww init > /dev/null 2>&1'
 riverctl spawn "$wallpaper_script inc 0 0 > /dev/null 2>&1"
 riverctl spawn 'gammastep -r > /dev/null 2>&1'
-riverctl spawn "$HOME/.config/river/sandbar/sandbar -hide-vacant-tags -font 'Sans:size=14' -tags 14 T q w n d s a z t f c g v h"
+riverctl spawn '$HOME/.config/dwl/someblocks/someblocks -m 1 | awk "{print \"all \" \$0; fflush();}" | $HOME/.config/river/sandbar/sandbar -hide-vacant-tags -font "Sans:size=14" -tags 14 T q w n d s a z t f c g v h'
 riverctl spawn 'pulseaudio --start > /dev/null 2>&1'
 riverctl spawn 'wl-paste --watch cliphist store > /dev/null 2>&1'
 riverctl spawn 'amixer set Capture nocap > /dev/null 2>&1'
