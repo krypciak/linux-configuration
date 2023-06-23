@@ -100,7 +100,14 @@ local globalkeys_media = awful.util.table.join (
 
     awful.key({caps, ctrl}, "q",
         function() awful.spawn("pacmd set-default-sink \"$(pactl list sinks short | awk '{print $1 \" <> \" substr($2,13) }' | tr '-' ' ' | tr '_' ' ' | fuzzel -d --log-level=none | awk '{print $1}')\"") end,
-        {description = "select audio output", group = "multimedia"})
+        {description = "select audio output", group = "multimedia"}),
+
+    awful.key({}, "XF86AudioPlay",
+        function()
+            ext_action = "play-pause"
+            ext_playernumber = 1
+            assert(loadfile(userdir .. '/.config/scripts/playerctl.lua', 't', _ENV))()
+        end, {description = "Play/pause hardware button", group = "multimedia"})
 )
 
 local globalkeys_awesome = awful.util.table.join(
