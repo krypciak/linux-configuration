@@ -112,7 +112,7 @@ map_playerctl 'W'   'volume 0.02%+'
 map_playerctl 'S'   'volume 0.02%-'
 for mode in normal locked passthrough; do
     riverctl map $mode          Mod3+Control        Tab     spawn "$playerctl_script swap -1"
-    riverctl map $mode          None                XF86AudioPlay spawn "playerctl play-pause"
+    riverctl map $mode          None                XF86AudioPlay spawn "$playerctl_script play-pause 1"
 done
 
 map normal                      Mod3+Control        Q       spawn "pacmd set-default-sink \"\$(pactl list sinks short | awk '{print \$1 \" <> \" substr(\$2,13) }' | tr '-' ' ' | tr '_' ' ' | fuzzel -d --log-level=none --width 50 | awk '{print \$1}')\""
