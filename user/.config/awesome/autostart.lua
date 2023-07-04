@@ -1,3 +1,5 @@
+run_if_not_running_pgrep({music_player_class}, function() awful.spawn(music_player) end)
+
 -- Start redshift if not running
 run_if_not_running_pgrep({"redshift"}, function() awful.spawn("redshift -r") end)
 
