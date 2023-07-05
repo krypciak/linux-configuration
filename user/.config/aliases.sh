@@ -26,6 +26,7 @@ alias cat='bat'
 alias diff='difft'
 alias ti='hyperfine'
 alias man='batman'
+alias lfs='dysk'
 
 alias dust='dust --reverse'
 
