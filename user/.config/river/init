@@ -6,52 +6,79 @@ ctrl='Mod4'
 sft='Mod4'
 caps='Mod4'
 
+export TAGS="T q w n d s a z t f c g v h"; 
+get_tag() {
+    # tag position in binary
+    x=${TAGS%%["$1"]*}; 
+    x=$((${#x}/2))
+    echo $((1 << x))
+};
+
+tag() {
+    tags=$(get_tag $2)
+    key=$1
+    name=$2
+
+    riverctl map normal Alt               $key set-focused-tags     $tags
+    riverctl map normal Alt+Shift         $key set-view-tags        $tags
+    riverctl map normal Alt+Control       $key toggle-focused-tags  $tags
+    riverctl map normal Alt+Shift+Control $key toggle-view-tags     $tags
+}
+tag 'Tab' 'T'
+tag 'Q' 'q'
+tag 'W' 'w'
+tag 'N' 'n'
+tag 'D' 'd'
+tag 'S' 's'
+tag 'A' 'a'
+tag 'Z' 'z'
+tag 'T' 't'
+tag 'F' 'f'
+tag 'C' 'c'
+tag 'G' 'g'
+tag 'V' 'v'
+tag 'H' 'h'
+
+# tag rules
+riverctl rule-add tag -app-id 'discord'             $(get_tag 'd')
+riverctl rule-add tag -app-id 'LibreWolf'           $(get_tag 's')
+riverctl rule-add tag -app-id 'chromium'            $(get_tag 's')
+riverctl rule-add tag -app-id 'tutanota-desktop'    $(get_tag 'z')
+riverctl rule-add tag -app-id 'aerc'                $(get_tag 'z')
+riverctl rule-add tag -app-id 'cmus'                $(get_tag 'n')
+riverctl rule-add tag -app-id 'dialect'             $(get_tag 't')
+# { NULL,            "Invidious",   1 << 9,     0,  0,  0,  0,  0,   0,   0,  0,  -1 },
+# { NULL,   "Picture in picture",   1 << 9,     0,  1,  0,  0,  0,   1,   1,  0,  -1 },
+riverctl rule-add tag -app-id 'gamescope'           $(get_tag 'v')
+riverctl rule-add tag -app-id 'live.na.exe'         $(get_tag 'v')
+riverctl rule-add tag -app-id 'prismlauncher'       $(get_tag 'c')
+riverctl rule-add tag -app-id '*Minecraft*'         $(get_tag 'a')
+riverctl rule-add tag -app-id 'Steam'               $(get_tag 'a')
+riverctl rule-add tag -app-id 'Lutris'              $(get_tag 'a')
+riverctl rule-add tag -app-id 'steap_app_960090'    $(get_tag 'a')
+# { NULL,            "CrossCode",   1 << 13,    0,  0,  1,  0,  0,   0,   0,  0,  -1 },
+riverctl rule-add tag -app-id 'MonkeyCity-Win.exe'  $(get_tag 'a')
+
+
 run_menu='fuzzel --width 30 --log-level=none'
 playerctl_script="luajit $HOME/.config/scripts/playerctl.lua"
 wallpaper_script="luajit $HOME/.config/wallpapers/wallpaper.lua "
 
-
 # Autostart
 riverctl spawn 'wlr-randr --output HDMI-A-1 --mode 2560x1440@143.912003Hz'
+riverctl spawn 'wlr-randr --output DP-2 --off'
 riverctl spawn 'swww init > /dev/null 2>&1'
 riverctl spawn "$wallpaper_script inc 0 0 > /dev/null 2>&1"
 riverctl spawn 'gammastep -r > /dev/null 2>&1'
 riverctl spawn '$HOME/.config/dwl/someblocks/someblocks -m 1 | awk "{print \"all \" \$0; fflush();}" | $HOME/.config/river/sandbar/sandbar -hide-vacant-tags -font "Sans:size=14" -tags 14 T q w n d s a z t f c g v h'
 riverctl spawn 'pulseaudio --start > /dev/null 2>&1'
+riverctl spawn 'alacritty --class cmus --title cmus -e cmus'
 riverctl spawn 'wl-paste --watch cliphist store > /dev/null 2>&1'
 riverctl spawn 'amixer set Capture nocap > /dev/null 2>&1'
 riverctl spawn 'fnott > /dev/null 2>&1'
 riverctl spawn 'pgrep keepassxc > /dev/null || keepassxc > /dev/null 2>&1'
 riverctl spawn 'pgrep tutanota > /dev/null || tutanota-desktop --enable-features=UseOzonePlatform --ozone-platform=wayland > /dev/null 2>&1'
 riverctl spawn 'blueman-applet > /dev/null 2>&1'
-#riverctl spawn wlr-randr --output DP-1 --off
-
-tag() {
-    index=$1
-    key=$2
-    name=$3
-
-    tags=$((1 << (index - 1)))
-    riverctl map normal Alt               $key set-focused-tags     $tags
-    riverctl map normal Alt+Shift         $key set-view-tags        $tags
-    riverctl map normal Alt+Control       $key toggle-focused-tags  $tags
-    riverctl map normal Alt+Shift+Control $key toggle-view-tags     $tags
-    echo "$tags"
-}
-_tag="$(tag 1  'Tab' 'T')"
-_tag="$(tag 2  'Q' 'q')"
-_tag="$(tag 3  'W' 'w')"
-_tag="$(tag 4  'N' 'n')"
-_tag="$(tag 5  'D' 'd')"
-_tag="$(tag 6  'S' 's')"
-_tag="$(tag 7  'A' 'a')"
-_tag="$(tag 8  'Z' 'z')"
-_tag="$(tag 9  'T' 't')"
-_tag="$(tag 10 'F' 'f')"
-_tag="$(tag 11 'C' 'c')"
-_tag="$(tag 12 'G' 'g')"
-_tag="$(tag 13 'V' 'v')"
-_tag="$(tag 14 'H' 'h')"
 
 riverctl declare-mode passthrough
 # Spawn
