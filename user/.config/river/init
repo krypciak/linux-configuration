@@ -6,7 +6,7 @@ ctrl='Mod4'
 sft='Mod4'
 caps='Mod4'
 
-export TAGS="T q w n d s a z t f c g v h"; 
+export TAGS="T q w e n d s a z t f c g v h"; 
 get_tag() {
     # tag position in binary
     x=${TAGS%%["$1"]*}; 
@@ -27,6 +27,7 @@ tag() {
 tag 'Tab' 'T'
 tag 'Q' 'q'
 tag 'W' 'w'
+tag 'E' 'e'
 tag 'N' 'n'
 tag 'D' 'd'
 tag 'S' 's'
@@ -47,16 +48,18 @@ riverctl rule-add tag -app-id 'tutanota-desktop'    $(get_tag 'z')
 riverctl rule-add tag -app-id 'aerc'                $(get_tag 'z')
 riverctl rule-add tag -app-id 'cmus'                $(get_tag 'n')
 riverctl rule-add tag -app-id 'dialect'             $(get_tag 't')
-# { NULL,            "Invidious",   1 << 9,     0,  0,  0,  0,  0,   0,   0,  0,  -1 },
-# { NULL,   "Picture in picture",   1 << 9,     0,  1,  0,  0,  0,   1,   1,  0,  -1 },
+# { NULL,            'Invidious',   1 << 9,     0,  0,  0,  0,  0,   0,   0,  0,  -1 },
+# { NULL,   'Picture in picture',   1 << 9,     0,  1,  0,  0,  0,   1,   1,  0,  -1 },
 riverctl rule-add tag -app-id 'gamescope'           $(get_tag 'v')
 riverctl rule-add tag -app-id 'live.na.exe'         $(get_tag 'v')
-riverctl rule-add tag -app-id 'prismlauncher'       $(get_tag 'c')
+riverctl rule-add tag -app-id 'prismlauncher'       $(get_tag 'a')
 riverctl rule-add tag -app-id '*Minecraft*'         $(get_tag 'a')
-riverctl rule-add tag -app-id 'Steam'               $(get_tag 'a')
-riverctl rule-add tag -app-id 'Lutris'              $(get_tag 'a')
+riverctl rule-add tag -title  '*Steam*'             $(get_tag 'h')
+riverctl rule-add tag -title  'Launching...'        $(get_tag 'h')
+riverctl rule-add tag -app-id 'Lutris'              $(get_tag 'h')
 riverctl rule-add tag -app-id 'steap_app_960090'    $(get_tag 'a')
-# { NULL,            "CrossCode",   1 << 13,    0,  0,  1,  0,  0,   0,   0,  0,  -1 },
+riverctl rule-add tag -title '*CrossCode*'          $(get_tag 'a')
+riverctl rule-add tag -title '*DevTools*'           $(get_tag 'a')
 riverctl rule-add tag -app-id 'MonkeyCity-Win.exe'  $(get_tag 'a')
 
 
@@ -70,9 +73,9 @@ riverctl spawn 'wlr-randr --output DP-2 --off'
 riverctl spawn 'swww init > /dev/null 2>&1'
 riverctl spawn "$wallpaper_script inc 0 0 > /dev/null 2>&1"
 riverctl spawn 'gammastep -r > /dev/null 2>&1'
-riverctl spawn '$HOME/.config/dwl/someblocks/someblocks -m 1 | awk "{print \"all \" \$0; fflush();}" | $HOME/.config/river/sandbar/sandbar -hide-vacant-tags -font "Sans:size=14" -tags 14 T q w n d s a z t f c g v h'
+riverctl spawn "$HOME/.config/dwl/someblocks/someblocks -m 1 | awk '{print \"all \" \$0; fflush();}' | $HOME/.config/river/sandbar/sandbar -hide-vacant-tags -font 'Sans:size=14' -tags 15 $TAGS > /dev/null 2>&1"
 riverctl spawn 'pulseaudio --start > /dev/null 2>&1'
-riverctl spawn 'alacritty --class cmus --title cmus -e cmus'
+riverctl spawn 'alacritty --class cmus --title cmus -e cmus 2>&1'
 riverctl spawn 'wl-paste --watch cliphist store > /dev/null 2>&1'
 riverctl spawn 'amixer set Capture nocap > /dev/null 2>&1'
 riverctl spawn 'fnott > /dev/null 2>&1'
@@ -98,8 +101,8 @@ riverctl map normal             Super+Shift+Control L       spawn 'playerctl pau
 
 # Client manipulation
 riverctl map normal             Super+Shift         C       close
-riverctl map normal             Super+Shift         Space   toogle-float
-riverctl map normal             Super               F       toogle-fullscreen
+riverctl map normal             Super+Control       Space   toggle-float
+riverctl map normal             Super               F       toggle-fullscreen
 
 riverctl map -repeat normal     Super+Control       Y       move left 10
 riverctl map -repeat normal     Super+Control       U       move down 10
@@ -142,7 +145,7 @@ for mode in normal locked passthrough; do
     riverctl map $mode          None                XF86AudioPlay spawn "$playerctl_script play-pause 1"
 done
 
-map normal                      Mod3+Control        Q       spawn "pacmd set-default-sink \"\$(pactl list sinks short | awk '{print \$1 \" <> \" substr(\$2,13) }' | tr '-' ' ' | tr '_' ' ' | fuzzel -d --log-level=none --width 50 | awk '{print \$1}')\""
+riverctl map normal             Mod3+Control        Q       spawn "pacmd set-default-sink \"\$(pactl list sinks short | awk '{print \$1 \" <> \" substr(\$2,13) }' | tr '-' ' ' | tr '_' ' ' | fuzzel -d --log-level=none --width 50 | awk '{print \$1}')\""
 
 # Misc caps keys
 riverctl map normal             Mod3                1       spawn 'cliphist list | fuzzel --width 100 -d --log-level=none | cliphist decode | wl-copy'
@@ -167,8 +170,6 @@ riverctl background-color 0x002b36
 riverctl border-color-focused 0x93a1a1
 riverctl border-color-unfocused 0x586e75
 riverctl border-width 0
-
-#riverctl rule-add float -app-id 'float*' -title 'foo'
 
 riverctl focus-follows-cursor disabled
 riverctl hide-cursor 2000
