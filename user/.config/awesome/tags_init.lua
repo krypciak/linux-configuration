@@ -2,8 +2,8 @@
 -- default_layout_index is in vars.lua
 local default_layout = awful.layout.layouts[default_layout_index]
 
-local normal_tag_keys = {'Tab', 'q', 'w' };
-local normal_tag_names = {'T', 'q', 'w' };
+local normal_tag_keys = {'Tab', 'q', 'w', 'e' };
+local normal_tag_names = {'T', 'q', 'w', 'e' };
 -- normal_tag_count in vars.lua
 for i = 1, normal_tag_count do
     add_tag({
