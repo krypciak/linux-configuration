@@ -66,6 +66,7 @@ riverctl rule-add tag -app-id 'MonkeyCity-Win.exe'  $(get_tag 'a')
 run_menu='fuzzel --width 30 --log-level=none'
 playerctl_script="luajit $HOME/.config/scripts/playerctl.lua"
 wallpaper_script="luajit $HOME/.config/wallpapers/wallpaper.lua "
+sandbar_run="$HOME/.config/dwl/someblocks/someblocks -m 1 | awk '{print \"all \" \$0; fflush();}' | $HOME/.config/river/sandbar/sandbar -hide-vacant-tags -font 'Sans:size=14' -tags 15 $TAGS > /dev/null 2>&1"
 
 # Autostart
 riverctl spawn 'wlr-randr --output HDMI-A-1 --mode 2560x1440@143.912003Hz'
@@ -73,7 +74,7 @@ riverctl spawn 'wlr-randr --output DP-2 --off'
 riverctl spawn 'swww init > /dev/null 2>&1'
 riverctl spawn "$wallpaper_script inc 0 0 > /dev/null 2>&1"
 riverctl spawn 'gammastep -r > /dev/null 2>&1'
-riverctl spawn "$HOME/.config/dwl/someblocks/someblocks -m 1 | awk '{print \"all \" \$0; fflush();}' | $HOME/.config/river/sandbar/sandbar -hide-vacant-tags -font 'Sans:size=14' -tags 15 $TAGS > /dev/null 2>&1"
+riverctl spawn "$sandbar_run"
 riverctl spawn 'pulseaudio --start > /dev/null 2>&1'
 riverctl spawn 'alacritty --class cmus --title cmus -e cmus 2>&1'
 riverctl spawn 'wl-paste --watch cliphist store > /dev/null 2>&1'
@@ -82,6 +83,7 @@ riverctl spawn 'fnott > /dev/null 2>&1'
 riverctl spawn 'pgrep keepassxc > /dev/null || keepassxc > /dev/null 2>&1'
 riverctl spawn 'pgrep tutanota > /dev/null || tutanota-desktop --enable-features=UseOzonePlatform --ozone-platform=wayland > /dev/null 2>&1'
 riverctl spawn 'blueman-applet > /dev/null 2>&1'
+riverctl spawn 'librewolf > /dev/null 2>&1'
 
 riverctl declare-mode passthrough
 # Spawn
@@ -150,8 +152,8 @@ riverctl map normal             Mod3+Control        Q       spawn "pacmd set-def
 # Misc caps keys
 riverctl map normal             Mod3                1       spawn 'cliphist list | fuzzel --width 100 -d --log-level=none | cliphist decode | wl-copy'
 riverctl map normal             Mod3+Control        1       spawn "rm $HOME/.cache/cliphist/db" 
-riverctl map normal             Mod3                3       spawn '$HOME/.config/dotfiles/scripts/wayland/togglemonitors.sh'
-riverctl map normal             Mod3                4       spawn '$HOME/.config/dotfiles/scripts/wayland/change-res.sh'
+riverctl map normal             Mod3                3       spawn "$HOME/.config/scripts/wayland/togglemonitors.sh; pkill sandbar; $sandbar_run"
+riverctl map normal             Mod3                4       spawn '$HOME/.config/scripts/wayland/change-res.sh'
 
 riverctl map normal             Mod3                T       spawn "$wallpaper_script wayland-gui"
 riverctl map normal             Mod3                Z       spawn 'grim - | wl-copy'
