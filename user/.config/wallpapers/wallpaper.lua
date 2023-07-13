@@ -122,6 +122,7 @@ end
 if not isx11 then
     function set_wallpaper(wallpaper)
         if wallpaper:find('^#') then
+            print('swww clear "' .. wallpaper .. '"')
             os.execute('swww clear "' .. wallpaper .. '"')
         else
             local scaling_method = custom_scaling_wallpapers[wallpaper]
@@ -131,11 +132,11 @@ if not isx11 then
                 scaling_method=''
             end
 
-            os.execute('swww img --transition-duration 0  --transition-type left --sync ' .. scaling_method .. wallpaper_dir .. wallpaper)
+            os.execute('swww img --transition-type none ' .. scaling_method .. wallpaper_dir .. wallpaper)
         end
     end
 
-    local out = os.capture("swww query | awk '{print $8}' | tail -c +2 | head --lines 1 | head -c -2")
+    local out = os.capture("swww query | awk '{print $8}' | tail -c +1 | head --lines 1 | head -c -2")
     if out ~= '' then
         read_wallpaper = os.capture("cd $HOME/.config/wallpapers; find . -type f -iname '" .. out .. "' | awk '{print substr($1, 3)}' | head --lines 1 | head -c -1")
     end
