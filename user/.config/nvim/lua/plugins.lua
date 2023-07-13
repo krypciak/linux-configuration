@@ -55,6 +55,7 @@ require('packer').startup(function(use)
   use 'dag/vim-fish'
 
   use 'tpope/vim-surround'
+  use 'dense-analysis/ale'
   -- Automatically set up your configuration after cloning packer.nvim
   if packer_bootstrap then
     require('packer').sync()
