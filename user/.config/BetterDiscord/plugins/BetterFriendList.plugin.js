@@ -2,7 +2,7 @@
  * @name BetterFriendList
  * @author DevilBro
  * @authorId 278543574059057154
- * @version 1.5.2
+ * @version 1.5.4
  * @description Adds extra Controls to the Friends Page, for example sort by Name/Status, Search and All/Request/Blocked Amount
  * @invite Jx3TjNS
  * @donate https://www.paypal.me/MircoWittrien
@@ -116,6 +116,10 @@ module.exports = (_ => {
 					}
 					${BDFDB.dotCN._betterfriendlistnamecell} {
 						width: 200px;
+					}
+					${BDFDB.dotCNS.peoplespeoplecolumn + BDFDB.dotCN.searchbar} {
+						padding-bottom: 0;
+						margin-bottom: 0;
 					}
 					${BDFDB.dotCN.peoplesuser} {
 						flex: 1 1 auto;
@@ -333,7 +337,7 @@ module.exports = (_ => {
 					if (isHiddenSelected) e.instance.props.statusSections = [].concat(e.instance.props.statusSections).map(section => [].concat(section).filter(entry => entry && entry.user && hiddenFriends.indexOf(entry.user.id) > -1));
 					else if (([].concat(e.instance.props.statusSections).flat(10)[0] || {}).type == BDFDB.DiscordConstants.RelationshipTypes.FRIEND) e.instance.props.statusSections = [].concat(e.instance.props.statusSections).map(section => [].concat(section).filter(entry => entry && entry.user && hiddenFriends.indexOf(entry.user.id) == -1));
 				}
-				if (sortKey) e.instance.props.statusSections = [].concat(e.instance.props.statusSections).map(section => {
+				if (sortKey && e.instance.props.statusSections.flat(10).length) e.instance.props.statusSections = [].concat(e.instance.props.statusSections).map(section => {
 					let newSection = [].concat(section);
 					newSection = BDFDB.ArrayUtils.keySort(newSection.map(entry => Object.assign({}, entry, {
 						statusIndex: statusSortOrder[entry.status],
@@ -372,7 +376,7 @@ module.exports = (_ => {
 					else if (this.settings.general.addMutualGuild) {
 						let mutualGuilds = BDFDB.ArrayUtils.removeCopies([].concat(BDFDB.LibraryStores.GuildMemberStore.memberOf(e.instance.props.user.id), (BDFDB.LibraryStores.UserProfileStore.getMutualGuilds(e.instance.props.user.id) || []).map(n => n && n.guild && n.guild.id)).flat()).filter(n => n);
 						if (mutualGuilds && mutualGuilds.length) {
-							let guildsIds = BDFDB.LibraryModules.SortedGuildUtils.getFlattenedGuildIds();
+							let guildsIds = BDFDB.LibraryStores.SortedGuildStore.getFlattenedGuildIds();
 							let childrenRender = e.returnvalue.props.children;
 							e.returnvalue.props.children = BDFDB.TimeUtils.suppress((...args) => {
 								let returnValue = childrenRender(...args);
@@ -458,12 +462,12 @@ module.exports = (_ => {
 						};
 					case "el":		// Greek
 						return {
-							context_favorizefriend:				"Προσθήκη φίλου στα αγαπημένα",
+							context_favorizefriend:				"Προσθήκη φίλου στους αγαπημένους",
 							context_hidefriend:					"Απόκρυψη φίλου",
-							context_unfavorizefriend:			"Κατάργηση φίλου από τα αγαπημένα",
-							context_unhidefriend:				"Απόκρυψη φίλου",
-							favorites:							"Αγαπημένα",
-							hidden:								"Κρυμμένος",
+							context_unfavorizefriend:			"Κατάργηση φίλου από τούς αγαπημένους",
+							context_unhidefriend:				"Επανεμφάνιση φίλου",
+							favorites:							"Αγαπημένοι",
+							hidden:								"Σε απόκρυψη",
 							incoming:							"Εισερχόμενος",
 							outgoing:							"Εξερχόμενος"
 						};
