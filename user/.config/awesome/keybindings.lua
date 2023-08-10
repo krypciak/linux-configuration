@@ -49,16 +49,12 @@ local function gen_playerctl_key(key, action)
     return awful.util.table.join(
         -- Primary control
         awful.key({caps}, key, function()
-            ext_action = action
-            ext_playernumber = 1
-            assert(loadfile(userdir .. '/.config/scripts/playerctl.lua', 't', _ENV))()
+            awful.spawn(userdir .. '/.config/scripts/mediaplayer.sh ' .. action .. ' 1')
             end, { description = action .. " playerctl media", group = "multimedia" }),
 
         -- Secondary control
         awful.key({caps, shift}, key, function()
-            ext_action = action
-            ext_playernumber = 2
-            assert(loadfile(userdir .. '/.config/scripts/playerctl.lua', 't', _ENV))()
+            awful.spawn(userdir .. '/.config/scripts/mediaplayer.sh ' .. action .. ' 2')
             end, { description = action .. " playerctl media (Secondary)", group = "multimedia" })
     )
 end

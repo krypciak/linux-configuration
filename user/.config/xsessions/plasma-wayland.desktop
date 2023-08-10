@@ -1,5 +1,5 @@
 [Desktop Entry]
 Name=plasma-wayland
 Comment=Plasma Wayland
-Exec=~/.config/dotfiles/scripts/run-plasmawayland.sh
+Exec=~/.config/scripts/run-plasmawayland.sh
 Type=Application

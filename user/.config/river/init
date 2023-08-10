@@ -64,7 +64,7 @@ riverctl rule-add tag -app-id 'MonkeyCity-Win.exe'  $(get_tag 'a')
 
 
 run_menu='fuzzel --width 30 --log-level=none'
-playerctl_script="luajit $HOME/.config/scripts/playerctl.lua"
+playerctl_script="$HOME/.config/scripts/mediaplayer.sh"
 wallpaper_script="luajit $HOME/.config/wallpapers/wallpaper.lua "
 sandbar_run="$HOME/.config/dwl/someblocks/someblocks -m 1 | awk '{print \"all \" \$0; fflush();}' | $HOME/.config/river/sandbar/sandbar -hide-vacant-tags -font 'Sans:size=14' -tags 15 $TAGS > /dev/null 2>&1"
 
@@ -93,10 +93,10 @@ riverctl map normal             Alt                 R       spawn "$run_menu"
 # Power options
 for mode in normal locked; do
     riverctl map $mode          Super+Shift+Control Q       exit
-    riverctl map $mode          Super+Shift+Control P       spawn 'loginctl poweroff'
-    riverctl map $mode          Super+Shift+Control R       spawn 'loginctl reboot'
-    riverctl map $mode          Super+Shift+Control S       spawn 'playerctl pause -a; loginctl suspend; swaylock'
-    riverctl map $mode          Super+Shift+Control H       spawn 'loginctl hibernate'
+    riverctl map $mode          Super+Shift+Control P       spawn '$HOME/.config/scripts/poweroff.sh'
+    riverctl map $mode          Super+Shift+Control R       spawn '$HOME/.config/scripts/reboot.sh'
+    riverctl map $mode          Super+Shift+Control S       spawn 'playerctl pause -a; $HOME/.config/scripts/suspend.sh; swaylock'
+    riverctl map $mode          Super+Shift+Control H       spawn '$HOME/.config/scripts/hibernate.sh'
 done
 riverctl map normal             Super+Shift+Control M       spawn 'touch /tmp/restart_river; riverctl exit'
 riverctl map normal             Super+Shift+Control L       spawn 'playerctl pause -a; swaylock'
@@ -149,7 +149,7 @@ map_playerctl 'A'   'previous'
 map_playerctl 'W'   'volume 0.02%+'
 map_playerctl 'S'   'volume 0.02%-'
 for mode in normal locked passthrough; do
-    riverctl map $mode          Mod3+Control        Tab     spawn "$playerctl_script swap -1"
+    # riverctl map $mode          Mod3+Control        Tab     spawn "$playerctl_script swap -1"
     riverctl map $mode          None                XF86AudioPlay spawn "$playerctl_script play-pause 1"
 done
 
