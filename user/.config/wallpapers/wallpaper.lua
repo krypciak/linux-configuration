@@ -8,6 +8,7 @@ local default_index = 2
 local wallpapers = {
     {  'oneshot/main.png', 'oneshot/MemoryOfaDistantPlace.gif', 'oneshot/library.png', 'oneshot/factory.png' },
     { 'autumn.png' },
+    { 'crosscode-curcuits.png' },
     { 'anime/tenken-fran.png' },
     { '#000000', '#303030' },
 }
