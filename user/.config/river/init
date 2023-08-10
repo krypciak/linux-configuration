@@ -9,10 +9,10 @@ caps='Mod4'
 export TAGS="T q w e n d s a z t f c g v h"; 
 get_tag() {
     # tag position in binary
-    x=${TAGS%%["$1"]*}; 
+    x=${TAGS%%["$1"]*}
     x=$((${#x}/2))
     echo $((1 << x))
-};
+}
 
 tag() {
     tags=$(get_tag $2)
@@ -128,6 +128,12 @@ riverctl map normal             Super               H       send-layout-cmd rive
 riverctl map normal             Super               L       send-layout-cmd rivertile "main-ratio +0.05"
 riverctl map normal             Super+Shift         H       send-layout-cmd rivertile "main-count +1"
 riverctl map normal             Super+Shift         L       send-layout-cmd rivertile "main-count -1"
+
+riverctl map normal             Alt                 Period  focus-output next
+riverctl map normal             Alt                 Comma   focus-output previous
+
+riverctl map normal             Alt+Shift           Period  send-to-output next
+riverctl map normal             Alt+Shift           Comma   send-to-output previous
 
 # Playerctl
 map_playerctl() {
