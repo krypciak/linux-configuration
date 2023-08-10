@@ -1,3 +1,5 @@
+awful.spawn("xrandr --output HDMI-A-0 --mode 2560x1440 --rate 144 --primary")
+
 run_if_not_running_pgrep({music_player_class}, function() awful.spawn(music_player) end)
 
 -- Start redshift if not running
