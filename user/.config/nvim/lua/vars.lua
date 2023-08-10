@@ -58,4 +58,5 @@ highlight CursorLine ctermbg=235
 
 cmd [[
 set ff=unix
+set redrawtime=0
 ]]

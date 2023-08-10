@@ -27,7 +27,6 @@ require('packer').startup(function(use)
   use 'rubixninja314/vim-mcfunction'
 
   use 'rust-lang/rust.vim'
-  use 'vim-syntastic/syntastic'
 
   use 'tjdevries/nlua.nvim'
   use 'euclidianAce/BetterLua.vim'
@@ -53,9 +52,10 @@ require('packer').startup(function(use)
 
   use 'preservim/vim-markdown'
   use 'dag/vim-fish'
+  use 'mfussenegger/nvim-jdtls'
 
   use 'tpope/vim-surround'
-  use 'dense-analysis/ale'
+  -- use 'dense-analysis/ale'
   -- Automatically set up your configuration after cloning packer.nvim
   if packer_bootstrap then
     require('packer').sync()
