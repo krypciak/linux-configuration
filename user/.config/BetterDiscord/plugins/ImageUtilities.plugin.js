@@ -2,7 +2,7 @@
  * @name ImageUtilities
  * @author DevilBro
  * @authorId 278543574059057154
- * @version 5.2.6
+ * @version 5.4.0
  * @description Adds several Utilities for Images/Videos (Gallery, Download, Reverse Search, Zoom, Copy, etc.)
  * @invite Jx3TjNS
  * @donate https://www.paypal.me/MircoWittrien
@@ -14,9 +14,7 @@
 
 module.exports = (_ => {
 	const changeLog = {
-		"added": {
-			"Click Zoom Mode": "Added Option to click an Image to Zoom instead of having to hold down the Mouse Button"
-		}
+		
 	};
 	
 	return !window.BDFDB_Global || (!window.BDFDB_Global.loaded && !window.BDFDB_Global.started) ? class {
@@ -27,9 +25,14 @@ module.exports = (_ => {
 		getDescription () {return `The Library Plugin needed for ${this.name} is missing. Open the Plugin Settings to download it. \n\n${this.description}`;}
 		
 		downloadLibrary () {
-			require("request").get("https://mwittrien.github.io/BetterDiscordAddons/Library/0BDFDB.plugin.js", (e, r, b) => {
-				if (!e && b && r.statusCode == 200) require("fs").writeFile(require("path").join(BdApi.Plugins.folder, "0BDFDB.plugin.js"), b, _ => BdApi.showToast("Finished downloading BDFDB Library", {type: "success"}));
-				else BdApi.alert("Error", "Could not download BDFDB Library Plugin. Try again later or download it manually from GitHub: https://mwittrien.github.io/downloader/?library");
+			BdApi.Net.fetch("https://mwittrien.github.io/BetterDiscordAddons/Library/0BDFDB.plugin.js").then(r => {
+				if (!r || r.status != 200) throw new Error();
+				else return r.text();
+			}).then(b => {
+				if (!b) throw new Error();
+				else return require("fs").writeFile(require("path").join(BdApi.Plugins.folder, "0BDFDB.plugin.js"), b, _ => BdApi.showToast("Finished downloading BDFDB Library", {type: "success"}));
+			}).catch(error => {
+				BdApi.alert("Error", "Could not download BDFDB Library Plugin. Try again later or download it manually from GitHub: https://mwittrien.github.io/downloader/?library");
 			});
 		}
 		
@@ -66,8 +69,6 @@ module.exports = (_ => {
 		var switchedImageProps;
 		var cachedImages;
 		var eventTypes = {};
-		
-		const imgUrlReplaceString = "DEVILBRO_BD_REVERSEIMAGESEARCH_REPLACE_IMAGEURL";
 		
 		const rescaleOptions = {
 			NONE: "No Resize",
@@ -207,7 +208,7 @@ module.exports = (_ => {
 					},
 					viewerSettings: {
 						zoomMode: 				{value: true,	description: "Enables Zoom Mode to zoom into Images while holding down your Mouse"},
-						galleryMode: 			{value: true,	description: "Enables Gallery Mode to quick-switch between Images"},
+						galleryMode: 				{value: true,	description: "Enables Gallery Mode to quick-switch between Images"},
 						details: 				{value: true,	description: "Adds Image Details (Name, Size, Amount)"},
 						copyImage: 				{value: true,	description: "Adds a 'Copy Image' Option"},
 						saveImage: 				{value: true,	description: "Adds a 'Save Image as' Option"},
@@ -218,39 +219,39 @@ module.exports = (_ => {
 						pixelMode: 				{value: false,	label: "Uses Pixel Lens instead of a Blur Lens"},
 						clickMode: 				{value: false,	label: "Click Image to zoom instead of holding the Mouse Button"},
 						lensSize:				{value: 200,	digits: 0,	minValue: 50,	maxValue: 5000,	unit: "px",		label: "context_lenssize"},
-						zoomLevel:				{value: 2,		digits: 1,	minValue: 1,	maxValue: 20,	unit: "x",		label: "ACCESSIBILITY_ZOOM_LEVEL_LABEL"},
+						zoomLevel:				{value: 2,	digits: 1,	minValue: 1,	maxValue: 20,	unit: "x",		label: "ACCESSIBILITY_ZOOM_LEVEL_LABEL"},
 						zoomSpeed: 				{value: 0.1,	digits: 2,	minValue: 0.01,	maxValue: 1,	unit: "",		label: "context_zoomspeed"}
 					},
 					rescaleSettings: {
 						messages: 				{value: "NONE",	description: "Messages"},
-						imageViewer: 			{value: "NONE",	description: "Image Viewer"}
+						imageViewer: 				{value: "NONE",	description: "Image Viewer"}
 					},
 					detailsSettings: {
 						footnote:				{value: true, 	description: "in the Image Description"},
 						tooltip:				{value: false, 	description: "as a Hover Tooltip"},
-						tooltipDelay:			{value: 0, 		min: 0,			description: "Image Tooltip Delay (in ms)"}
+						tooltipDelay:				{value: 0, 	min: 0,		description: "Image Tooltip Delay (in ms)"}
 					},
 					places: {
-						userAvatars: 			{value: true, 	description: "User Avatars"},
-						groupIcons: 			{value: true, 	description: "Group Icons"},
-						guildIcons: 			{value: true, 	description: "Server Icons"},
-						streamPreviews: 		{value: true, 	description: "Stream Previews"},
+						userAvatars: 				{value: true, 	description: "User Avatars"},
+						groupIcons: 				{value: true, 	description: "Group Icons"},
+						guildIcons: 				{value: true, 	description: "Server Icons"},
+						streamPreviews: 			{value: true, 	description: "Stream Previews"},
 						emojis: 				{value: true, 	description: "Custom Emojis/Emotes"}
 					},
 					engines: {
 						_all: 		{value: true, 	name: BDFDB.LanguageUtils.LanguageStrings.FORM_LABEL_ALL, 	url: null},
-						Baidu: 		{value: true, 	name: "Baidu", 					url: "http://image.baidu.com/pcdutu?queryImageUrl=" + imgUrlReplaceString},
-						Bing: 		{value: true, 	name: "Bing", 					url: "https://www.bing.com/images/search?q=imgurl:" + imgUrlReplaceString + "&view=detailv2&iss=sbi&FORM=IRSBIQ"},
-						Google:		{value: true, 	name: "Google", 				url: "https://www.google.com/searchbyimage?sbisrc=1&image_url=" + imgUrlReplaceString},
-						GoogleLens:	{value: true, 	name: "Google Lens",			url: "https://lens.google.com/uploadbyurl?url=" + imgUrlReplaceString},
-						ImgOps:		{value: true, 	name: "ImgOps",		raw: true, 	url: "https://imgops.com/specialized+reverse/" + imgUrlReplaceString},
-						IQDB:		{value: true, 	name: "IQDB", 					url: "https://iqdb.org/?url=" + imgUrlReplaceString},
-						Reddit: 	{value: true, 	name: "Reddit", 				url: "http://karmadecay.com/search?q=" + imgUrlReplaceString},
-						SauceNAO: 	{value: true, 	name: "SauceNAO", 				url: "https://saucenao.com/search.php?db=999&url=" + imgUrlReplaceString},
-						Sogou: 		{value: true, 	name: "Sogou", 					url: "http://pic.sogou.com/ris?flag=1&drag=0&query=" + imgUrlReplaceString + "&flag=1"},
-						TinEye:		{value: true, 	name: "TinEye", 				url: "https://tineye.com/search?url=" + imgUrlReplaceString},
-						WhatAnime:	{value: true,	name: "WhatAnime",				url: "https://trace.moe/?url=" + imgUrlReplaceString},
-						Yandex: 	{value: true, 	name: "Yandex", 				url: "https://yandex.com/images/search?url=" + imgUrlReplaceString + "&rpt=imageview"}
+						Baidu: 		{value: true, 	name: "Baidu", 						url: "http://image.baidu.com/pcdutu?queryImageUrl="},
+						Bing: 		{value: true, 	name: "Bing", 						url: "https://www.bing.com/images/search?view=detailv2&iss=sbi&FORM=IRSBIQ&q=imgurl:"},
+						Google:		{value: true, 	name: "Google", 					url: "https://www.google.com/searchbyimage?sbisrc=cr_1&image_url="},
+						GoogleLens:	{value: true, 	name: "Google Lens",					url: "https://lens.google.com/uploadbyurl?url="},
+						ImgOps:		{value: true, 	name: "ImgOps",			raw: true, 		url: "https://imgops.com/specialized+reverse/"},
+						IQDB:		{value: true, 	name: "IQDB", 						url: "https://iqdb.org/?url="},
+						Reddit: 	{value: true, 	name: "Reddit", 					url: "http://karmadecay.com/search?q="},
+						SauceNAO: 	{value: true, 	name: "SauceNAO", 					url: "https://saucenao.com/search.php?db=999&url="},
+						Sogou: 		{value: true, 	name: "Sogou", 						url: "http://pic.sogou.com/ris?flag=1&drag=0&flag=1&query="},
+						TinEye:		{value: true, 	name: "TinEye", 					url: "https://tineye.com/search?url="},
+						WhatAnime:	{value: true,	name: "WhatAnime",					url: "https://trace.moe/?url="},
+						Yandex: 	{value: true, 	name: "Yandex", 					url: "https://yandex.com/images/search?rpt=imageview&url="}
 					}
 				};
 				
@@ -766,7 +767,6 @@ module.exports = (_ => {
 				if (nativeIndex > -1) {
 					if (validUrls.length == 1) config.isNative = true;
 					nativeParent.splice(nativeIndex, 1);
-					nativeIndex -= 1;
 				}
 				for (let id of ["open-native-link", "copy-image", "save-image"]) {
 					let [removeParent, removeIndex] = BDFDB.ContextMenuUtils.findItem(e.returnvalue, {id: id, group: true});
@@ -846,7 +846,8 @@ module.exports = (_ => {
 							label: BDFDB.LanguageUtils.LanguageStrings.COPY_LINK,
 							id: BDFDB.ContextMenuUtils.createItemId(this.name, "copy-link"),
 							action: _ => {
-								let url = urlData.original.split("?width=")[0].split("?height=")[0].split("?size=")[0];
+								let url = this.removeSizeInUrl(urlData.original);
+								url = this.removeFormatInUrl(url);
 								url = url.indexOf("discordapp.com/avatars/") > 0 || url.indexOf("discordapp.com/icons/") > 0 ? `${url}?size=4096` : url;
 								BDFDB.LibraryModules.WindowUtils.copy(url);
 								BDFDB.NotificationUtils.toast(BDFDB.LanguageUtils.LanguageStrings.LINK_COPIED, {type: "success"});
@@ -856,7 +857,8 @@ module.exports = (_ => {
 							label: BDFDB.LanguageUtils.LanguageStrings.COPY_MEDIA_LINK,
 							id: BDFDB.ContextMenuUtils.createItemId(this.name, "copy-media-link"),
 							action: _ => {
-								let url = urlData.file.split("?width=")[0].split("?height=")[0].split("?size=")[0];
+								let url = this.removeSizeInUrl(urlData.file);
+								url = this.removeFormatInUrl(url);
 								url = url.indexOf("discordapp.com/avatars/") > 0 || url.indexOf("discordapp.com/icons/") > 0 ? `${url}?size=4096` : url;
 								BDFDB.LibraryModules.WindowUtils.copy(url);
 								BDFDB.NotificationUtils.toast(BDFDB.LanguageUtils.LanguageStrings.LINK_COPIED, {type: "success"});
@@ -925,7 +927,7 @@ module.exports = (_ => {
 							persisting: true,
 							action: event => {
 								if (!event.shiftKey) BDFDB.ContextMenuUtils.close(instance);
-								BDFDB.DiscordUtils.openLink(this.defaults.engines[engineKeys[0]].url.replace(imgUrlReplaceString, encodeURIComponent(urlData.original)), {
+								BDFDB.DiscordUtils.openLink(this.defaults.engines[engineKeys[0]].url + encodeURIComponent(urlData.original), {
 									minimized: event.shiftKey
 								});
 							}
@@ -942,7 +944,7 @@ module.exports = (_ => {
 								color: key == "_all" ? BDFDB.DiscordConstants.MenuItemColors.DANGER : BDFDB.DiscordConstants.MenuItemColors.DEFAULT,
 								persisting: true,
 								action: event => {
-									const open = (url, k) => BDFDB.DiscordUtils.openLink(this.defaults.engines[k].url.replace(imgUrlReplaceString, this.defaults.engines[k].raw ? url : encodeURIComponent(url)), {minimized: event.shiftKey});
+									const open = (url, k) => BDFDB.DiscordUtils.openLink(this.defaults.engines[k].url + (this.defaults.engines[k].raw ? url : encodeURIComponent(url)), {minimized: event.shiftKey});
 									if (!event.shiftKey) BDFDB.ContextMenuUtils.close(instance);
 									if (key == "_all") {
 										for (let key2 in enginesWithoutAll) open(urlData.original, key2);
@@ -1040,7 +1042,7 @@ module.exports = (_ => {
 										children: this.labels.context_saveas.replace("{{var0}}", type),
 										onClick: event => {
 											BDFDB.ListenerUtils.stopEvent(event);
-											this.downloadFile({url: url});
+											this.downloadFile({url: e.instance.props.original, fallbackUrl: url});
 										},
 										onContextMenu: event => {
 											let locations = Object.keys(ownLocations).filter(n => ownLocations[n].enabled);
@@ -1048,7 +1050,7 @@ module.exports = (_ => {
 												children: locations.map((name, i) => BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
 													id: BDFDB.ContextMenuUtils.createItemId(this.name, "download", name, i),
 													label: name,
-													action: _ => this.downloadFile({url: url}, ownLocations[name].location)
+													action: _ => this.downloadFile({url: e.instance.props.original, fallbackUrl: url}, ownLocations[name].location)
 												}))
 											}));
 										}
@@ -1065,7 +1067,7 @@ module.exports = (_ => {
 										children: this.labels.context_copy.replace("{{var0}}", type),
 										onClick: event => {
 											BDFDB.ListenerUtils.stopEvent(event);
-											this.copyFile({url: url});
+											this.copyFile({url: e.instance.props.original, fallbackUrl: url});
 										}
 									})
 								],
@@ -1108,7 +1110,7 @@ module.exports = (_ => {
 								className: BDFDB.disCN._imageutilitiesdetailswrapper,
 								children: [
 									e.instance.props.alt && {label: "Alt", text: e.instance.props.alt},
-									{label: "Source", text: url.split("?width=")[0].split("?height=")[0].split("?size=")[0]},
+									{label: "Source", text: this.removeSizeInUrl(this.removeFormatInUrl(url))},
 									{label: "Size", text: `${e.instance.props.width}x${e.instance.props.height}px`},
 									cachedImages && cachedImages.amount && cachedImages.amount > 1 && {label: filterForVideos ? "Video" : "Image", text: `${cachedImages.index + 1 || 1} of ${cachedImages.amount}`}
 								].filter(n => n).map(data => BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.TextElement, {
@@ -1209,6 +1211,7 @@ module.exports = (_ => {
 			
 			processLazyImage (e) {
 				if (e.node) {
+					if (!e.instance.props.src.split("?")[0].endsWith(".gif") && !e.instance.props.animated && !e.instance.props.children) for (let ele of [e.node.src && e.node, ...e.node.querySelectorAll("[src]")].filter(n => n)) ele.src = this.removeFormatInUrl(ele.src);
 					if (e.instance.props.resized) {
 						for (let selector of ["embedfull", "embedinlinemedia", "embedgridcontainer", "imagemosaicattachmentscontainer", "imagemosaiconebyonegridsingle"]) {
 							let parent = BDFDB.DOMUtils.getParent(BDFDB.dotCN[selector], e.node);
@@ -1221,9 +1224,9 @@ module.exports = (_ => {
 							ele.style.setProperty("height", e.instance.props.height + "px");
 							ele.style.setProperty("max-height", e.instance.props.height + "px");
 						}
-						for (let ele of [e.node.src && e.node, ...e.node.querySelectorAll("[src]")].filter(n => n)) ele.src = ele.src.split("?width=")[0].split("?height=")[0].split("?size=")[0];
-						if (e.instance.state.readyState != BDFDB.LibraryComponents.ImageComponents.ImageReadyStates.READY) {
-							e.instance.state.readyState = BDFDB.LibraryComponents.ImageComponents.ImageReadyStates.READY;
+						for (let ele of [e.node.src && e.node, ...e.node.querySelectorAll("[src]")].filter(n => n)) ele.src = this.removeSizeInUrl(ele.src);
+						if (e.instance.state.readyState != BDFDB.DiscordConstants.ImageReadyStates.READY) {
+							e.instance.state.readyState = BDFDB.DiscordConstants.ImageReadyStates.READY;
 							BDFDB.ReactUtils.forceUpdate(e.instance);
 						}
 					}
@@ -1358,7 +1361,7 @@ module.exports = (_ => {
 							e.instance.props.resized = true;
 						}
 					}
-					if (this.settings.rescaleSettings.messages != "NONE" && [e.instance.props.className, e.instance.props.containerClassName].every(n => [BDFDB.disCN.embedvideoimagecomponent, BDFDB.disCN.embedthumbnail].every(m => (n || "").indexOf(m) == -1)) && BDFDB.ReactUtils.findOwner(reactInstance, {name: "LazyImageZoomable", up: true}) && (e.instance.props.mediaLayoutType != "MOSAIC" || (BDFDB.ReactUtils.findValue(reactInstance, "mediaAttachments", {up: true}) || []).length < 2)) {
+					if (this.settings.rescaleSettings.messages != "NONE" && [e.instance.props.className, e.instance.props.containerClassName].every(n => [BDFDB.disCN.embedvideoimagecomponent, BDFDB.disCN.embedthumbnail].every(m => (n || "").indexOf(m) == -1)) && BDFDB.ReactUtils.findOwner(reactInstance, {name: "LazyImageZoomable", up: true}) && (e.instance.props.mediaLayoutType != "MOSAIC" || (BDFDB.ReactUtils.findValue(reactInstance, "message", {up: true}) || {attachments: []}).attachments.filter(n => n.content_type.startsWith("image")).length < 2)) {
 						let aRects = BDFDB.DOMUtils.getRects(document.querySelector(BDFDB.dotCN.appmount));
 						let mRects = BDFDB.DOMUtils.getRects(document.querySelector(BDFDB.dotCNC.messageaccessory + BDFDB.dotCN.messagecontents));
 						let mwRects = BDFDB.DOMUtils.getRects(document.querySelector(BDFDB.dotCN.messagewrapper));
@@ -1388,7 +1391,7 @@ module.exports = (_ => {
 
 			processLazyImageZoomable (e) {
 				if (!e.instance.props.original || e.instance.props.src.indexOf("https://media.discordapp.net/attachments") != 0) return;
-				if (this.settings.detailsSettings.tooltip || this.settings.detailsSettings.footnote && e.instance.props.mediaLayoutType == "MOSAIC" && (BDFDB.ReactUtils.findValue(BDFDB.ObjectUtils.get(e, `instance.${BDFDB.ReactUtils.instanceKey}`), "mediaAttachments", {up: true}) || []).length > 1) {
+				if (this.settings.detailsSettings.tooltip || this.settings.detailsSettings.footnote && e.instance.props.mediaLayoutType == "MOSAIC" && (BDFDB.ReactUtils.findValue(BDFDB.ObjectUtils.get(e, `instance.${BDFDB.ReactUtils.instanceKey}`), "message", {up: true}) || {attachments: []}).attachments.filter(n => n.content_type.startsWith("image")).length > 1) {
 					const attachment = BDFDB.ReactUtils.findValue(e.instance, "attachment", {up: true});
 					if (attachment) {
 						const onMouseEnter = e.returnvalue.props.onMouseEnter;
@@ -1405,7 +1408,7 @@ module.exports = (_ => {
 						}, "Error in onMouseEnter of LazyImageZoomable!");
 					}
 				}
-				if (this.settings.detailsSettings.footnote && [e.instance.props.className, e.instance.props.containerClassName].every(n => [BDFDB.disCN.embedmedia, BDFDB.disCN.embedthumbnail].every(m => (n || "").indexOf(m) == -1)) && (e.instance.props.mediaLayoutType != "MOSAIC" || (BDFDB.ReactUtils.findValue(BDFDB.ObjectUtils.get(e, `instance.${BDFDB.ReactUtils.instanceKey}`), "mediaAttachments", {up: true}) || []).length < 2)) {
+				if (this.settings.detailsSettings.footnote && [e.instance.props.className, e.instance.props.containerClassName].every(n => [BDFDB.disCN.embedmedia, BDFDB.disCN.embedthumbnail].every(m => (n || "").indexOf(m) == -1)) && (e.instance.props.mediaLayoutType != "MOSAIC" || (BDFDB.ReactUtils.findValue(BDFDB.ObjectUtils.get(e, `instance.${BDFDB.ReactUtils.instanceKey}`), "message", {up: true}) || {attachments: []}).attachments.filter(n => n.content_type.startsWith("image")).length < 2)) {
 					e.returnvalue = BDFDB.ReactUtils.createElement("div", {
 						children: [
 							e.returnvalue,
@@ -1496,22 +1499,16 @@ module.exports = (_ => {
 			
 			requestFile (urls, onLoad, onError, config = {}) {
 				if (!urls || typeof onLoad != "function") return typeof onError == "function" && onError();
-				let url = urls.url.startsWith("/assets") ? (window.location.origin + urls.url) : urls.url;
+				let url = (urls.url && urls.url.startsWith("/assets") ? (window.location.origin + urls.url) : urls.url || "");
 				let isResized = !config.orignalSizeChecked && (url.indexOf("?width=") > -1 || url.indexOf("?height=") > -1 || url.indexOf("?size=") > -1);
-				url = isResized ? url.split("?width=")[0].split("?height=")[0].split("?size=")[0] : url;
+				url = isResized ? this.removeSizeInUrl(url) : url;
+				let isFormatted = (url.indexOf("?format=") > -1);
+				url = isFormatted ? this.removeFormatInUrl(url) : url;
 				url = url.indexOf("discordapp.com/avatars/") > 0 || url.indexOf("discordapp.com/icons/") > 0 ? `${url}?size=4096` : url;
-				if (!config.fallbackToRequest) BDFDB.DiscordUtils.requestFileData(url, (error, buffer) => {
-					if (error || !buffer) {
-						if (isResized) this.requestFile(urls, onLoad, onError, {orignalSizeChecked: true});
-						else if (urls.fallbackUrl && urls.url != urls.fallbackUrl) this.requestFile({url: urls.fallbackUrl, oldUrl: urls.url}, onLoad, onError);
-						else this.requestFile({url: urls.oldUrl || urls.url, fallbackUrl: urls.oldUrl ? urls.url : undefined}, onLoad, onError, {fallbackToRequest: true});
-					}
-					else onLoad(url, buffer);
-				});
-				else BDFDB.LibraryRequires.request(url, {agentOptions: {rejectUnauthorized: false}, headers: {"Content-Type": "application/json"}}, (error, response, buffer) => {
+				BDFDB.LibraryRequires.request(url, {toBuffer: true}, (error, response, buffer) => {
 					if (error || response.statusCode != 200 || response.headers["content-type"].indexOf("text/html") > -1) {
-						if (isResized) this.requestFile(urls, onLoad, onError, {orignalSizeChecked: true, fallbackToRequest: true});
-						else if (urls.fallbackUrl && urls.url != urls.fallbackUrl) this.requestFile({url: urls.fallbackUrl}, onLoad, onError, {fallbackToRequest: true});
+						if (isResized) this.requestFile(urls, onLoad, onError, {orignalSizeChecked: true});
+						else if (urls.fallbackUrl && urls.url != urls.fallbackUrl) this.requestFile({url: urls.fallbackUrl}, onLoad, onError);
 						else if (typeof onError == "function") onError();
 					}
 					else onLoad(url, buffer);
@@ -1524,7 +1521,7 @@ module.exports = (_ => {
 					if (!extension) BDFDB.NotificationUtils.toast(this.labels.toast_save_failed.replace("{{var0}}", BDFDB.LanguageUtils.LanguageStrings.IMAGE).replace("{{var1}}", path || "PC"), {type: "danger"});
 					else {
 						let type = fileTypes[extension].video ? BDFDB.LanguageUtils.LanguageStrings.VIDEO : BDFDB.LanguageUtils.LanguageStrings.IMAGE;
-						if (path) BDFDB.LibraryRequires.fs.writeFile(this.getFileName(path, (alternativeName || url.split("/").pop().split(".").slice(0, -1).join(".") || "unknown").slice(0, 35), extension, 0), Buffer.from(buffer), error => {
+						if (path) BDFDB.LibraryRequires.fs.writeFile(this.getFileName(path, (alternativeName || url.split("/").pop().split(".").slice(0, -1).join(".") || "unknown").slice(0, 35), extension, 0), new Uint8Array(buffer), error => {
 							if (error) BDFDB.NotificationUtils.toast(this.labels.toast_save_failed.replace("{{var0}}", type).replace("{{var1}}", path), {type: "danger"});
 							else BDFDB.NotificationUtils.toast(this.labels.toast_save_success.replace("{{var0}}", type).replace("{{var1}}", path), {type: "success"});
 						});
@@ -1543,7 +1540,7 @@ module.exports = (_ => {
 			}
 			
 			copyFile (urls) {
-				this.requestFile(urls, (url, buffer) => {
+				this.requestFile(urls, url => {
 					let type = this.isValid(url, "video") ? BDFDB.LanguageUtils.LanguageStrings.VIDEO : BDFDB.LanguageUtils.LanguageStrings.IMAGE;
 					BDFDB.LibraryModules.WindowUtils.copyImage(url);
 					BDFDB.NotificationUtils.toast(this.labels.toast_copy_success.replace("{{var0}}", type), {type: "success"});
@@ -1698,6 +1695,14 @@ module.exports = (_ => {
 				return filtered;
 			}
 			
+			removeSizeInUrl (url) {
+				return (url || "").split(/[&?]width=/)[0].split(/[&?]height=/)[0].split(/[&?]size=/)[0].split(/[&?]width=/)[0].split(/[&?]height=/)[0].split(/[&?]size=/)[0];
+			}
+
+			removeFormatInUrl (url) {
+				return (url || "").replace(/format\=[A-z]+(\&){0,1}/g, "");
+			}
+			
 			addListener (eventType, type, callback) {
 				if (!type || !eventType || typeof callback != "function") return;
 				if (!eventTypes[type]) eventTypes[type] = [];
@@ -1721,12 +1726,12 @@ module.exports = (_ => {
 					case "bg":		// Bulgarian
 						return {
 							context_copy:						"Копирайте {{var0}}",
-							context_imageactions:				"Действия с изображения",
+							context_imageactions:						"Действия с изображения",
 							context_lenssize:					"Размер на обектива",
 							context_saveas:						"Запазете {{var0}} като ...",
 							context_searchwith:					"Търсете {{var0}} с ...",
-							context_streamactions:				"Действия за визуализация на потока",
-							context_videoactions:				"Видео действия",
+							context_streamactions:						"Действия за визуализация на потока",
+							context_videoactions:						"Видео действия",
 							context_view:						"Преглед {{var0}}",
 							context_zoomspeed:					"Скорост на мащабиране",
 							submenu_disabled:					"Всички инвалиди",
@@ -1738,12 +1743,12 @@ module.exports = (_ => {
 					case "cs":		// Czech
 						return {
 							context_copy:						"Zkopírovat {{var0}}",
-							context_imageactions:				"Akce s obrázky",
+							context_imageactions:					"Akce s obrázky",
 							context_lenssize:					"Velikost lupy",
 							context_saveas:						"Uložit {{var0}} jako...",
 							context_searchwith:					"Hledat {{var0}} pomocí...",
-							context_streamactions:				"Akce náhledu streamu",
-							context_videoactions:				"Video akce",
+							context_streamactions:					"Akce náhledu streamu",
+							context_videoactions:					"Video akce",
 							context_view:						"Zobrazit {{var0}}",
 							context_zoomspeed:					"Rychlost zoomu",
 							submenu_disabled:					"Vše zakázáno",
@@ -1755,12 +1760,12 @@ module.exports = (_ => {
 					case "da":		// Danish
 						return {
 							context_copy:						"Kopiér {{var0}}",
-							context_imageactions:				"Billedhandlinger",
+							context_imageactions:					"Billedhandlinger",
 							context_lenssize:					"Objektivstørrelse",
 							context_saveas:						"Gem {{var0}} som ...",
 							context_searchwith:					"Søg i {{var0}} med ...",
-							context_streamactions:				"Stream forhåndsvisningshandlinger",
-							context_videoactions:				"Videohandlinger",
+							context_streamactions:					"Stream forhåndsvisningshandlinger",
+							context_videoactions:					"Videohandlinger",
 							context_view:						"Se {{var0}}",
 							context_zoomspeed:					"Zoomhastighed",
 							submenu_disabled:					"Alle handicappede",
@@ -1772,12 +1777,12 @@ module.exports = (_ => {
 					case "de":		// German
 						return {
 							context_copy:						"{{var0}} kopieren",
-							context_imageactions:				"Bildaktionen",
+							context_imageactions:					"Bildaktionen",
 							context_lenssize:					"Linsengröße",
 							context_saveas:						"{{var0}} speichern als ...",
 							context_searchwith:					"{{var0}} suchen mit ...",
-							context_streamactions:				"Stream-Vorschau-Aktionen",
-							context_videoactions:				"Videoaktionen",
+							context_streamactions:					"Stream-Vorschau-Aktionen",
+							context_videoactions:					"Videoaktionen",
 							context_view:						"{{var0}} ansehen",
 							context_zoomspeed:					"Zoomgeschwindigkeit",
 							submenu_disabled:					"Alle deaktiviert",
@@ -1789,12 +1794,12 @@ module.exports = (_ => {
 					case "el":		// Greek
 						return {
 							context_copy:						"Αντιγραφή {{var0}}",
-							context_imageactions:				"Ενέργειες εικόνας",
+							context_imageactions:					"Ενέργειες εικόνας",
 							context_lenssize:					"Μέγεθος φακού",
 							context_saveas:						"Αποθήκευση {{var0}} ως ...",
 							context_searchwith:					"Αναζήτηση {{var0}} με ...",
-							context_streamactions:				"Ενέργειες προεπισκόπησης ροής",
-							context_videoactions:				"Ενέργειες βίντεο",
+							context_streamactions:					"Ενέργειες προεπισκόπησης ροής",
+							context_videoactions:					"Ενέργειες βίντεο",
 							context_view:						"Προβολή {{var0}}",
 							context_zoomspeed:					"Ταχύτητα ζουμ",
 							submenu_disabled:					"Όλα τα άτομα με ειδικές ανάγκες",
@@ -1806,12 +1811,12 @@ module.exports = (_ => {
 					case "es":		// Spanish
 						return {
 							context_copy:						"Copiar {{var0}}",
-							context_imageactions:				"Acciones de imagen",
+							context_imageactions:					"Acciones de imagen",
 							context_lenssize:					"Tamaño de la lente",
 							context_saveas:						"Guardar {{var0}} como ...",
 							context_searchwith:					"Buscar {{var0}} con ...",
-							context_streamactions:				"Acciones de vista previa de transmisión",
-							context_videoactions:				"Acciones de vídeo",
+							context_streamactions:					"Acciones de vista previa de transmisión",
+							context_videoactions:					"Acciones de vídeo",
 							context_view:						"Ver {{var0}}",
 							context_zoomspeed:					"Velocidad de zoom",
 							submenu_disabled:					"Todos discapacitados",
@@ -1823,12 +1828,12 @@ module.exports = (_ => {
 					case "fi":		// Finnish
 						return {
 							context_copy:						"Kopioi {{var0}}",
-							context_imageactions:				"Kuvatoiminnot",
+							context_imageactions:					"Kuvatoiminnot",
 							context_lenssize:					"Linssin koko",
 							context_saveas:						"Tallenna {{var0}} nimellä ...",
 							context_searchwith:					"Tee haku {{var0}} ...",
-							context_streamactions:				"Streamin esikatselutoiminnot",
-							context_videoactions:				"Videotoiminnot",
+							context_streamactions:					"Streamin esikatselutoiminnot",
+							context_videoactions:					"Videotoiminnot",
 							context_view:						"Näytä {{var0}}",
 							context_zoomspeed:					"Zoomausnopeus",
 							submenu_disabled:					"Kaikki vammaiset",
@@ -1840,12 +1845,12 @@ module.exports = (_ => {
 					case "fr":		// French
 						return {
 							context_copy:						"Copier {{var0}}",
-							context_imageactions:				"Actions sur les images",
+							context_imageactions:					"Actions sur les images",
 							context_lenssize:					"Taille de l'objectif",
 							context_saveas:						"Enregistrer {{var0}} sous ...",
 							context_searchwith:					"Rechercher {{var0}} avec ...",
-							context_streamactions:				"Actions d'aperçu de flux",
-							context_videoactions:				"Actions vidéo",
+							context_streamactions:					"Actions d'aperçu de flux",
+							context_videoactions:					"Actions vidéo",
 							context_view:						"Afficher {{var0}}",
 							context_zoomspeed:					"Vitesse de zoom",
 							submenu_disabled:					"Tout désactivé",
@@ -1857,12 +1862,12 @@ module.exports = (_ => {
 					case "hi":		// Hindi
 						return {
 							context_copy:						"कॉपी {{var0}}",
-							context_imageactions:				"छवि क्रियाएँ",
+							context_imageactions:					"छवि क्रियाएँ",
 							context_lenssize:					"लेंस का आकार",
 							context_saveas:						"{{var0}} को इस रूप में सेव करें...",
 							context_searchwith:					"इसके साथ {{var0}} खोजें ...",
-							context_streamactions:				"स्ट्रीम पूर्वावलोकन क्रियाएं",
-							context_videoactions:				"वीडियो क्रिया",
+							context_streamactions:					"स्ट्रीम पूर्वावलोकन क्रियाएं",
+							context_videoactions:					"वीडियो क्रिया",
 							context_view:						"देखें {{var0}}",
 							context_zoomspeed:					"ज़ूम गति",
 							submenu_disabled:					"सभी अक्षम",
@@ -1874,12 +1879,12 @@ module.exports = (_ => {
 					case "hr":		// Croatian
 						return {
 							context_copy:						"Kopiraj {{var0}}",
-							context_imageactions:				"Radnje slike",
+							context_imageactions:					"Radnje slike",
 							context_lenssize:					"Veličina leće",
 							context_saveas:						"Spremi {{var0}} kao ...",
 							context_searchwith:					"Traži {{var0}} sa ...",
-							context_streamactions:				"Radnje pregleda streama",
-							context_videoactions:				"Video radnje",
+							context_streamactions:					"Radnje pregleda streama",
+							context_videoactions:					"Video radnje",
 							context_view:						"Pogledajte {{var0}}",
 							context_zoomspeed:					"Brzina zumiranja",
 							submenu_disabled:					"Svi invalidi",
@@ -1891,12 +1896,12 @@ module.exports = (_ => {
 					case "hu":		// Hungarian
 						return {
 							context_copy:						"{{var0}} másolása",
-							context_imageactions:				"Képműveletek",
+							context_imageactions:					"Képműveletek",
 							context_lenssize:					"Lencse mérete",
 							context_saveas:						"{{var0}} mentése másként ...",
 							context_searchwith:					"Keresés a következőben: {{var0}} a következővel:",
-							context_streamactions:				"Stream előnézeti műveletek",
-							context_videoactions:				"Videóműveletek",
+							context_streamactions:					"Stream előnézeti műveletek",
+							context_videoactions:					"Videóműveletek",
 							context_view:						"Megtekintés: {{var0}}",
 							context_zoomspeed:					"Zoom sebesség",
 							submenu_disabled:					"Minden fogyatékkal él",
@@ -1908,12 +1913,12 @@ module.exports = (_ => {
 					case "it":		// Italian
 						return {
 							context_copy:						"Copia {{var0}}",
-							context_imageactions:				"Azioni immagine",
+							context_imageactions:					"Azioni immagine",
 							context_lenssize:					"Dimensione della lente",
 							context_saveas:						"Salva {{var0}} come ...",
 							context_searchwith:					"Cerca {{var0}} con ...",
-							context_streamactions:				"Azioni di anteprima del flusso",
-							context_videoactions:				"Azioni video",
+							context_streamactions:					"Azioni di anteprima del flusso",
+							context_videoactions:					"Azioni video",
 							context_view:						"Visualizza {{var0}}",
 							context_zoomspeed:					"Velocità dello zoom",
 							submenu_disabled:					"Tutti disabilitati",
@@ -1925,12 +1930,12 @@ module.exports = (_ => {
 					case "ja":		// Japanese
 						return {
 							context_copy:						"{{var0}} をコピーします",
-							context_imageactions:				"画像アクション",
+							context_imageactions:					"画像アクション",
 							context_lenssize:					"レンズサイズ",
 							context_saveas:						"{{var0}} を...として保存します",
 							context_searchwith:					"{{var0}} を...で検索",
-							context_streamactions:				"ストリーム プレビュー アクション",
-							context_videoactions:				"ビデオ アクション",
+							context_streamactions:					"ストリーム プレビュー アクション",
+							context_videoactions:					"ビデオ アクション",
 							context_view:						"{{var0}} を表示",
 							context_zoomspeed:					"ズーム速度",
 							submenu_disabled:					"すべて無効",
@@ -1942,12 +1947,12 @@ module.exports = (_ => {
 					case "ko":		// Korean
 						return {
 							context_copy:						"{{var0}} 복사",
-							context_imageactions:				"이미지 작업",
+							context_imageactions:					"이미지 작업",
 							context_lenssize:					"렌즈 크기",
 							context_saveas:						"{{var0}} 을 다른 이름으로 저장 ...",
 							context_searchwith:					"{{var0}} 검색 ...",
-							context_streamactions:				"스트림 미리보기 작업",
-							context_videoactions:				"비디오 작업",
+							context_streamactions:					"스트림 미리보기 작업",
+							context_videoactions:					"비디오 작업",
 							context_view:						"{{var0}} 보기",
 							context_zoomspeed:					"줌 속도",
 							submenu_disabled:					"모두 비활성화 됨",
@@ -1959,12 +1964,12 @@ module.exports = (_ => {
 					case "lt":		// Lithuanian
 						return {
 							context_copy:						"Kopijuoti {{var0}}",
-							context_imageactions:				"Vaizdo veiksmai",
+							context_imageactions:					"Vaizdo veiksmai",
 							context_lenssize:					"Objektyvo dydis",
 							context_saveas:						"Išsaugoti '{{var0}}' kaip ...",
 							context_searchwith:					"Ieškoti {{var0}} naudojant ...",
-							context_streamactions:				"Srauto peržiūros veiksmai",
-							context_videoactions:				"Vaizdo įrašų veiksmai",
+							context_streamactions:					"Srauto peržiūros veiksmai",
+							context_videoactions:					"Vaizdo įrašų veiksmai",
 							context_view:						"Žiūrėti {{var0}}",
 							context_zoomspeed:					"Priartinimo greitis",
 							submenu_disabled:					"Visi neįgalūs",
@@ -1976,12 +1981,12 @@ module.exports = (_ => {
 					case "nl":		// Dutch
 						return {
 							context_copy:						"Kopieer {{var0}}",
-							context_imageactions:				"Afbeeldingsacties",
+							context_imageactions:					"Afbeeldingsacties",
 							context_lenssize:					"Lens Maat",
 							context_saveas:						"Bewaar {{var0}} als ...",
 							context_searchwith:					"Zoek {{var0}} met ...",
-							context_streamactions:				"Stream Preview-acties",
-							context_videoactions:				"Video-acties",
+							context_streamactions:					"Stream Preview-acties",
+							context_videoactions:					"Video-acties",
 							context_view:						"Bekijk {{var0}}",
 							context_zoomspeed:					"Zoom snelheid",
 							submenu_disabled:					"Allemaal uitgeschakeld",
@@ -1993,12 +1998,12 @@ module.exports = (_ => {
 					case "no":		// Norwegian
 						return {
 							context_copy:						"Kopier {{var0}}",
-							context_imageactions:				"Bildehandlinger",
+							context_imageactions:					"Bildehandlinger",
 							context_lenssize:					"Linsestørrelse",
 							context_saveas:						"Lagre {{var0}} som ...",
 							context_searchwith:					"Søk på {{var0}} med ...",
-							context_streamactions:				"Strøm forhåndsvisningshandlinger",
-							context_videoactions:				"Videohandlinger",
+							context_streamactions:					"Strøm forhåndsvisningshandlinger",
+							context_videoactions:					"Videohandlinger",
 							context_view:						"Vis {{var0}}",
 							context_zoomspeed:					"Zoomhastighet",
 							submenu_disabled:					"Alle funksjonshemmede",
@@ -2010,12 +2015,12 @@ module.exports = (_ => {
 					case "pl":		// Polish
 						return {
 							context_copy:						"Kopiuj {{var0}}",
-							context_imageactions:				"Działania związane z obrazem",
+							context_imageactions:					"Działania związane z obrazem",
 							context_lenssize:					"Rozmiar soczewki",
 							context_saveas:						"Zapisz {{var0}} jako ...",
 							context_searchwith:					"Wyszukaj {{var0}} za pomocą ...",
-							context_streamactions:				"Akcje podglądu strumienia",
-							context_videoactions:				"Akcje wideo",
+							context_streamactions:					"Akcje podglądu strumienia",
+							context_videoactions:					"Akcje wideo",
 							context_view:						"Wyświetl {{var0}}",
 							context_zoomspeed:					"Szybkość zoomu",
 							submenu_disabled:					"Wszystkie wyłączone",
@@ -2027,12 +2032,12 @@ module.exports = (_ => {
 					case "pt-BR":	// Portuguese (Brazil)
 						return {
 							context_copy:						"Copiar {{var0}}",
-							context_imageactions:				"Ações de imagem",
+							context_imageactions:					"Ações de imagem",
 							context_lenssize:					"Tamanho da lente",
 							context_saveas:						"Salvar {{var0}} como ...",
 							context_searchwith:					"Pesquisar {{var0}} com ...",
-							context_streamactions:				"Ações de visualização de fluxo",
-							context_videoactions:				"Ações de vídeo",
+							context_streamactions:					"Ações de visualização de fluxo",
+							context_videoactions:					"Ações de vídeo",
 							context_view:						"Visualizar {{var0}}",
 							context_zoomspeed:					"Velocidade do zoom",
 							submenu_disabled:					"Todos desativados",
@@ -2044,12 +2049,12 @@ module.exports = (_ => {
 					case "ro":		// Romanian
 						return {
 							context_copy:						"Copiați {{var0}}",
-							context_imageactions:				"Acțiuni de imagine",
+							context_imageactions:					"Acțiuni de imagine",
 							context_lenssize:					"Dimensiunea obiectivului",
 							context_saveas:						"Salvați {{var0}} ca ...",
 							context_searchwith:					"Căutați {{var0}} cu ...",
-							context_streamactions:				"Acțiuni de previzualizare în flux",
-							context_videoactions:				"Acțiuni video",
+							context_streamactions:					"Acțiuni de previzualizare în flux",
+							context_videoactions:					"Acțiuni video",
 							context_view:						"Vizualizați {{var0}}",
 							context_zoomspeed:					"Viteza de zoom",
 							submenu_disabled:					"Toate sunt dezactivate",
@@ -2061,12 +2066,12 @@ module.exports = (_ => {
 					case "ru":		// Russian
 						return {
 							context_copy:						"Скопируйте {{var0}}",
-							context_imageactions:				"Действия с изображением",
+							context_imageactions:					"Действия с изображением",
 							context_lenssize:					"Размер линзы",
 							context_saveas:						"Сохранить {{var0}} как ...",
 							context_searchwith:					"Искать {{var0}} с помощью ...",
-							context_streamactions:				"Действия предварительного просмотра трансляции",
-							context_videoactions:				"Действия с видео",
+							context_streamactions:					"Действия предварительного просмотра трансляции",
+							context_videoactions:					"Действия с видео",
 							context_view:						"Посмотреть {{var0}}",
 							context_zoomspeed:					"Скорость масштабирования",
 							submenu_disabled:					"Все отключены",
@@ -2078,12 +2083,12 @@ module.exports = (_ => {
 					case "sv":		// Swedish
 						return {
 							context_copy:						"Kopiera {{var0}}",
-							context_imageactions:				"Bildåtgärder",
+							context_imageactions:					"Bildåtgärder",
 							context_lenssize:					"Linsstorlek",
 							context_saveas:						"Spara {{var0}} som ...",
 							context_searchwith:					"Sök {{var0}} med ...",
-							context_streamactions:				"Streama förhandsgranskningsåtgärder",
-							context_videoactions:				"Videoåtgärder",
+							context_streamactions:					"Streama förhandsgranskningsåtgärder",
+							context_videoactions:					"Videoåtgärder",
 							context_view:						"Visa {{var0}}",
 							context_zoomspeed:					"Zoomhastighet",
 							submenu_disabled:					"Alla funktionshindrade",
@@ -2095,12 +2100,12 @@ module.exports = (_ => {
 					case "th":		// Thai
 						return {
 							context_copy:						"คัดลอก{{var0}}",
-							context_imageactions:				"การทำงานของรูปภาพ",
+							context_imageactions:					"การทำงานของรูปภาพ",
 							context_lenssize:					"ขนาดเลนส์",
 							context_saveas:						"บันทึก{{var0}}เป็น ...",
 							context_searchwith:					"ค้นหา{{var0}} ้วย ...",
-							context_streamactions:				"การดำเนินการแสดงตัวอย่างสตรีม",
-							context_videoactions:				"การกระทำของวิดีโอ",
+							context_streamactions:					"การดำเนินการแสดงตัวอย่างสตรีม",
+							context_videoactions:					"การกระทำของวิดีโอ",
 							context_view:						"ดู{{var0}}",
 							context_zoomspeed:					"ความเร็วในการซูม",
 							submenu_disabled:					"ปิดใช้งานทั้งหมด",
@@ -2112,12 +2117,12 @@ module.exports = (_ => {
 					case "tr":		// Turkish
 						return {
 							context_copy:						"{{var0}} kopyala",
-							context_imageactions:				"Görüntü Eylemleri",
+							context_imageactions:					"Görüntü Eylemleri",
 							context_lenssize:					"Lens Boyutu",
 							context_saveas:						"{{var0}} farklı kaydet ...",
 							context_searchwith:					"{{var0}} şununla ara ...",
-							context_streamactions:				"Akış Önizleme İşlemleri",
-							context_videoactions:				"Video Eylemleri",
+							context_streamactions:					"Akış Önizleme İşlemleri",
+							context_videoactions:					"Video Eylemleri",
 							context_view:						"{{var0}} görüntüle",
 							context_zoomspeed:					"yakınlaştırma hızı",
 							submenu_disabled:					"Hepsi devre dışı",
@@ -2129,12 +2134,12 @@ module.exports = (_ => {
 					case "uk":		// Ukrainian
 						return {
 							context_copy:						"Копіювати {{var0}}",
-							context_imageactions:				"Дії із зображеннями",
+							context_imageactions:					"Дії із зображеннями",
 							context_lenssize:					"Розмір лінзи",
 							context_saveas:						"Збережіть {{var0}} як ...",
 							context_searchwith:					"Шукати {{var0}} за допомогою ...",
-							context_streamactions:				"Дії попереднього перегляду потоку",
-							context_videoactions:				"Відео дії",
+							context_streamactions:					"Дії попереднього перегляду потоку",
+							context_videoactions:					"Відео дії",
 							context_view:						"Переглянути {{var0}}",
 							context_zoomspeed:					"Швидкість масштабування",
 							submenu_disabled:					"Всі інваліди",
@@ -2146,12 +2151,12 @@ module.exports = (_ => {
 					case "vi":		// Vietnamese
 						return {
 							context_copy:						"Sao chép {{var0}}",
-							context_imageactions:				"Hành động hình ảnh",
+							context_imageactions:					"Hành động hình ảnh",
 							context_lenssize:					"Kích thước ống kính",
 							context_saveas:						"Lưu {{var0}} dưới dạng ...",
 							context_searchwith:					"Tìm kiếm {{var0}} bằng ...",
-							context_streamactions:				"Tác vụ xem trước luồng",
-							context_videoactions:				"Hành động video",
+							context_streamactions:					"Tác vụ xem trước luồng",
+							context_videoactions:					"Hành động video",
 							context_view:						"Xem {{var0}}",
 							context_zoomspeed:					"tốc độ thu phóng",
 							submenu_disabled:					"Tất cả đã bị vô hiệu hóa",
@@ -2163,12 +2168,12 @@ module.exports = (_ => {
 					case "zh-CN":	// Chinese (China)
 						return {
 							context_copy:						"复制 {{var0}}",
-							context_imageactions:				"图像动作",
+							context_imageactions:					"图像动作",
 							context_lenssize:					"缩放尺寸",
 							context_saveas:						"将 {{var0}} 另存到...",
 							context_searchwith:					"搜索 {{var0}} 使用...",
-							context_streamactions:				"流预览操作",
-							context_videoactions:				"视频动作",
+							context_streamactions:					"流预览操作",
+							context_videoactions:					"视频动作",
 							context_view:						"查看 {{var0}}",
 							context_zoomspeed:					"变焦速度",
 							submenu_disabled:					"全部禁用",
@@ -2180,12 +2185,12 @@ module.exports = (_ => {
 					case "zh-TW":	// Chinese (Taiwan)
 						return {
 							context_copy:						"複製 {{var0}}",
-							context_imageactions:				"圖像動作",
+							context_imageactions:					"圖像動作",
 							context_lenssize:					"縮放尺寸",
 							context_saveas:						"將 {{var0}} 另存到...",
 							context_searchwith:					"搜尋 {{var0}} 使用...",
-							context_streamactions:				"流預覽操作",
-							context_videoactions:				"視頻動作",
+							context_streamactions:					"流預覽操作",
+							context_videoactions:					"視頻動作",
 							context_view:						"預覽 {{var0}}",
 							context_zoomspeed:					"变焦速度",
 							submenu_disabled:					"全部關閉",
@@ -2197,12 +2202,12 @@ module.exports = (_ => {
 					default:		// English
 						return {
 							context_copy:						"Copy {{var0}}",
-							context_imageactions:				"Image Actions",
-							context_lenssize:					"Lens Size",
+							context_imageactions:					"Image Actions",
+							context_lenssize:					"Lens size",
 							context_saveas:						"Save {{var0}} as ...",
 							context_searchwith:					"Search {{var0}} with ...",
-							context_streamactions:				"Stream Preview Actions",
-							context_videoactions:				"Video Actions",
+							context_streamactions:					"Stream Preview Actions",
+							context_videoactions:					"Video Actions",
 							context_view:						"View {{var0}}",
 							context_zoomspeed:					"Zoom speed",
 							submenu_disabled:					"All disabled",

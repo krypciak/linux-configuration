@@ -55,5 +55,4 @@ if status is-interactive
             /bin/doas $argv
         end
     end
-
 end

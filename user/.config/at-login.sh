@@ -1,6 +1,6 @@
 export AT_LOGIN_SOURCED=1
 
-# export QT_QPA_PLATFORMTHEME=qt5ct
+export QT_QPA_PLATFORMTHEME=qt5ct
 
 export LANG='en_US.UTF-8'
 
@@ -48,4 +48,4 @@ export XDG_RUNTIME_DIR=$(mktemp -d /tmp/$(id -u)-runtime-dir.XXX)
 
 [ -f "/tmp/keyboard_layout" ] || echo 'qwerty' > /tmp/keyboard_layout
 
-
+source /usr/share/nvm/init-nvm.sh

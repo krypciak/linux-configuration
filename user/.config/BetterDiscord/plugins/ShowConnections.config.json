@@ -3,6 +3,7 @@
 		"connections": {
 			"battlenet": true,
 			"crunchyroll": true,
+			"domain": true,
 			"ebay": true,
 			"epicgames": true,
 			"facebook": true,
@@ -20,6 +21,7 @@
 			"steam": true,
 			"tiktok": true,
 			"twitch": true,
+			"twitter_legacy": true,
 			"twitter": true,
 			"xbox": true,
 			"youtube": true
@@ -27,6 +29,7 @@
 		"general": {
 			"useColoredIcons": false,
 			"useColoredTooltips": false,
+			"showDetails": true,
 			"showVerifiedBadge": true,
 			"openWebpage": true
 		}

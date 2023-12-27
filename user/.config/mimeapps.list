@@ -1,5 +1,6 @@
 [Added Associations]
 application/pdf=librewolf.desktop;
+application/rtf=libreoffice-writer.desktop;
 application/x-extension-htm=librewolf.desktop;
 application/x-extension-html=librewolf.desktop;
 application/x-extension-shtml=librewolf.desktop;
@@ -20,6 +21,7 @@ x-scheme-handler/mailto=tutanota-desktop.desktop;
 
 [Default Applications]
 application/pdf=librewolf.desktop
+application/rtf=libreoffice-writer.desktop;
 application/x-extension-htm=librewolf.desktop
 application/x-extension-html=librewolf.desktop
 application/x-extension-shtml=librewolf.desktop
@@ -38,4 +40,5 @@ x-scheme-handler/geo=openstreetmap-geo-handler.desktop;
 x-scheme-handler/http=librewolf.desktop;
 x-scheme-handler/https=librewolf.desktop;
 x-scheme-handler/mailto=tutanota-desktop.desktop;
+x-scheme-handler/sidequest=SideQuest.desktop
 x-scheme-handler/unknown=librewolf.desktop

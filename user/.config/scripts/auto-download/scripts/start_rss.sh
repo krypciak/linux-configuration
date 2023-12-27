@@ -21,11 +21,11 @@ mkdir -p "$TEMP_DIR"
 mkdir -p "$VIDEOS_DIR"
 
 
-YT_DLP_ARGS='--embed-thumbnail --add-metadata --embed-metadata --embed-chapters --embed-subs --sub-langs all,-live_chat --audio-quality 0 -R infinite --retry-sleep 15 -S quality,ext:mp4,filesize --no-post-overwrites --ignore-errors --newline --no-warnings --no-playlist --convert-thumbnails png --quiet --limit-rate 2M'
+YT_DLP_ARGS='--embed-thumbnail --add-metadata --embed-metadata --embed-chapters --embed-subs --sub-langs all,-live_chat --audio-quality 0 -R infinite --retry-sleep 15 -S res:1080,ext:mp4,fps,+size --no-post-overwrites --ignore-errors --newline --no-warnings --no-playlist --convert-thumbnails png --quiet --limit-rate 2M --live-from-start'
 # --force-keyframes-at-cuts --sponsorblock-remove all
 
 #TITLE='%(channel)s - %(title)s.%(ext)s'
-TITLE='%(title)s - %(channel)s.%(ext)s'
+TITLE='%(fulltitle)s - %(channel)s.%(ext)s'
 
 
 ANIME_DIR="$DOWNLOAD_DIR/anime"
