@@ -18,7 +18,6 @@ vim.o.wrap = false
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = true
-vim.o.foldmethod = 'syntax'
 
 vim.api.nvim_set_keymap('n', '<Space>', '', {})
 vim.g.mapleader = ' '
@@ -75,12 +74,101 @@ require('lazy').setup({
     'tpope/vim-surround',
     'andweeb/presence.nvim',
     'NMAC427/guess-indent.nvim',
-    'Mofiqul/vscode.nvim',
+    'David-Kunz/markid',
+    'kevinhwang91/promise-async',
+    'kevinhwang91/nvim-ufo',
 
     { 'neoclide/coc.nvim', build = 'npm ci' },
     'xiyaowong/coc-sumneko-lua',
     'preservim/vim-markdown',
 }, {})
+
+vim.o.background = 'dark'
+-- vim.cmd('set termguicolors')
+
+require 'nvim-treesitter.configs'.setup {
+    ensure_installed = { 'c', 'lua', 'vim', 'vimdoc', 'query', 'typescript', 'json', 'bash' },
+    sync_install = false,
+    markid = { enable = true },
+    auto_install = true,
+
+    highlight = {
+        enable = true,
+
+        disable = function(_, buf)
+            local max_filesize = 10 * 1024 * 1024 -- 10 MB
+            local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+            if ok and stats and stats.size > max_filesize then
+                return true
+            end
+        end,
+        additional_vim_regex_highlighting = true,
+    },
+}
+
+
+-- ufo
+vim.o.foldcolumn = '0'
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
+vim.keymap.set('n', 'zr', require('ufo').openFoldsExceptKinds)
+vim.keymap.set('n', 'zm', require('ufo').closeFoldsWith)
+vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
+vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+vim.keymap.set('n', 'L', function()
+    local winid = require('ufo').peekFoldedLinesUnderCursor()
+    if not winid then
+        vim.fn.CocActionAsync('definitionHover')
+    end
+end)
+
+require('ufo').setup({
+    open_fold_hl_timeout = 0,
+    close_fold_kinds = { 'imports', 'comment' },
+    fold_virt_text_handler = function(virtText, lnum, endLnum, width, truncate)
+        local newVirtText = {}
+        local suffix = (' 󰁂 %d '):format(endLnum - lnum)
+        local sufWidth = vim.fn.strdisplaywidth(suffix)
+        local targetWidth = width - sufWidth
+        local curWidth = 0
+        for _, chunk in ipairs(virtText) do
+            local chunkText = chunk[1]
+            local chunkWidth = vim.fn.strdisplaywidth(chunkText)
+            if targetWidth > curWidth + chunkWidth then
+                table.insert(newVirtText, chunk)
+            else
+                chunkText = truncate(chunkText, targetWidth - curWidth)
+                local hlGroup = chunk[2]
+                table.insert(newVirtText, { chunkText, hlGroup })
+                chunkWidth = vim.fn.strdisplaywidth(chunkText)
+                -- str width returned from truncate() may less than 2nd argument, need padding
+                if curWidth + chunkWidth < targetWidth then
+                    suffix = suffix .. (' '):rep(targetWidth - curWidth - chunkWidth)
+                end
+                break
+            end
+            curWidth = curWidth + chunkWidth
+        end
+        table.insert(newVirtText, { suffix, 'MoreMsg' })
+        return newVirtText
+    end,
+    preview = {
+        win_config = {
+            border = { '', ' ', '', '', '', ' ', '', '' },
+            winhighlight = 'Normal:Folded',
+            winblend = 0
+        },
+        mappings = {
+            jumpTop = '[',
+            jumpBot = ']'
+        }
+    },
+    provider_selector = function(_, _, _)
+        return { 'treesitter', 'indent' }
+    end
+})
+
 
 -- coc.nvim
 vim.cmd [[
@@ -215,17 +303,3 @@ vim.cmd(':autocmd FileType typescript command! TypedefBeg lua TypedefsBeg()')
 
 -- markdown
 vim.cmd(':autocmd FileType markdown command! Preview :CocCommand markdown-preview-enhanced.openPreview')
-
-local c = require('vscode.colors').get_colors()
-require('vscode').setup({
-    transparent = true,
-
-    italic_comments = true,
-
-    disable_nvimtree_bg = true,
-
-    group_overrides = {
-        Cursor = { fg = c.vscDarkBlue, bg = c.vscLightGreen, bold = true },
-    }
-})
-require('vscode').load()

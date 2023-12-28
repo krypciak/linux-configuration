@@ -2,6 +2,5 @@
   "Lua.diagnostics.globals": ["vim"],
   "Lua.runtime.version": "LuaJIT",
 
-  "python.formatting.provider": "black",
-  "diagnostic.refreshOnInsertMode": true
+  "python.formatting.provider": "black"
 }
