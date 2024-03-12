@@ -2,5 +2,20 @@
   "Lua.diagnostics.globals": ["vim"],
   "Lua.runtime.version": "LuaJIT",
 
-  "python.formatting.provider": "black"
+  "python.formatting.provider": "black",
+  "json.schemas": [
+    {
+      "name": "ccmod.json",
+      "description": "Configuration file for the mod.",
+      "url": "file:///home/krypek/Programming/crosscode/CCModDB/ccmod-json-schema.json",
+      "fileMatch": ["ccmod.json"]
+    }
+  ],
+  "languageserver": {
+    "gleam": {
+      "command": "gleam",
+      "args": ["lsp"],
+      "filetypes": ["gleam"]
+    }
+  }
 }

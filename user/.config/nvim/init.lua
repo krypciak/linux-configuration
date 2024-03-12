@@ -25,6 +25,8 @@ vim.g.mapleader = ' '
 vim.o.undofile = true
 vim.o.undodir = vim.fn.expand('$HOME/.cache/nvim/undo/')
 
+vim.opt.rtp:append('/usr/share/vim/vimfiles')
+
 vim.cmd [[
     :highlight Folded ctermbg=237
     :highlight Pmenu ctermbg=233 ctermfg=254
@@ -51,10 +53,11 @@ vim.cmd [[
 
 -- Save opened folds
 vim.cmd [[
+    set viewoptions-=options
     augroup remember_folds
-      autocmd!
-      autocmd BufWinLeave * mkview
-      autocmd BufWinEnter * silent! loadview
+        autocmd!
+        autocmd BufWinLeave *.* if &ft !=# 'help' | mkview | endif
+        autocmd BufWinEnter *.* if &ft !=# 'help' | silent! loadview | endif
     augroup END
 ]]
 
@@ -72,15 +75,16 @@ require('lazy').setup({
     'nvim-telescope/telescope-fzf-native.nvim',
     'nvim-treesitter/nvim-treesitter',
     'tpope/vim-surround',
-    'andweeb/presence.nvim',
     'NMAC427/guess-indent.nvim',
-    'David-Kunz/markid',
     'kevinhwang91/promise-async',
     'kevinhwang91/nvim-ufo',
+    'sanfusu/neovim-undotree',
+    'ThePrimeagen/harpoon',
 
     { 'neoclide/coc.nvim', build = 'npm ci' },
-    'xiyaowong/coc-sumneko-lua',
     'preservim/vim-markdown',
+    'coc-prettier',
+    'gleam-lang/gleam.vim',
 }, {})
 
 vim.o.background = 'dark'
@@ -96,13 +100,13 @@ require 'nvim-treesitter.configs'.setup {
         enable = true,
 
         disable = function(_, buf)
-            local max_filesize = 10 * 1024 * 1024 -- 10 MB
+            local max_filesize = 3 * 1024 * 1024 -- 10 MB
             local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
             if ok and stats and stats.size > max_filesize then
                 return true
             end
         end,
-        additional_vim_regex_highlighting = true,
+        additional_vim_regex_highlighting = false,
     },
 }
 
@@ -179,7 +183,7 @@ vim.cmd [[
 
 -- keybindings
 local function map(mode, combo, mapping, opts)
-    local options = { noremap = true }
+    local options = { noremap = true, silent = false }
     if opts then
         options = vim.tbl_extend('force', options, opts)
     end
@@ -188,7 +192,7 @@ end
 
 
 -- NvimTree keybindings
-map('n', '<C-n>', ':NvimTreeToggle<CR>')
+map('n', '<C-n>', ':NvimTreeToggle<CR>', { silent = true })
 
 
 -- Run/Compile keybinding
@@ -236,13 +240,14 @@ map('', '<leader>e', ':wq<cr>')
 -- set jk to <esc>
 map('', '<esc>', '<nop>')
 map('i', '<esc>', '<nop>')
-map('', ';;', '<esc>')
+map('v', ';;', '<esc>')
 map('i', ';l', '<esc>')
 
-map('n', '<leader>t', ':set wrap!<cr><C-L>')
-map('n', '<leader>l', ':noh<cr><C-L>')
+map('n', '<leader>t', ':set wrap!<cr><C-L>', { noremap = true, silent = false })
+map('n', '<leader>l', ':noh<cr><C-L>', { noremap = true, silent = false })
 map('n', '<leader>a', '<cmd>Telescope find_files<cr>')
-map('', '<leader>z', ':%y<cr>')
+map('', '<leader>z', ':%y<cr>', { noremap = true, silent = false })
+map('', '<leader>u', ':UndotreeToggle<cr>')
 
 map('n', '[d', '<Plug>(coc-diagnostic-prev-error)')
 map('n', ']d', '<Plug>(coc-diagnostic-next-error)')
@@ -301,5 +306,31 @@ end
 
 vim.cmd(':autocmd FileType typescript command! TypedefBeg lua TypedefsBeg()')
 
+vim.cmd(":autocmd FileType typescript let @o='f:r=i ;l'")
+vim.cmd(":autocmd FileType typescript let @p='^df.Ienum ;lf=xx100@o'")
+
 -- markdown
 vim.cmd(':autocmd FileType markdown command! Preview :CocCommand markdown-preview-enhanced.openPreview')
+
+vim.cmd(':autocmd FileType markdown command! Preview :CocCommand markdown-preview-enhanced.openPreview')
+
+-- .json.patch
+function JsonPatchFormat()
+    local buf = vim.api.nvim_get_current_buf()
+    local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+    local text = table.concat(lines, '\n')
+    local cmd = 'echo \'' .. text .. '\' | prettier --parser json'
+    local out = vim.fn.system(cmd)
+    local linesMap = {}
+    for line in out:gmatch("[^\r\n]+") do
+        table.insert(linesMap, line)
+    end
+    vim.api.nvim_buf_set_lines(buf, 0, -1, false, linesMap)
+end
+
+function JsonPatch()
+    vim.opt.filetype = 'json'
+    map('n', '\\f', '<cmd>lua JsonPatchFormat()<cr>')
+end
+
+vim.cmd('autocmd BufRead *.json.patch lua JsonPatch()')
