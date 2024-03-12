@@ -52,7 +52,7 @@ if status is-interactive
         if test "$argv[1]" = 'su' -o "$argv[1]" = 'bash' -o "$argv[1]" = 'fish'
             echo no
         else
-            /bin/doas $argv
+            /usr/bin/doas $argv
         end
     end
 end

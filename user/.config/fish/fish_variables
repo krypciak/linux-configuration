@@ -1,6 +1,7 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
 SETUVAR __fish_initialized:3400
+SETUVAR _fish_abbr__21_21_:\x2d\x2dposition\x20anywhere\x20\x2d\x2dfunction\x20last_history_item
 SETUVAR _fish_abbr_cd_2E_:cd\x20\x2e\x2e
 SETUVAR _fish_abbr_cd_2E_2E_:cd\x20\x2e\x2e
 SETUVAR _fish_abbr_rmm:rmtrash
