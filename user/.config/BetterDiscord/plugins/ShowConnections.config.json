@@ -2,6 +2,7 @@
 	"all": {
 		"connections": {
 			"battlenet": true,
+			"bungie": true,
 			"crunchyroll": true,
 			"domain": true,
 			"ebay": true,
@@ -15,6 +16,7 @@
 			"playstation-stg": true,
 			"reddit": true,
 			"riotgames": true,
+			"roblox": true,
 			"samsung": true,
 			"skype": true,
 			"spotify": true,

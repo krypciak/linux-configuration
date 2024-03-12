@@ -74,7 +74,7 @@
 		"ColorsCSS": ["BUTTON_DANGER_BACKGROUND", "STATUS_DANGER", "HEADER_PRIMARY"],
 		"EmojiSprites": ["DiversityPerRow", "PickerCount", "PickerPerRow"],
 		"InboxTabs": ["MENTIONS", "UNREADS"],
-		"MessageTypeGroups": ["USER_MESSAGE", "DELETABLE"],
+		"MessageTypeGroups": ["USER_MESSAGE", "UNDELETABLE"],
 		"ReadStateTypes": ["GUILD_EVENT", "NOTIFICATION_CENTER", "CHANNEL"],
 		"UserSettingsActionTypes": ["SLOW_USER_ACTION", "DAILY"]
 	},
@@ -111,7 +111,6 @@
 		"EmojiStateUtils": {"props": ["getURL", "isEmojiDisabled"]},
 		"Env": {"props": ["env"]},
 		"FolderSettingsUtils": {"props": ["saveGuildFolders", "saveClientTheme"]},
-		"GuildBoostUtils": {"props": ["getNextTier", "getAppliedGuildBoostMonths"]},
 		"GuildNotificationsUtils": {"props": ["updateChannelOverrideSettings", "updateGuildNotificationSettings"]},
 		"GuildUtils": {"props": ["selectGuild", "transitionToGuildSync"]},
 		"HistoryUtils": {"props": ["transitionTo", "transitionToGuild"]},
@@ -221,7 +220,7 @@
 		}},
 		"GuildBadge": {"strings": ["foregroundDarkColor", "getBadgeCategory"]},
 		"GuildIcon": {"strings": ["SMOL", "badgeStrokeColor"], "funcStrings": ["render()"]},
-		"GuildItem": {"strings": ["guildNode:", "useShouldShowInvitesDisabledNotif", "clearGuildBurstPreview"]},
+		"GuildItem": {"strings": ["guildNode:", "useShouldShowInvitesDisabledNotif"]},
 		"GuildTooltipMutedText": {"strings": [".muteConfig", "color:\"text-muted\""]},
 		"Heading": {"strings": ["data-excessive", ".defaultColor"]},
 		"HeaderBarComponents": {"strings": ["isAuthenticated", ".HEADER_BAR"]},
@@ -504,7 +503,7 @@
 		"UserTheme": {"strings": [".profileColors", "useDefaultClientTheme:"], "noSearch": true},
 		"VideoBackground": {"strings": ["backgroundSrc:", "pulseSpeakingIndicator:", ".avatarWrapper"]},
 		"VoiceUser": {"protos": ["renderPrioritySpeaker", "renderIcons", "renderAvatar"]},
-		"VoiceUsers": {"strings": ["hidePreview", "previewIsOpen", "previewUserIdAfterDelay"]}
+		"VoiceUsers": {"strings": ["hidePreview", "previewIsOpen", "Permissions.MOVE_MEMBERS"]}
 	},
 	"ModuleUtilsConfig": {
 		"QueuedComponents": [],
@@ -5484,6 +5483,7 @@
 		}
 	},
 	"BDFDB_Patrons": {
+		"1113460780113854525": 	{"active": true,	"tier": "t2",	"text": "",						"color": "",			"id": "pinguwu (hugo)"},
 		"864982372751245313": 	{"active": true,	"tier": "t2",	"text": "",						"color": "",			"id": "windowsuss (fynn)"},
 		"148234730523852800": 	{"active": true,	"tier": "t2",	"text": "",						"color": "",			"id": "inbroso (MaEp)"},
 		"105509397211406336": 	{"active": true,	"tier": "t2",	"text": "",						"color": "",			"id": "samtino (SgJeff)"},
