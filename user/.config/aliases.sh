@@ -12,6 +12,7 @@ alias 'dps'='doas pacman -Syu'
 alias 'sl'='ls'
 alias 'rmm'='rmtrash'
 
+alias 'vim'='nvim'
 
 alias reboot='loginctl reboot'
 alias poweroff='loginctl poweroff'
@@ -23,7 +24,7 @@ alias f='fdisk -l'
 alias motherboard='cat /sys/devices/virtual/dmi/id/board_{vendor,name,version}'
 
 alias cat='bat'
-alias diff='difft'
+# alias diff='difft'
 alias ti='hyperfine'
 alias man='batman'
 alias lfs='dysk'
@@ -51,3 +52,6 @@ alias dwl='sh $HOME/.config/dwl/run/run.sh'
 alias river='sh $HOME/.config/river/run.sh'
 
 alias lol='leagueoflegends kill; env AMD_VULKAN_ICD=RADV gamescope -W 2560 -H 1440 -m 1 --rt -f -- leagueoflegends start'
+
+alias tsc='npx tsc'
+alias npm='pnpm'
