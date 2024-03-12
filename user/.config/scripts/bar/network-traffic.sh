@@ -1,5 +1,6 @@
 #!/bin/sh
-MODULE='eth0'
+# MODULE='eth0'
+MODULE='enp7s0'
 TIME='4'
 MULTI='1'
 
@@ -12,7 +13,7 @@ function format_KiB() {
     fi
 }
 
-if nc -z 8.8.8.8 53 -w 1; then
+# if nc -z 8.8.8.8 53 -w 1; then
     rx1=$(cat /sys/class/net/$MODULE/statistics/rx_bytes)
     tx1=$(cat /sys/class/net/$MODULE/statistics/tx_bytes)
     sleep $TIME
@@ -24,6 +25,6 @@ if nc -z 8.8.8.8 53 -w 1; then
     
     printf ' '
     format_KiB $tx1 $tx2
-else 
-    printf '󰈂'
-fi
+# else 
+#     printf '󰈂'
+# fi

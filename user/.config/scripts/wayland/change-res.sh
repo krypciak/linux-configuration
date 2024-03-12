@@ -15,7 +15,7 @@ RES_TO_SORT="$(wlr-randr --output HDMI-A-1 | awk '/px/ {print $1 "@" $3 "@" int(
 prev_res=''
 prev_ref=''
 prev_refr=''
-RES_TO_SEL=''
+RES_TO_SEL="$RES_TO_SORT"
 for inp in $RES_TO_SORT; do
     inp="$(echo $inp | tr '@' ' ')"
     res="$(echo $inp | awk '{print $1}')"
@@ -44,4 +44,4 @@ SEL="$(printf "$RES_TO_SEL" | sort --general-numeric-sort --reverse | fuzzel -d 
 RES="$(echo $SEL | awk '{print $1}')"
 REFRESH="$(echo $SEL | awk '{print $4}')"
 echo wlr-randr --output $OUTPUT --mode "$RES@$REFRESH"
-# wlr-randr --output $OUTPUT --mode "$RES@$REFRESH"
+wlr-randr --output $OUTPUT --mode "$RES@$REFRESH"
