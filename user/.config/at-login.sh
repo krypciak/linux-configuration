@@ -12,7 +12,7 @@ export GIT_DISCOVERY_ACROSS_FILESYSTEM=1
 [ "$USER1" == '' ] && export USER1=$USER
 
 export USER_HOME="/home/$USER1"
-export PATH="$USER_HOME/home/.local/bin:/home/$USER1/.cargo/bin$PATH:/home/$USER1/home/.config/scripts"
+export PATH="$USER_HOME/home/.local/bin:/home/$USER1/.cargo/bin$PATH:/home/$USER1/home/.config/scripts:$USER_HOME/home/.local/share/cargo/bin"
 
 export XDG_DATA_HOME="$USER_HOME/home/.local/share"
 export XDG_STATE_HOME="$USER_HOME/home/.local/state"
@@ -42,10 +42,15 @@ export ICEAUTHORITY="$XDG_CACHE_HOME"/ICEauthority
 # ~/.node_repl_history
 export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
 
-unset XDG_RUNTIME_DIR
+# unset XDG_RUNTIME_DIR
 # shellcheck disable=SC2155
-export XDG_RUNTIME_DIR=$(mktemp -d /tmp/$(id -u)-runtime-dir.XXX)
+# export XDG_RUNTIME_DIR=$(mktemp -d /tmp/$(id -u)-runtime-dir.XXX)
 
 [ -f "/tmp/keyboard_layout" ] || echo 'qwerty' > /tmp/keyboard_layout
 
-source /usr/share/nvm/init-nvm.sh
+# source /usr/share/nvm/init-nvm.sh
+
+# gentoo specific
+export LIBSEAT_BACKEND=logind
+
+export SDL_VIDEODRIVEVER=wayland
