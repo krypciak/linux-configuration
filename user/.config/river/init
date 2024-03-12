@@ -41,26 +41,29 @@ tag 'V' 'v'
 tag 'H' 'h'
 
 # tag rules
-riverctl rule-add tag -app-id 'discord'             $(get_tag 'd')
-riverctl rule-add tag -app-id 'LibreWolf'           $(get_tag 's')
-riverctl rule-add tag -app-id 'chromium'            $(get_tag 's')
-riverctl rule-add tag -app-id 'tutanota-desktop'    $(get_tag 'z')
-riverctl rule-add tag -app-id 'aerc'                $(get_tag 'z')
-riverctl rule-add tag -app-id 'cmus'                $(get_tag 'n')
-riverctl rule-add tag -app-id 'dialect'             $(get_tag 't')
-# { NULL,            'Invidious',   1 << 9,     0,  0,  0,  0,  0,   0,   0,  0,  -1 },
-# { NULL,   'Picture in picture',   1 << 9,     0,  1,  0,  0,  0,   1,   1,  0,  -1 },
-riverctl rule-add tag -app-id 'gamescope'           $(get_tag 'v')
-riverctl rule-add tag -app-id 'live.na.exe'         $(get_tag 'v')
-riverctl rule-add tag -app-id 'prismlauncher'       $(get_tag 'a')
-riverctl rule-add tag -app-id '*Minecraft*'         $(get_tag 'a')
-riverctl rule-add tag -title  '*Steam*'             $(get_tag 'h')
-riverctl rule-add tag -title  'Launching...'        $(get_tag 'h')
-riverctl rule-add tag -app-id 'Lutris'              $(get_tag 'h')
-riverctl rule-add tag -app-id 'steap_app_960090'    $(get_tag 'a')
-riverctl rule-add tag -title '*CrossCode*'          $(get_tag 'a')
-riverctl rule-add tag -title '*DevTools*'           $(get_tag 'a')
-riverctl rule-add tag -app-id 'MonkeyCity-Win.exe'  $(get_tag 'a')
+riverctl rule-add -app-id 'discord'              tags  $(get_tag 'd')
+riverctl rule-add -app-id 'LibreWolf'            tags  $(get_tag 's')
+riverctl rule-add -app-id 'librewolf'            tags  $(get_tag 's')
+riverctl rule-add -app-id 'chromium'             tags  $(get_tag 's')
+riverctl rule-add -app-id 'tutanota-desktop'     tags  $(get_tag 'z')
+riverctl rule-add -app-id 'aerc'                 tags  $(get_tag 'z')
+riverctl rule-add -app-id 'cmus'                 tags  $(get_tag 'n')
+riverctl rule-add -app-id 'dialect'              tags  $(get_tag 't')
+# { NULL,            'Invidious',   1 << 9,       0,  0,  0,  0,  0,   0,   0,  0,  -1 },
+# { NULL,   'Picture in picture',   1 << 9,       0,  1,  0,  0,  0,   1,   1,  0,  -1 },
+riverctl rule-add -app-id 'gamescope'            tags  $(get_tag 'v')
+riverctl rule-add -app-id 'live.na.exe'          tags  $(get_tag 'v')
+riverctl rule-add -app-id 'prismlauncher'        tags  $(get_tag 'a')
+riverctl rule-add -app-id '*Minecraft*'          tags  $(get_tag 'a')
+riverctl rule-add -title  '*Steam*'              tags  $(get_tag 'h')
+riverctl rule-add -title  'Launching...'         tags  $(get_tag 'h')
+riverctl rule-add -app-id 'Lutris'               tags  $(get_tag 'h')
+riverctl rule-add -app-id 'steap_app_960090'     tags  $(get_tag 'a')
+riverctl rule-add -title '*CrossCode*'           tags  $(get_tag 'a')
+riverctl rule-add -title '*DevTools*'            tags  $(get_tag 'a')
+riverctl rule-add -app-id 'MonkeyCity-Win.exe'   tags  $(get_tag 'a')
+riverctl rule-add -app-id 'steam_app_489830'     tags  $(get_tag 'a')
+riverctl rule-add -app-id 'dontstarve_steam_x64' tags  $(get_tag 'a')
 
 
 run_menu='fuzzel --width 30 --log-level=none'
@@ -75,15 +78,19 @@ riverctl spawn 'swww init > /dev/null 2>&1'
 riverctl spawn "$wallpaper_script inc 0 0 > /dev/null 2>&1"
 riverctl spawn 'gammastep -r > /dev/null 2>&1'
 riverctl spawn "$sandbar_run"
-riverctl spawn 'pulseaudio --start > /dev/null 2>&1'
 riverctl spawn 'alacritty --class cmus --title cmus -e cmus 2>&1'
-riverctl spawn 'wl-paste --watch cliphist store > /dev/null 2>&1'
+riverctl spawn 'wl-paste --watch cliphist store -max-items 10000 > /dev/null 2>&1'
 riverctl spawn 'amixer set Capture nocap > /dev/null 2>&1'
 riverctl spawn 'fnott > /dev/null 2>&1'
 riverctl spawn 'pgrep keepassxc > /dev/null || keepassxc > /dev/null 2>&1'
-riverctl spawn 'pgrep tutanota > /dev/null || tutanota-desktop --enable-features=UseOzonePlatform --ozone-platform=wayland > /dev/null 2>&1'
+riverctl spawn 'sleep 15; pgrep tutanota > /dev/null || tutanota-desktop --enable-features=UseOzonePlatform --ozone-platform=wayland > /dev/null 2>&1'
 riverctl spawn 'blueman-applet > /dev/null 2>&1'
-riverctl spawn 'librewolf > /dev/null 2>&1'
+riverctl spawn 'sleep 5; librewolf > /dev/null 2>&1'
+riverctl spawn '/usr/libexec/xdg-desktop-portal-gtk -r'
+riverctl spawn '/usr/libexec/xdg-desktop-portal-wlr -r'
+riverctl spawn '/usr/libexec/flatpak-portal -r'
+riverctl spawn 'sleep 5;exec /usr/libexec/xdg-desktop-portal -r'
+riverctl spawn 'safeeyes > /dev/null 2>&1'
 
 riverctl declare-mode passthrough
 # Spawn
@@ -96,7 +103,7 @@ for mode in normal locked; do
     riverctl map $mode          Super+Shift+Control P       spawn '$HOME/.config/scripts/poweroff.sh'
     riverctl map $mode          Super+Shift+Control R       spawn '$HOME/.config/scripts/reboot.sh'
     riverctl map $mode          Super+Shift+Control S       spawn 'playerctl pause -a; $HOME/.config/scripts/suspend.sh; swaylock'
-    riverctl map $mode          Super+Shift+Control H       spawn '$HOME/.config/scripts/hibernate.sh'
+    riverctl map $mode          Super+Shift+Control H       spawn '$HOME/.config/scripts/hibernate.sh; swaylock'
 done
 riverctl map normal             Super+Shift+Control M       spawn 'touch /tmp/restart_river; riverctl exit'
 riverctl map normal             Super+Shift+Control L       spawn 'playerctl pause -a; swaylock'
