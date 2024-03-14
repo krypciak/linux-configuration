@@ -1,16 +1,5 @@
 -- vars
 vim.o.clipboard = 'unnamedplus'
-vim.g.clipboard = {
-    copy = {
-        ['+'] = 'copy',
-        ['*'] = 'copy',
-    },
-    paste = {
-        ['+'] = 'pst',
-        ['*'] = 'pst',
-    },
-    cache_enabled = 1,
-}
 
 vim.o.relativenumber = true
 vim.wo.number = true
@@ -79,9 +68,11 @@ require('lazy').setup({
     'kevinhwang91/promise-async',
     'kevinhwang91/nvim-ufo',
     'sanfusu/neovim-undotree',
-    'ThePrimeagen/harpoon',
+    { "ThePrimeagen/harpoon", branch = "harpoon2", dependencies = { "nvim-lua/plenary.nvim" } },
+    'nvim-tree/nvim-web-devicons',
+    'ThePrimeagen/vim-be-good',
 
-    { 'neoclide/coc.nvim', build = 'npm ci' },
+    { 'neoclide/coc.nvim',    build = 'npm ci' },
     'preservim/vim-markdown',
     'coc-prettier',
     'gleam-lang/gleam.vim',
@@ -183,7 +174,7 @@ vim.cmd [[
 
 -- keybindings
 local function map(mode, combo, mapping, opts)
-    local options = { noremap = true, silent = false }
+    local options = { noremap = true, silent = true }
     if opts then
         options = vim.tbl_extend('force', options, opts)
     end
@@ -230,6 +221,7 @@ map('v', 'd', '"_d')
 map('n', '<leader>d', '"+d')
 map('n', '<leader>D', '"+D')
 map('v', '<leader>d', '"+d')
+map('v', 'p', 'pgvy')
 
 -- quick file save/quit
 map('', '<leader>q', ':q<cr>')
@@ -245,7 +237,8 @@ map('i', ';l', '<esc>')
 
 map('n', '<leader>t', ':set wrap!<cr><C-L>', { noremap = true, silent = false })
 map('n', '<leader>l', ':noh<cr><C-L>', { noremap = true, silent = false })
-map('n', '<leader>a', '<cmd>Telescope find_files<cr>')
+map('n', '<leader>a', '<cmd>Telescope git_files<cr>')
+map('n', '<leader>A', '<cmd>Telescope find_files<cr>')
 map('', '<leader>z', ':%y<cr>', { noremap = true, silent = false })
 map('', '<leader>u', ':UndotreeToggle<cr>')
 
@@ -261,8 +254,61 @@ map('n', 'K', ':call CocActionAsync("doHover")<cr><C-L>')
 
 map('n', '<leader>s', '<Plug>(coc-rename)')
 map('n', '<leader>ca', '<Plug>(coc-codeaction)')
-map('n', '<leader>gr', '<Plug>(coc-references)')
+map('n', '<leader>gs', '<Plug>(coc-references)')
 map('n', '\\f', '<Plug>(coc-format)')
+
+map('n', '<leader>u', '', {
+    noremap = true,
+    callback = function()
+        vim.cmd [[
+        normal! zR
+        UfoDetach
+        UfoAttach
+        normal! zM
+    ]]
+    end
+})
+
+map('n', '<C-d>', '<C-d>zz')
+map('n', '<C-u>', '<C-u>zz')
+map('n', 'n', 'nzzzv')
+map('n', 'N', 'nzzzv')
+
+-- harpoon
+local harpoon = require('harpoon')
+harpoon:setup()
+
+-- basic telescope configuration
+local conf = require('telescope.config').values
+local function toggle_telescope(harpoon_files)
+    local file_paths = {}
+    for _, item in ipairs(harpoon_files.items) do
+        table.insert(file_paths, item.value)
+    end
+
+    require('telescope.pickers').new({}, {
+        prompt_title = 'Harpoon',
+        finder = require('telescope.finders').new_table({
+            results = file_paths,
+        }),
+        previewer = conf.file_previewer({}),
+        sorter = conf.generic_sorter({}),
+    }):find()
+end
+
+map('n', '<leader>fl', '', {
+    noremap = true,
+    callback = function()
+        toggle_telescope(harpoon:list())
+    end,
+})
+map('n', '<leader>fa', '', { noremap = true, callback = function() harpoon:list():append() end })
+
+map('n', '<leader>fq', '', { noremap = true, callback = function() harpoon:list():select(1) end })
+map('n', '<leader>fw', '', { noremap = true, callback = function() harpoon:list():select(2) end })
+map('n', '<leader>fe', '', { noremap = true, callback = function() harpoon:list():select(3) end })
+map('n', '<leader>fr', '', { noremap = true, callback = function() harpoon:list():select(4) end })
+
 
 -- python
 vim.cmd(':autocmd FileType python :inoremap <buffer> this self')
