@@ -81,16 +81,17 @@ riverctl spawn "$sandbar_run"
 riverctl spawn 'alacritty --class cmus --title cmus -e cmus 2>&1'
 riverctl spawn 'wl-paste --watch cliphist store -max-items 10000 > /dev/null 2>&1'
 riverctl spawn 'amixer set Capture nocap > /dev/null 2>&1'
-riverctl spawn 'fnott > /dev/null 2>&1'
+# riverctl spawn 'fnott > /dev/null 2>&1'
 riverctl spawn 'pgrep keepassxc > /dev/null || keepassxc > /dev/null 2>&1'
 riverctl spawn 'sleep 15; pgrep tutanota > /dev/null || tutanota-desktop --enable-features=UseOzonePlatform --ozone-platform=wayland > /dev/null 2>&1'
-riverctl spawn 'blueman-applet > /dev/null 2>&1'
+# riverctl spawn 'blueman-applet > /dev/null 2>&1'
 riverctl spawn 'sleep 5; librewolf > /dev/null 2>&1'
-riverctl spawn '/usr/libexec/xdg-desktop-portal-gtk -r'
-riverctl spawn '/usr/libexec/xdg-desktop-portal-wlr -r'
-riverctl spawn '/usr/libexec/flatpak-portal -r'
-riverctl spawn 'sleep 5;exec /usr/libexec/xdg-desktop-portal -r'
+riverctl spawn '/usr/lib/xdg-desktop-portal-kde -r'
+riverctl spawn '/usr/lib/xdg-desktop-portal-wlr -r'
+# riverctl spawn '/usr/lib/flatpak-portal -r'
+riverctl spawn 'sleep 5;exec /usr/lib/xdg-desktop-portal -r'
 riverctl spawn 'safeeyes > /dev/null 2>&1'
+riverctl spawn 'prettierd start'
 
 riverctl declare-mode passthrough
 # Spawn
