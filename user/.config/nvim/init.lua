@@ -187,7 +187,7 @@ require("lazy").setup({
 			vim.keymap.set("n", "zr", require("ufo").openFoldsExceptKinds)
 			vim.keymap.set("n", "zm", require("ufo").closeFoldsWith)
 			vim.keymap.set("n", "zR", require("ufo").openAllFolds)
-			vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
+			vim.keymap.set("n", "zM", function() end)
 			vim.keymap.set("n", "L", function()
 				local winid = require("ufo").peekFoldedLinesUnderCursor()
 				if not winid then
@@ -305,6 +305,7 @@ require("lazy").setup({
 	},
 	"preservim/vim-markdown",
 	"gleam-lang/gleam.vim",
+    'Hippo0o/context.vim',
 }, {})
 
 vim.o.background = "dark"
@@ -360,6 +361,7 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "nzzzv")
 
+
 -- python
 vim.cmd(":autocmd FileType python :inoremap <buffer> this self")
 
@@ -405,6 +407,10 @@ vim.cmd(":autocmd FileType typescript command! TypedefBeg lua TypedefsBeg()")
 
 vim.cmd(":autocmd FileType typescript let @o='f:r=i ;l'")
 vim.cmd(":autocmd FileType typescript let @p='^df.Ienum ;lf=xx100@o'")
+
+-- javascript
+
+vim.cmd(':autocmd FileType javascript lua vim.keymap.set("n", "<leader>m", "mn?ig.module<CR>:noh<CR>yi\\\'`n:echo @+<CR>")')
 
 -- markdown
 vim.cmd(":autocmd FileType markdown command! Preview :CocCommand markdown-preview-enhanced.openPreview")
