@@ -6,11 +6,11 @@ ctrl='Mod4'
 sft='Mod4'
 caps='Mod4'
 
-export TAGS="T q w e n d s a z t f c g v h"; 
+export TAGS="T q w e n d s a z t f c g v h"
 get_tag() {
     # tag position in binary
     x=${TAGS%%["$1"]*}
-    x=$((${#x}/2))
+    x=$((${#x} / 2))
     echo $((1 << x))
 }
 
@@ -19,10 +19,10 @@ tag() {
     key=$1
     name=$2
 
-    riverctl map normal Alt               $key set-focused-tags     $tags
-    riverctl map normal Alt+Shift         $key set-view-tags        $tags
-    riverctl map normal Alt+Control       $key toggle-focused-tags  $tags
-    riverctl map normal Alt+Shift+Control $key toggle-view-tags     $tags
+    riverctl map normal Alt $key set-focused-tags $tags
+    riverctl map normal Alt+Shift $key set-view-tags $tags
+    riverctl map normal Alt+Control $key toggle-focused-tags $tags
+    riverctl map normal Alt+Shift+Control $key toggle-view-tags $tags
 }
 tag 'Tab' 'T'
 tag 'Q' 'q'
@@ -41,30 +41,29 @@ tag 'V' 'v'
 tag 'H' 'h'
 
 # tag rules
-riverctl rule-add -app-id 'discord'              tags  $(get_tag 'd')
-riverctl rule-add -app-id 'LibreWolf'            tags  $(get_tag 's')
-riverctl rule-add -app-id 'librewolf'            tags  $(get_tag 's')
-riverctl rule-add -app-id 'chromium'             tags  $(get_tag 's')
-riverctl rule-add -app-id 'tutanota-desktop'     tags  $(get_tag 'z')
-riverctl rule-add -app-id 'aerc'                 tags  $(get_tag 'z')
-riverctl rule-add -app-id 'cmus'                 tags  $(get_tag 'n')
-riverctl rule-add -app-id 'dialect'              tags  $(get_tag 't')
+riverctl rule-add -app-id 'discord' tags $(get_tag 'd')
+riverctl rule-add -app-id 'LibreWolf' tags $(get_tag 's')
+riverctl rule-add -app-id 'librewolf' tags $(get_tag 's')
+riverctl rule-add -app-id 'chromium' tags $(get_tag 's')
+riverctl rule-add -app-id 'tutanota-desktop' tags $(get_tag 'z')
+riverctl rule-add -app-id 'aerc' tags $(get_tag 'z')
+riverctl rule-add -app-id 'cmus' tags $(get_tag 'n')
+riverctl rule-add -app-id 'dialect' tags $(get_tag 't')
 # { NULL,            'Invidious',   1 << 9,       0,  0,  0,  0,  0,   0,   0,  0,  -1 },
 # { NULL,   'Picture in picture',   1 << 9,       0,  1,  0,  0,  0,   1,   1,  0,  -1 },
-riverctl rule-add -app-id 'gamescope'            tags  $(get_tag 'v')
-riverctl rule-add -app-id 'live.na.exe'          tags  $(get_tag 'v')
-riverctl rule-add -app-id 'prismlauncher'        tags  $(get_tag 'a')
-riverctl rule-add -app-id '*Minecraft*'          tags  $(get_tag 'a')
-riverctl rule-add -title  '*Steam*'              tags  $(get_tag 'h')
-riverctl rule-add -title  'Launching...'         tags  $(get_tag 'h')
-riverctl rule-add -app-id 'Lutris'               tags  $(get_tag 'h')
-riverctl rule-add -app-id 'steap_app_960090'     tags  $(get_tag 'a')
-riverctl rule-add -title '*CrossCode*'           tags  $(get_tag 'a')
-riverctl rule-add -title '*DevTools*'            tags  $(get_tag 'a')
-riverctl rule-add -app-id 'MonkeyCity-Win.exe'   tags  $(get_tag 'a')
-riverctl rule-add -app-id 'steam_app_489830'     tags  $(get_tag 'a')
-riverctl rule-add -app-id 'dontstarve_steam_x64' tags  $(get_tag 'a')
-
+riverctl rule-add -app-id 'gamescope' tags $(get_tag 'v')
+riverctl rule-add -app-id 'live.na.exe' tags $(get_tag 'v')
+riverctl rule-add -app-id 'prismlauncher' tags $(get_tag 'a')
+riverctl rule-add -app-id '*Minecraft*' tags $(get_tag 'a')
+riverctl rule-add -title '*Steam*' tags $(get_tag 'h')
+riverctl rule-add -title 'Launching...' tags $(get_tag 'h')
+riverctl rule-add -app-id 'Lutris' tags $(get_tag 'h')
+riverctl rule-add -app-id 'steap_app_960090' tags $(get_tag 'a')
+riverctl rule-add -title '*CrossCode*' tags $(get_tag 'a')
+riverctl rule-add -title '*DevTools*' tags $(get_tag 'a')
+riverctl rule-add -app-id 'MonkeyCity-Win.exe' tags $(get_tag 'a')
+riverctl rule-add -app-id 'steam_app_489830' tags $(get_tag 'a')
+riverctl rule-add -app-id 'dontstarve_steam_x64' tags $(get_tag 'a')
 
 run_menu='fuzzel --width 30 --log-level=none'
 playerctl_script="$HOME/.config/scripts/mediaplayer.sh"
@@ -81,101 +80,104 @@ riverctl spawn "$sandbar_run"
 riverctl spawn 'alacritty --class cmus --title cmus -e cmus 2>&1'
 riverctl spawn 'wl-paste --watch cliphist store -max-items 10000 > /dev/null 2>&1'
 riverctl spawn 'amixer set Capture nocap > /dev/null 2>&1'
-# riverctl spawn 'fnott > /dev/null 2>&1'
+riverctl spawn 'fnott > /dev/null 2>&1'
 riverctl spawn 'pgrep keepassxc > /dev/null || keepassxc > /dev/null 2>&1'
 riverctl spawn 'sleep 15; pgrep tutanota > /dev/null || tutanota-desktop --enable-features=UseOzonePlatform --ozone-platform=wayland > /dev/null 2>&1'
 # riverctl spawn 'blueman-applet > /dev/null 2>&1'
 riverctl spawn 'sleep 5; librewolf > /dev/null 2>&1'
-riverctl spawn '/usr/lib/xdg-desktop-portal-kde -r'
-riverctl spawn '/usr/lib/xdg-desktop-portal-wlr -r'
-# riverctl spawn '/usr/lib/flatpak-portal -r'
-riverctl spawn 'sleep 5;exec /usr/lib/xdg-desktop-portal -r'
 riverctl spawn 'safeeyes > /dev/null 2>&1'
 riverctl spawn 'prettierd start'
 
+# systemd stuff
+riverctl spawn 'systemctl --user import-environment WAYLAND_DISPLAY; dbus-update-activation-environment --systemd WAYLAND_DISPLAY'
+
+riverctl spawn '/usr/lib/xdg-desktop-portal-kde -r'
+riverctl spawn '/usr/lib/xdg-desktop-portal-wlr -r'
+# riverctl spawn '/usr/lib/flatpak-portal -r'
+
 riverctl declare-mode passthrough
 # Spawn
-riverctl map normal             Alt                 Return  spawn "alacritty"
-riverctl map normal             Alt                 R       spawn "$run_menu"
+riverctl map normal Alt Return spawn "alacritty"
+riverctl map normal Alt R spawn "$run_menu"
 
 # Power options
 for mode in normal locked; do
-    riverctl map $mode          Super+Shift+Control Q       exit
-    riverctl map $mode          Super+Shift+Control P       spawn '$HOME/.config/scripts/poweroff.sh'
-    riverctl map $mode          Super+Shift+Control R       spawn '$HOME/.config/scripts/reboot.sh'
-    riverctl map $mode          Super+Shift+Control S       spawn 'playerctl pause -a; $HOME/.config/scripts/suspend.sh; swaylock'
-    riverctl map $mode          Super+Shift+Control H       spawn '$HOME/.config/scripts/hibernate.sh; swaylock'
+    riverctl map $mode Super+Shift+Control Q exit
+    riverctl map $mode Super+Shift+Control P spawn '$HOME/.config/scripts/poweroff.sh'
+    riverctl map $mode Super+Shift+Control R spawn '$HOME/.config/scripts/reboot.sh'
+    riverctl map $mode Super+Shift+Control S spawn 'playerctl pause -a; $HOME/.config/scripts/suspend.sh; swaylock'
+    riverctl map $mode Super+Shift+Control H spawn '$HOME/.config/scripts/hibernate.sh; swaylock'
 done
-riverctl map normal             Super+Shift+Control M       spawn 'touch /tmp/restart_river; riverctl exit'
-riverctl map normal             Super+Shift+Control L       spawn 'playerctl pause -a; swaylock'
+riverctl map normal Super+Shift+Control M spawn 'touch /tmp/restart_river; riverctl exit'
+riverctl map normal Super+Shift+Control L spawn 'playerctl pause -a; swaylock'
 
 # Client manipulation
-riverctl map normal             Super+Shift         C       close
-riverctl map normal             Super+Control       Space   toggle-float
-riverctl map normal             Super               F       toggle-fullscreen
+riverctl map normal Super+Shift C close
+riverctl map normal Super+Control Space toggle-float
+riverctl map normal Super F toggle-fullscreen
 
-riverctl map -repeat normal     Super+Control       Y       move left 10
-riverctl map -repeat normal     Super+Control       U       move down 10
-riverctl map -repeat normal     Super+Control       I       move up 10
-riverctl map -repeat normal     Super+Control       O       move right 10
+riverctl map -repeat normal Super+Control Y move left 10
+riverctl map -repeat normal Super+Control U move down 10
+riverctl map -repeat normal Super+Control I move up 10
+riverctl map -repeat normal Super+Control O move right 10
 
-riverctl map -repeat normal     Super+Control       H       resize horizontal -10
-riverctl map -repeat normal     Super+Control       J       resize vertical 10
-riverctl map -repeat normal     Super+Control       K       resize vertical -10
-riverctl map -repeat normal     Super+Control       L       resize horizontal 10
+riverctl map -repeat normal Super+Control H resize horizontal -10
+riverctl map -repeat normal Super+Control J resize vertical 10
+riverctl map -repeat normal Super+Control K resize vertical -10
+riverctl map -repeat normal Super+Control L resize horizontal 10
 
 # Focus manipulation
-riverctl map normal             Super+Control       Return  zoom
-riverctl map normal             Super               J       focus-view next
-riverctl map normal             Super               K       focus-view previous
-riverctl map normal             Super+Shift         J       swap next
-riverctl map normal             Super+Shift         K       swap previous
+riverctl map normal Super+Control Return zoom
+riverctl map normal Super J focus-view next
+riverctl map normal Super K focus-view previous
+riverctl map normal Super+Shift J swap next
+riverctl map normal Super+Shift K swap previous
 
 # Layout manipulation
-riverctl map normal             Super               H       send-layout-cmd rivertile "main-ratio -0.05"
-riverctl map normal             Super               L       send-layout-cmd rivertile "main-ratio +0.05"
-riverctl map normal             Super+Shift         H       send-layout-cmd rivertile "main-count +1"
-riverctl map normal             Super+Shift         L       send-layout-cmd rivertile "main-count -1"
+riverctl map normal Super H send-layout-cmd rivertile "main-ratio -0.05"
+riverctl map normal Super L send-layout-cmd rivertile "main-ratio +0.05"
+riverctl map normal Super+Shift H send-layout-cmd rivertile "main-count +1"
+riverctl map normal Super+Shift L send-layout-cmd rivertile "main-count -1"
 
-riverctl map normal             Alt                 Period  focus-output next
-riverctl map normal             Alt                 Comma   focus-output previous
+riverctl map normal Alt Period focus-output next
+riverctl map normal Alt Comma focus-output previous
 
-riverctl map normal             Alt+Shift           Period  send-to-output next
-riverctl map normal             Alt+Shift           Comma   send-to-output previous
+riverctl map normal Alt+Shift Period send-to-output next
+riverctl map normal Alt+Shift Comma send-to-output previous
 
 # Playerctl
 map_playerctl() {
     for mode in normal locked passthrough; do
-        riverctl map $mode      Mod3                $1      spawn "$playerctl_script \"$2\" 1"
-        riverctl map $mode      Mod3+Shift          $1      spawn "$playerctl_script \"$2\" 2"
+        riverctl map $mode Mod3 $1 spawn "$playerctl_script \"$2\" 1"
+        riverctl map $mode Mod3+Shift $1 spawn "$playerctl_script \"$2\" 2"
     done
 }
 
 map_playerctl 'Tab' 'play-pause'
-map_playerctl 'Q'   'next'
-map_playerctl 'A'   'previous'
-map_playerctl 'W'   'volume 0.02%+'
-map_playerctl 'S'   'volume 0.02%-'
+map_playerctl 'Q' 'next'
+map_playerctl 'A' 'previous'
+map_playerctl 'W' 'volume 0.02%+'
+map_playerctl 'S' 'volume 0.02%-'
 for mode in normal locked passthrough; do
     # riverctl map $mode          Mod3+Control        Tab     spawn "$playerctl_script swap -1"
-    riverctl map $mode          None                XF86AudioPlay spawn "$playerctl_script play-pause 1"
+    riverctl map $mode None XF86AudioPlay spawn "$playerctl_script play-pause 1"
 done
 
-riverctl map normal             Mod3+Control        Q       spawn "pacmd set-default-sink \"\$(pactl list sinks short | awk '{print \$1 \" <> \" substr(\$2,13) }' | tr '-' ' ' | tr '_' ' ' | fuzzel -d --log-level=none --width 50 | awk '{print \$1}')\""
+riverctl map normal Mod3+Control Q spawn "pacmd set-default-sink \"\$(pactl list sinks short | awk '{print \$1 \" <> \" substr(\$2,13) }' | tr '-' ' ' | tr '_' ' ' | fuzzel -d --log-level=none --width 50 | awk '{print \$1}')\""
 
 # Misc caps keys
-riverctl map normal             Mod3                1       spawn 'cliphist list | fuzzel --width 100 -d --log-level=none | cliphist decode | wl-copy'
-riverctl map normal             Mod3+Control        1       spawn "rm $HOME/.cache/cliphist/db" 
-riverctl map normal             Mod3                3       spawn "$HOME/.config/scripts/wayland/togglemonitors.sh; pkill sandbar; $sandbar_run"
-riverctl map normal             Mod3                4       spawn '$HOME/.config/scripts/wayland/change-res.sh'
+riverctl map normal Mod3 1 spawn 'cliphist list | fuzzel --width 100 -d --log-level=none | cliphist decode | wl-copy'
+riverctl map normal Mod3+Control 1 spawn "rm $HOME/.cache/cliphist/db"
+riverctl map normal Mod3 3 spawn "$HOME/.config/scripts/wayland/togglemonitors.sh; pkill sandbar; $sandbar_run"
+riverctl map normal Mod3 4 spawn '$HOME/.config/scripts/wayland/change-res.sh'
 
-riverctl map normal             Mod3                T       spawn "$wallpaper_script wayland-gui"
-riverctl map normal             Mod3                Z       spawn 'grim - | wl-copy'
-riverctl map normal             Mod3                C       spawn 'grim -g "$(slurp)" - | wl-copy'
+riverctl map normal Mod3 T spawn "$wallpaper_script wayland-gui"
+riverctl map normal Mod3 Z spawn 'grim - | wl-copy'
+riverctl map normal Mod3 C spawn 'grim -g "$(slurp)" - | wl-copy'
 
 # Passthrough mode
-riverctl map normal             Super               F11     enter-mode passthrough
-riverctl map passthrough        Super               F11     enter-mode normal
+riverctl map normal Super F11 enter-mode passthrough
+riverctl map passthrough Super F11 enter-mode normal
 
 # Mouse buttons
 riverctl map-pointer normal Super BTN_LEFT move-view
@@ -200,4 +202,3 @@ riverctl keyboard-layout -options 'caps:shiftlock' 'pl,us'
 
 riverctl default-layout rivertile
 rivertile -view-padding 0 -outer-padding 0 -main-count 1 -main-ratio 0.5 -main-location left &
-
