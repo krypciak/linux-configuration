@@ -1,6 +1,7 @@
 {
 	"all": {
 		"connections": {
+			"amazon-music": true,
 			"battlenet": true,
 			"bungie": true,
 			"crunchyroll": true,

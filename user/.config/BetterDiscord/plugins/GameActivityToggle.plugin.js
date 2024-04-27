@@ -2,7 +2,7 @@
  * @name GameActivityToggle
  * @author DevilBro
  * @authorId 278543574059057154
- * @version 1.2.1
+ * @version 1.2.4
  * @description Adds a Quick-Toggle Game Activity Button
  * @invite Jx3TjNS
  * @donate https://www.paypal.me/MircoWittrien
@@ -73,13 +73,22 @@ module.exports = (_ => {
 				delete this.props.forceState;
 				return BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.PanelButton, Object.assign({}, this.props, {
 					tooltipText: enabled ? _this.labels.disable_activity : _this.labels.enable_activity,
-					icon: iconProps => BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.SvgIcon, Object.assign({}, iconProps, {
-						nativeClass: true,
-						width: 20,
-						height: 20,
-						color: enabled ? "currentColor" : BDFDB.DiscordConstants.ColorsCSS.STATUS_DANGER,
-						name: enabled ? BDFDB.LibraryComponents.SvgIcon.Names.GAMEPAD : BDFDB.LibraryComponents.SvgIcon.Names.GAMEPAD_DISABLED
-					})),
+					icon: iconProps => BDFDB.ReactUtils.createElement("div", {
+						className: BDFDB.disCN.lottieicon,
+						style: {
+							"--__lottieIconColor": enabled ? "currentColor" : BDFDB.DiscordConstants.ColorsCSS.STATUS_DANGER,
+							"display": "flex",
+							"width": "20px",
+							"height": "20px"
+						},
+						children: BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.SvgIcon, Object.assign({}, iconProps, {
+							nativeClass: true,
+							width: 20,
+							height: 20,
+							color: "var(--__lottieIconColor)",
+							name: enabled ? BDFDB.LibraryComponents.SvgIcon.Names.GAMEPAD : BDFDB.LibraryComponents.SvgIcon.Names.GAMEPAD_DISABLED
+						}))
+					}),
 					onClick: _ => _this.toggle()
 				}));
 			}
@@ -235,9 +244,10 @@ module.exports = (_ => {
 			
 			processAccount (e) {
 				if (!this.settings.general.showButton) return;
-				let [children, index] = BDFDB.ReactUtils.findParent(e.returnvalue, {name: "PanelButton"});
-				if (index > -1) {
-					e.returnvalue.props.className = BDFDB.DOMUtils.formatClassName(e.returnvalue.props.className, BDFDB.disCN._gameactivitytoggleadded);
+				let accountinfo = BDFDB.ReactUtils.findChild(e.returnvalue, {props: [["className", BDFDB.disCN.accountinfo]]});
+				let children = accountinfo && BDFDB.ObjectUtils.get(accountinfo, "props.children.1.props.children");
+				if (children && children.length && BDFDB.ArrayUtils.is(children)) {
+					accountinfo.props.className = BDFDB.DOMUtils.formatClassName(accountinfo.props.className, BDFDB.disCN._gameactivitytoggleadded);
 					children.unshift(BDFDB.ReactUtils.createElement(ActivityToggleComponent, {}));
 				}
 			}
