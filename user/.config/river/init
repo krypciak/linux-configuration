@@ -6,7 +6,7 @@ ctrl='Mod4'
 sft='Mod4'
 caps='Mod4'
 
-export TAGS="T q w e n d s a z t f c g v h"
+export TAGS="T q w e n d s a z c h"
 get_tag() {
     # tag position in binary
     x=${TAGS%%["$1"]*}
@@ -33,11 +33,7 @@ tag 'D' 'd'
 tag 'S' 's'
 tag 'A' 'a'
 tag 'Z' 'z'
-tag 'T' 't'
-tag 'F' 'f'
 tag 'C' 'c'
-tag 'G' 'g'
-tag 'V' 'v'
 tag 'H' 'h'
 
 # tag rules
@@ -51,8 +47,6 @@ riverctl rule-add -app-id 'cmus' tags $(get_tag 'n')
 riverctl rule-add -app-id 'dialect' tags $(get_tag 't')
 # { NULL,            'Invidious',   1 << 9,       0,  0,  0,  0,  0,   0,   0,  0,  -1 },
 # { NULL,   'Picture in picture',   1 << 9,       0,  1,  0,  0,  0,   1,   1,  0,  -1 },
-riverctl rule-add -app-id 'gamescope' tags $(get_tag 'v')
-riverctl rule-add -app-id 'live.na.exe' tags $(get_tag 'v')
 riverctl rule-add -app-id 'prismlauncher' tags $(get_tag 'a')
 riverctl rule-add -app-id '*Minecraft*' tags $(get_tag 'a')
 riverctl rule-add -title '*Steam*' tags $(get_tag 'h')
@@ -68,7 +62,7 @@ riverctl rule-add -app-id 'dontstarve_steam_x64' tags $(get_tag 'a')
 run_menu='fuzzel --width 30 --log-level=none'
 playerctl_script="$HOME/.config/scripts/mediaplayer.sh"
 wallpaper_script="luajit $HOME/.config/wallpapers/wallpaper.lua "
-sandbar_run="$HOME/.config/dwl/someblocks/someblocks -m 1 | awk '{print \"all \" \$0; fflush();}' | $HOME/.config/river/sandbar/sandbar -hide-vacant-tags -font 'Sans:size=14' -tags 15 $TAGS > /dev/null 2>&1"
+sandbar_run="$HOME/.config/dwl/someblocks/someblocks -m 1 | awk '{print \"all \" \$0; fflush();}' | $HOME/.config/river/sandbar/sandbar -hide-vacant-tags -font 'Sans:size=14' -tags 11 $TAGS > /dev/null 2>&1"
 
 # Autostart
 riverctl spawn 'wlr-randr --output HDMI-A-1 --mode 2560x1440@143.912003Hz'
@@ -78,7 +72,7 @@ riverctl spawn "$wallpaper_script inc 0 0 > /dev/null 2>&1"
 riverctl spawn 'gammastep -r > /dev/null 2>&1'
 riverctl spawn "$sandbar_run"
 riverctl spawn 'alacritty --class cmus --title cmus -e cmus 2>&1'
-riverctl spawn 'wl-paste --watch cliphist store -max-items 10000 > /dev/null 2>&1'
+riverctl spawn 'wl-paste --watch cliphist -max-items 30000 store > /dev/null 2>&1'
 riverctl spawn 'amixer set Capture nocap > /dev/null 2>&1'
 riverctl spawn 'fnott > /dev/null 2>&1'
 riverctl spawn 'pgrep keepassxc > /dev/null || keepassxc > /dev/null 2>&1'
@@ -91,8 +85,9 @@ riverctl spawn 'prettierd start'
 # systemd stuff
 riverctl spawn 'systemctl --user import-environment WAYLAND_DISPLAY; dbus-update-activation-environment --systemd WAYLAND_DISPLAY'
 
-riverctl spawn '/usr/lib/xdg-desktop-portal-kde -r'
-riverctl spawn '/usr/lib/xdg-desktop-portal-wlr -r'
+# riverctl spawn '/usr/lib/xdg-desktop-portal-kde -r'
+# riverctl spawn '/usr/lib/xdg-desktop-portal-wlr -r'
+# riverctl spawn '/usr/lib/xdg-desktop-portal -r'
 # riverctl spawn '/usr/lib/flatpak-portal -r'
 
 riverctl declare-mode passthrough
@@ -167,13 +162,14 @@ riverctl map normal Mod3+Control Q spawn "pacmd set-default-sink \"\$(pactl list
 
 # Misc caps keys
 riverctl map normal Mod3 1 spawn 'cliphist list | fuzzel --width 100 -d --log-level=none | cliphist decode | wl-copy'
-riverctl map normal Mod3+Control 1 spawn "rm $HOME/.cache/cliphist/db"
+riverctl map normal Mod3+Control 1 spawn "cliphist wipe"
 riverctl map normal Mod3 3 spawn "$HOME/.config/scripts/wayland/togglemonitors.sh; pkill sandbar; $sandbar_run"
 riverctl map normal Mod3 4 spawn '$HOME/.config/scripts/wayland/change-res.sh'
 
 riverctl map normal Mod3 T spawn "$wallpaper_script wayland-gui"
 riverctl map normal Mod3 Z spawn 'grim - | wl-copy'
 riverctl map normal Mod3 C spawn 'grim -g "$(slurp)" - | wl-copy'
+riverctl map normal Mod3 X spawn 'grim -g "$(slurp -p)" -t ppm - | convert - -format '\''%[pixel:p{0,0}]'\'' txt:- | tail -1 | awk '\''{print $3 "\n" substr($2, 2, length($2)-2) ""}'\'' | while read line; do echo $line; wl-copy "$line"; done'
 
 # Passthrough mode
 riverctl map normal Super F11 enter-mode passthrough

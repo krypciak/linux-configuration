@@ -17,7 +17,7 @@ export GDK_BACKEND=wayland
 
 # gentoo-pipewire-launcher &
 
-export XDG_CURRENT_DESKTOP=river
+export XDG_CURRENT_DESKTOP=sway
 systemctl --user import-environment XDG_CURRENT_DESKTOP
 dbus-update-activation-environment --systemd XDG_CURRENT_DESKTOP
 

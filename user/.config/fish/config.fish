@@ -8,6 +8,7 @@ if status is-interactive
     source /usr/share/autojump/autojump.fish
 
     atuin init fish | source
+    atuin gen-completions --shell fish | source
     
     function lsp
         ls -d "$PWD/$argv" | head -c -1

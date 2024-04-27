@@ -19,7 +19,7 @@ white = "#63686d"
 yellow = "#fdbc4b"
 
 [colors.normal]
-black = "#232627"
+black = "#232627" #
 blue = "#1d99f3"
 cyan = "#1abc9c"
 green = "#11d116"
@@ -29,10 +29,10 @@ white = "#fcfcfc"
 yellow = "#f67400"
 
 [colors.primary]
-background = "#1d1f21"
+background = "#1d1f21" #
 bright_foreground = "#eaeaea"
 dim_foreground = "#828482"
-foreground = "#fcfcfc"
+foreground = "#fcfcfc" #
 
 [colors.vi_mode_cursor]
 cursor = "CellForeground"
