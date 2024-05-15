@@ -48,7 +48,7 @@ riverctl rule-add -app-id 'dialect' tags $(get_tag 't')
 # { NULL,            'Invidious',   1 << 9,       0,  0,  0,  0,  0,   0,   0,  0,  -1 },
 # { NULL,   'Picture in picture',   1 << 9,       0,  1,  0,  0,  0,   1,   1,  0,  -1 },
 riverctl rule-add -app-id 'prismlauncher' tags $(get_tag 'a')
-riverctl rule-add -app-id '*Minecraft*' tags $(get_tag 'a')
+riverctl rule-add -app-id 'Minecraft*' tags $(get_tag 'a')
 riverctl rule-add -title '*Steam*' tags $(get_tag 'h')
 riverctl rule-add -title 'Launching...' tags $(get_tag 'h')
 riverctl rule-add -app-id 'Lutris' tags $(get_tag 'h')
