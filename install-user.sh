@@ -37,6 +37,7 @@ SYMLINK_FROM_TO="\
     .config/cmus/autosave \
     .config/cmus/red_theme.theme \
     .config/cmus/notify.cfg \
+    .config/safeeyes \
     \
     .config/awesome \
     .config/redshift \
