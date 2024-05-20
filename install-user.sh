@@ -76,8 +76,6 @@ COPY_FROM_TO="\
     \
     .config/discord/settings.json \
     \
-    .config/FreeTube/settings.db \
-    \
     .local/share/PrismLauncher/multimc.cfg \
     \
     .config/keepassxc \
