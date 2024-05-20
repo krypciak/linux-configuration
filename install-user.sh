@@ -60,6 +60,7 @@ SYMLINK_FROM_TO="\
     .config/plasmashellrc \
 "
 
+
 # If path starts with %, will not override
 COPY_FROM_TO="\
     .config/gtk-2.0 \
@@ -77,7 +78,6 @@ COPY_FROM_TO="\
     .config/keepassxc \
     \
     .local/share/applications/tutanota-desktop.desktop \
-    .local/share/applications/arch-update.desktop \
     \
     .config/chromium-flags.conf \
 "
