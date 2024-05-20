@@ -48,11 +48,6 @@ SYMLINK_FROM_TO="\
     .config/swaylock \
     .config/fnott \
     \
-    .config/chromium/Default/Extensions \
-    .config/chromium/Default/Sync|Extension|Settings \
-    .config/chromium/Default/Managed|Extension|Settings \
-    .config/chromium/Default/Local|Extension|Settings \
-    \
     .config/BetterDiscord/plugins \
     \
     .config/tridactyl \
@@ -83,9 +78,6 @@ COPY_FROM_TO="\
     .local/share/applications/tutanota-desktop.desktop \
     .local/share/applications/arch-update.desktop \
     \
-    .config/chromium/Default/Preferences  \
-    %.config/chromium/Default/Cookies \
-    .config/chromium/Local|State \
     .config/chromium-flags.conf \
 "
 
