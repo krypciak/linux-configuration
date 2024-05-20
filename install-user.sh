@@ -29,6 +29,7 @@ SYMLINK_FROM_TO="\
     .config/ttyper \
     .config/animdl \
     .config/mimeapps.list \
+    .config/atuin \
     .shellcheckrc \
     \
     .config/alacritty \
