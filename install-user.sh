@@ -18,7 +18,6 @@ SYMLINK_FROM_TO="\
     .config/.bash-preexec.sh \
     .config/scripts \
     .config/nvim \
-    .local/share/nvim \
     .config/fish \
     .config/tealdeer \
     .bashrc \

@@ -21,7 +21,6 @@ handle_args '-y|--noconfirm=export YOLO=1' "$@"
 # If path starts with %, will not override
 COPY_FROM_TO="\
     .config/nvim \
-    .local/share/nvim \
     .config/fish \
     .bashrc \
     .config/at-login.sh \
