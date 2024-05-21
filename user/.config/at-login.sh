@@ -9,7 +9,7 @@ export CM_LAUNCHER=rofi
 
 export GIT_DISCOVERY_ACROSS_FILESYSTEM=1
 
-[ "$USER1" == '' ] && export USER1=$USER
+[ "$USER1" = '' ] && export USER1=$USER
 
 export USER_HOME="/home/$USER1"
 export PATH="$USER_HOME/home/.local/bin:/home/$USER1/.cargo/bin$PATH:/home/$USER1/home/.config/scripts:$USER_HOME/home/.local/share/cargo/bin"
