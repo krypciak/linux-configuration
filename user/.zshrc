@@ -57,9 +57,6 @@ select-word-style bash
 # Prints a new line each time a command is executed.
 precmd() { [ -z "$add_newline" ] && add_newline=true || echo; }
 
-# Sets the prompt style.
-PROMPT="%B%F{blue}%~%f%F{%(?.fg.red)}>%b%f "
-
 ## HISTORY ====================================================================
 HISTFILE="$HOME/.zsh_history" # Location of the history file.
 HISTSIZE=50000                # Maximum number of commands in the history.
@@ -92,7 +89,7 @@ source /usr/share/zsh/share/antigen.zsh
 # antigen bundle command-not-found
 antigen use oh-my-zsh
 antigen bundle zsh-users/zsh-syntax-highlighting
-
+antigen theme candy
 antigen apply
 
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -136,3 +133,6 @@ fi
 
 
 alias topcmds='history | awk "{print \$2}" | sort | uniq -c | sort -nr | head -20'
+
+end=$(tput cup 9999 0)
+PS1='%{${end}%} %B%F{blue}%~%f%F{%(?.fg.red)}>%b%f'
