@@ -66,7 +66,7 @@ sandbar_run="$HOME/.config/dwl/someblocks/someblocks -m 1 | awk '{print \"all \"
 
 # Autostart
 riverctl spawn 'wlr-randr --output HDMI-A-1 --mode 2560x1440@143.912003Hz'
-riverctl spawn 'wlr-randr --output DP-2 --off'
+# riverctl spawn 'wlr-randr --output DP-2 --off'
 riverctl spawn 'swww init > /dev/null 2>&1'
 riverctl spawn "$wallpaper_script inc 0 0 > /dev/null 2>&1"
 riverctl spawn 'gammastep -r > /dev/null 2>&1'
@@ -100,6 +100,7 @@ for mode in normal locked; do
     riverctl map $mode Super+Shift+Control Q exit
     riverctl map $mode Super+Shift+Control P spawn '$HOME/.config/scripts/poweroff.sh'
     riverctl map $mode Super+Shift+Control R spawn '$HOME/.config/scripts/reboot.sh'
+    riverctl map $mode Super+Shift+Control W spawn 'doas grub-reboot 3; $HOME/.config/scripts/reboot.sh'
     riverctl map $mode Super+Shift+Control S spawn 'playerctl pause -a; $HOME/.config/scripts/suspend.sh; swaylock'
     riverctl map $mode Super+Shift+Control H spawn '$HOME/.config/scripts/hibernate.sh; swaylock'
 done

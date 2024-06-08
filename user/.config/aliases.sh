@@ -60,4 +60,6 @@ alias river='sh $HOME/.config/river/run.sh'
 alias lol='leagueoflegends kill; env AMD_VULKAN_ICD=RADV gamescope -W 2560 -H 1440 -m 1 --rt -f -- leagueoflegends start'
 
 alias tsc='npx tsc'
-alias npm='pnpm'
+
+alias pd='node /home/krypek/home/Temp/pnpm/pnpm/dev/pd.js'
+alias ffmpeg='ffmpeg -hide_banner'
