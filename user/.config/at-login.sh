@@ -12,7 +12,7 @@ export GIT_DISCOVERY_ACROSS_FILESYSTEM=1
 [ "$USER1" = '' ] && export USER1=$USER
 
 export USER_HOME="/home/$USER1"
-export PATH="$USER_HOME/home/.local/bin:/home/$USER1/.cargo/bin$PATH:/home/$USER1/home/.config/scripts:$USER_HOME/home/.local/share/cargo/bin"
+export PATH="$USER_HOME/home/.local/bin:/home/$USER1/.cargo/bin:$PATH:/home/$USER1/home/.config/scripts"
 
 export XDG_DATA_HOME="$USER_HOME/home/.local/share"
 export XDG_STATE_HOME="$USER_HOME/home/.local/state"
@@ -24,8 +24,6 @@ export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 export XCURSOR_PATH=/usr/share/icons:"$XDG_DATA_HOME"/icons
 # ~/.wine
 export WINEPREFIX="$XDG_DATA_HOME"/wine
-# ~/.android
-export ANDROID_HOME="$XDG_DATA_HOME"/android
 # ~/.bash_history
 mkdir -p "$XDG_STATE_HOME"/bash
 export HISTFILE="$XDG_STATE_HOME"/bash/history
@@ -54,3 +52,8 @@ export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
 export LIBSEAT_BACKEND=logind
 
 export SDL_VIDEODRIVEVER=wayland
+
+export ANDROID_HOME="$USER_HOME/Programming/android/sdk"
+export ANDROID_SDK_ROOT="$USER_HOME/Programming/android/sdk"
+export ANDROID_AVD_HOME="$USER_HOME/.android/avd"
+export PATH="$PATH:$USER_HOME/Programming/android/sdk/tools"

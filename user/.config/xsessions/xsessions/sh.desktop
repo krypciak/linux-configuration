@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=sh
+Comment=sh shell
+Exec=sh
+Type=Application

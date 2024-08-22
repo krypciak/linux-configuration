@@ -15,3 +15,12 @@ eval "$(atuin init bash)"
 _doas_func() { if [ "$1" = "su" ] || [ "$1" = "bash" ] || [ "$1" = "fish" ]; then echo no; else doas "$@"; fi; }
 alias doas='_doas_func'
 
+
+
+# pnpm
+export PNPM_HOME="/home/krypek/home/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end

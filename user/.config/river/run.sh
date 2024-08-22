@@ -6,6 +6,23 @@ gsettings set org.gnome.desktop.wm.preferences button-layout "" >/dev/null 2>&1 
 export MOZ_ENABLE_WAYLAND=1
 export GDK_BACKEND=wayland
 
+export XDG_SESSION_TYPE=wayland
+export XDG_SESSION_DESKTOP=river
+export XDG_CURRENT_DESKTOP=river
+
+# export QT_QPA_PLATFORM=wayland
+export SDL_VIDEODRIVER=wayland
+export _JAVA_AWT_WM_NONREPARENTING=1
+
+
+systemctl --user import-environment XDG_CURRENT_DESKTOP &
+dbus-update-activation-environment --systemd XDG_CURRENT_DESKTOP &
+dbus-update-activation-environment DISPLAY XAUTHORITY WAYLAND_DISPLAY &
+
+# dbus-update-activation-environment --all
+# gnome-keyring-daemon --start --components=secrets
+
+
 # launches a session dbus instance
 # dbuslaunch="$(which dbus-launch 2>/dev/null)"
 # if [ -n "$dbuslaunch" ] && [ -x "$dbuslaunch" ] && [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
@@ -17,9 +34,7 @@ export GDK_BACKEND=wayland
 
 # gentoo-pipewire-launcher &
 
-export XDG_CURRENT_DESKTOP=sway
-systemctl --user import-environment XDG_CURRENT_DESKTOP
-dbus-update-activation-environment --systemd XDG_CURRENT_DESKTOP
+
 
 # do-while
 do=true

@@ -131,8 +131,12 @@ else
     }
 fi
 
+source /usr/share/autojump/autojump.zsh
 
 alias topcmds='history | awk "{print \$2}" | sort | uniq -c | sort -nr | head -20'
 
-end=$(tput cup 9999 0)
-PS1='%{${end}%} %B%F{blue}%~%f%F{%(?.fg.red)}>%b%f'
+# end=$(tput cup 9999 0)
+# PS1='%{${end}%} %B%F{blue}%~%f%F{%(?.fg.red)}>%b%f'
+PS1='%B%F{blue}%~%f%F{%(?.fg.red)}>%b%f'
+# tput cup 0 0
+

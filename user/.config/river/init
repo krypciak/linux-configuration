@@ -44,7 +44,7 @@ riverctl rule-add -app-id 'chromium' tags $(get_tag 's')
 riverctl rule-add -app-id 'tutanota-desktop' tags $(get_tag 'z')
 riverctl rule-add -app-id 'aerc' tags $(get_tag 'z')
 riverctl rule-add -app-id 'cmus' tags $(get_tag 'n')
-riverctl rule-add -app-id 'dialect' tags $(get_tag 't')
+riverctl rule-add -app-id 'spotube' tags $(get_tag 'n')
 # { NULL,            'Invidious',   1 << 9,       0,  0,  0,  0,  0,   0,   0,  0,  -1 },
 # { NULL,   'Picture in picture',   1 << 9,       0,  1,  0,  0,  0,   1,   1,  0,  -1 },
 riverctl rule-add -app-id 'prismlauncher' tags $(get_tag 'a')
@@ -73,10 +73,10 @@ riverctl spawn 'gammastep -r > /dev/null 2>&1'
 riverctl spawn "$sandbar_run"
 riverctl spawn 'alacritty --class cmus --title cmus -e cmus 2>&1'
 riverctl spawn 'wl-paste --watch cliphist -max-items 30000 store > /dev/null 2>&1'
-riverctl spawn 'amixer set Capture nocap > /dev/null 2>&1'
+# riverctl spawn 'amixer set Capture nocap > /dev/null 2>&1'
 riverctl spawn 'fnott > /dev/null 2>&1'
 riverctl spawn 'pgrep keepassxc > /dev/null || keepassxc > /dev/null 2>&1'
-riverctl spawn 'sleep 15; pgrep tutanota > /dev/null || tutanota-desktop --enable-features=UseOzonePlatform --ozone-platform=wayland > /dev/null 2>&1'
+# riverctl spawn 'sleep 15; pgrep tutanota > /dev/null || tutanota-desktop --enable-features=UseOzonePlatform --ozone-platform=wayland > /dev/null 2>&1'
 # riverctl spawn 'blueman-applet > /dev/null 2>&1'
 riverctl spawn 'sleep 5; librewolf > /dev/null 2>&1'
 riverctl spawn 'safeeyes > /dev/null 2>&1'
@@ -100,7 +100,7 @@ for mode in normal locked; do
     riverctl map $mode Super+Shift+Control Q exit
     riverctl map $mode Super+Shift+Control P spawn '$HOME/.config/scripts/poweroff.sh'
     riverctl map $mode Super+Shift+Control R spawn '$HOME/.config/scripts/reboot.sh'
-    riverctl map $mode Super+Shift+Control W spawn 'doas grub-reboot 3; $HOME/.config/scripts/reboot.sh'
+    riverctl map $mode Super+Shift+Control W spawn 'doas grub-reboot 2; $HOME/.config/scripts/reboot.sh'
     riverctl map $mode Super+Shift+Control S spawn 'playerctl pause -a; $HOME/.config/scripts/suspend.sh; swaylock'
     riverctl map $mode Super+Shift+Control H spawn '$HOME/.config/scripts/hibernate.sh; swaylock'
 done
@@ -144,16 +144,19 @@ riverctl map normal Alt+Shift Comma send-to-output previous
 # Playerctl
 map_playerctl() {
     for mode in normal locked passthrough; do
-        riverctl map $mode Mod3 $1 spawn "$playerctl_script \"$2\" 1"
-        riverctl map $mode Mod3+Shift $1 spawn "$playerctl_script \"$2\" 2"
+        riverctl map $mode Mod3 $1 spawn "$playerctl_script \"$3\" 1"
+        riverctl map $mode Mod3+Shift $1 spawn "$playerctl_script \"$3\" 2"
+
+        riverctl map $mode Alt $2 spawn "$playerctl_script \"$3\" 1"
+        riverctl map $mode Alt+Shift $2 spawn "$playerctl_script \"$3\" 2"
     done
 }
 
-map_playerctl 'Tab' 'play-pause'
-map_playerctl 'Q' 'next'
-map_playerctl 'A' 'previous'
-map_playerctl 'W' 'volume 0.02%+'
-map_playerctl 'S' 'volume 0.02%-'
+map_playerctl 'Tab' 'J' 'play-pause'
+map_playerctl 'Q' 'U' 'next'
+map_playerctl 'A' 'M' 'previous'
+map_playerctl 'W' 'I' 'volume 0.02%+'
+map_playerctl 'S' 'K' 'volume 0.02%-'
 for mode in normal locked passthrough; do
     # riverctl map $mode          Mod3+Control        Tab     spawn "$playerctl_script swap -1"
     riverctl map $mode None XF86AudioPlay spawn "$playerctl_script play-pause 1"
@@ -162,7 +165,9 @@ done
 riverctl map normal Mod3+Control Q spawn "pacmd set-default-sink \"\$(pactl list sinks short | awk '{print \$1 \" <> \" substr(\$2,13) }' | tr '-' ' ' | tr '_' ' ' | fuzzel -d --log-level=none --width 50 | awk '{print \$1}')\""
 
 # Misc caps keys
-riverctl map normal Mod3 1 spawn 'cliphist list | fuzzel --width 100 -d --log-level=none | cliphist decode | wl-copy'
+CLIPHIST_MENU='cliphist list | fuzzel --width 100 -d --log-level=none | cliphist decode | wl-copy'
+riverctl map normal Mod3 1 spawn "$CLIPHIST_MENU"
+riverctl map normal Alt G spawn "$CLIPHIST_MENU"
 riverctl map normal Mod3+Control 1 spawn "cliphist wipe"
 riverctl map normal Mod3 3 spawn "$HOME/.config/scripts/wayland/togglemonitors.sh; pkill sandbar; $sandbar_run"
 riverctl map normal Mod3 4 spawn '$HOME/.config/scripts/wayland/change-res.sh'

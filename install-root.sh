@@ -22,6 +22,7 @@ handle_args '-y|--noconfirm=export YOLO=1' "$@"
 COPY_FROM_TO="\
     .config/nvim \
     .config/fish \
+    .zshrc \
     .bashrc \
     .config/at-login.sh \
     .config/aliases.sh \
