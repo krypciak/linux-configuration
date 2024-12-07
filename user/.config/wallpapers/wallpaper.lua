@@ -10,6 +10,7 @@ local wallpapers = {
     { 'autumn.png' },
     { 'crosscode-curcuits.png' },
     { 'anime/tenken-fran.png' },
+    { 'lea.gif' },
     { '#000000', '#303030' },
 }
 local custom_scaling_wallpapers = {}
