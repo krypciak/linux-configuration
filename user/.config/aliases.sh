@@ -22,8 +22,8 @@ alias 'vim'='nvim'
 
 alias reboot='loginctl reboot'
 alias poweroff='loginctl poweroff'
-alias suspend='awesome-client "suspend()"'
-alias hibernate='awesome-client "hibernate()"'
+# alias suspend='awesome-client "suspend()"'
+# alias hibernate='awesome-client "hibernate()"'
 
 alias f='fdisk -l'
 
@@ -42,6 +42,7 @@ alias gitignorenowork='printf "#Remember to commit everything changed before you
 alias iuploadedmycreditcardnumbertogitwhatnow='printf "git filter-repo --invert-paths --path <path to the file or directory>"\n'
 alias mountqcow2='printf "# Mount\ndoas modprobe nbd max_part=8\ndoas qemu-nbd --connect=/dev/nbd0 IMAGE.qcow2\ndoas mount /dev/nbd0 MNT\n\n# Umount\ndoas umount MNT\ndoas qemu-ndp --disconnect /dev/nbd0"'
 alias blkiduuid='blkid -s UUID -o value /dev/vda1'
+alias extractbootimg="printf 'ls -la \$(find /dev/block/platform -type d -name by-name) | grep boot\ndd if=/boot/img/path of=/sdcard/boot.img'"
 
 alias awesomesuperbroken='xmodmap -e "clear mod4"; xmodmap -e "add mod4 = Super_L Super_L Super_L Hyper_L"'
 
@@ -61,5 +62,6 @@ alias lol='leagueoflegends kill; env AMD_VULKAN_ICD=RADV gamescope -W 2560 -H 14
 
 alias tsc='npx tsc'
 
-alias pd='node /home/krypek/home/Temp/pnpm/pnpm/dev/pd.js'
 alias ffmpeg='ffmpeg -hide_banner'
+
+alias gdb='gdb -q'

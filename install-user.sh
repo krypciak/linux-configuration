@@ -31,6 +31,7 @@ SYMLINK_FROM_TO="\
     .config/mimeapps.list \
     .config/atuin \
     .shellcheckrc \
+    .config/gdb \
     \
     .config/alacritty \
     .config/wallpapers \
